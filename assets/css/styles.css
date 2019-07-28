@@ -1,0 +1,9 @@
+.layout-transparent {
+    background: url('/assets/images/background.png') center / cover;
+}
+
+.layout-transparent .mdl-layout__header,
+.layout-transparent .mdl-layout__drawer-button,
+.layout-transparent .mdl-navigation a {
+    color: black;
+}
