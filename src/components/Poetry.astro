@@ -8,8 +8,8 @@ const id = Astro.props.content.nav[3].id;
   <div class="shell poetry__inner">
     <span class="osd ch-label">CH4 · {p.eyebrow}</span>
     <h2 class="visually-hidden" id={`${id}-title`}>{p.title}</h2>
-    <div class="verse" data-decode-root>
-      {p.lines.map((l, i) => <p class="verse__line" data-decode style={`--i:${i}`}>{l}</p>)}
+    <div class="verse" data-decode-root data-decode data-glitch="poem" aria-label={p.lines.join(' ')}>
+      {p.lines.map((l, i) => <p class="verse__line" style={`--i:${i}`}>{l}</p>)}
     </div>
     <p class="osd poetry__credit">{p.credit}</p>
     <div class="poetry__foot">

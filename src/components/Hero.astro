@@ -19,7 +19,7 @@ const [first, ...rest] = h.name.split(' ');
 
   <div class="hero__inner shell">
     <p class="osd osd--signal hero__status">{h.osd}</p>
-    <h1 class="hero__name" id="hero-name">
+    <h1 class="hero__name" id="hero-name" aria-label={h.name} data-decode data-glitch="name">
       <span class="hero__line">{first}</span>
       <span class="hero__line hero__line--outline">{rest.join(' ')}</span>
     </h1>

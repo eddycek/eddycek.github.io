@@ -6,7 +6,10 @@
  * Pointer movement kicks the plant and ripples the noise at the pointer x;
  * click/tap shatters the signal at that point: a shockwave, torn scanlines,
  * flying trace shards and a damaged stretch of every channel that stays until
- * the beam sweeps over it again. Noise fades as the page scrolls.
+ * the beam sweeps over it again. Every hit costs signal integrity; break it
+ * completely and the quad drops into FAILSAFE: static, a line from the poem,
+ * the name and verse melt (window 'signal:failsafe'), then it re-arms.
+ * Noise fades as the page scrolls.
  */
 import { clamp, createStage, mono, pad, type Stage } from './common';
 
@@ -46,6 +49,16 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   const shocks: Shock[] = [];
   const shards: Shard[] = [];
   let tear = 0;
+  let dmg = 0; // 0..1, lost signal integrity
+  let failsafe = 0; // seconds left in FAILSAFE
+  let failCount = 0;
+  const FAIL_T = 3.6;
+  const FAIL_LINES = [
+    'cut the wires, no fucking choice.',
+    'no escape, just broken glass.',
+    'every second burns too fast.',
+    'nothing left, just follow noise.',
+  ];
 
   const gauss = (): number => Math.random() + Math.random() + Math.random() - 1.5;
 
@@ -121,6 +134,14 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     const r = canvas.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
     if ((e.target as Element | null)?.closest?.('a, button, input, textarea')) return;
+    if (failsafe > 0) return;
+    dmg = Math.min(1, dmg + 0.13 + Math.random() * 0.05);
+    if (dmg >= 1) {
+      dmg = 0;
+      failsafe = FAIL_T;
+      failCount++;
+      window.dispatchEvent(new CustomEvent('signal:failsafe', { detail: 1500 }));
+    }
     const px = e.clientX - r.left;
     const py = e.clientY - r.top;
     newSetpoint(true);
@@ -223,6 +244,13 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       }
       glitch = Math.max(0, glitch - dt);
       tear = Math.max(0, tear - dt);
+      if (failsafe > 0) {
+        failsafe = Math.max(0, failsafe - dt);
+        if (failsafe === 0) {
+          glitch = 0.4;
+          tear = 0.3;
+        }
+      } else dmg = Math.max(0, dmg - dt * 0.035);
       for (let k = shocks.length - 1; k >= 0; k--) {
         const sh = shocks[k];
         if (!sh) continue;
@@ -242,6 +270,10 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       }
     }
     ctx.clearRect(0, 0, w, h);
+    if (failsafe > 0) {
+      drawFailsafe(s, t);
+      return;
+    }
     const mid = h * 0.5;
     const amp = h * AMP;
 
@@ -348,6 +380,26 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       ctx.globalAlpha = 0.08;
       ctx.fillRect(Math.random() * w * 0.6, Math.random() * h, w * 0.4, 2);
     }
+    // Signal integrity meter, only once something got broken.
+    if (dmg > 0.01) {
+      const pct = Math.round((1 - dmg) * 100);
+      const bw = Math.min(220, w * 0.3);
+      const bx = (w - bw) / 2;
+      const by = 22;
+      const hot = dmg > 0.6;
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = hot ? pal.signal.css : pal.ink.css;
+      mono(s, 10);
+      ctx.textAlign = 'center';
+      ctx.fillText(`SIGNAL INTEGRITY ${pad(pct, 3)}%${hot && Math.sin(t * 18) > 0 ? '  ⚠ RSSI LOW' : ''}`, w / 2, by);
+      ctx.textAlign = 'left';
+      ctx.globalAlpha = 0.35;
+      ctx.fillRect(bx, by + 6, bw, 3);
+      ctx.globalAlpha = 0.95;
+      ctx.fillRect(bx, by + 6, bw * (1 - dmg), 3);
+      ctx.globalAlpha = 1;
+    }
+
     // Impact: shockwave rings, shards, torn scanlines.
     for (const sh of shocks) {
       const k = sh.age / 1.2;
@@ -418,6 +470,51 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     }
     ctx.globalAlpha = 1;
     ctx.lineWidth = 1;
+  };
+
+  const drawFailsafe = (s: Stage, t: number): void => {
+    const { ctx, w, h, pal } = s;
+    const k = 1 - failsafe / FAIL_T; // 0 → 1
+    // Static.
+    const cell = w < 640 ? 3 : 4;
+    const n = Math.round((w * h) / (cell * cell * 9));
+    for (let i = 0; i < n; i++) {
+      const v = Math.random();
+      ctx.fillStyle = v > 0.92 ? pal.signal.css : v > 0.5 ? pal.ink.css : pal.noise.css;
+      ctx.globalAlpha = 0.08 + Math.random() * 0.22;
+      ctx.fillRect(((Math.random() * w) / cell | 0) * cell, ((Math.random() * h) / cell | 0) * cell, cell, cell);
+    }
+    // Rolling bar.
+    ctx.fillStyle = pal.ink.css;
+    ctx.globalAlpha = 0.06;
+    ctx.fillRect(0, ((t * 220) % (h + 80)) - 80, w, 80);
+    // Text.
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const big = Math.min(120, w / 6.5);
+    if (Math.sin(t * 22) > -0.3) {
+      ctx.font = `800 ${big}px ${getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif'}`;
+      ctx.globalAlpha = 0.9;
+      ctx.fillStyle = pal.trace.css;
+      ctx.fillText('FAILSAFE', w / 2 + 4, h * 0.36);
+      ctx.fillStyle = pal.signal.css;
+      ctx.fillText('FAILSAFE', w / 2 - 3, h * 0.36);
+    }
+    mono(s, Math.max(11, Math.min(16, w / 60)));
+    ctx.fillStyle = pal.ink.css;
+    ctx.globalAlpha = 0.9;
+    const line = FAIL_LINES[(failCount - 1) % FAIL_LINES.length] ?? '';
+    const shown = line.slice(0, Math.ceil(line.length * Math.min(1, k * 2.2)));
+    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, h * 0.36 + big * 0.62);
+    ctx.globalAlpha = 0.55;
+    ctx.fillText(
+      k > 0.72 ? 'REARMING…' : `DISARMED · FAILSAFE #${pad(failCount, 2)} · YOU BROKE IT`,
+      w / 2,
+      h * 0.36 + big * 0.62 + 26,
+    );
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    ctx.globalAlpha = 1;
   };
 
   const stage = createStage(canvas, { draw });

@@ -5,6 +5,9 @@
  * never move) and a random glyph is painted over it via ::after. On entering
  * the viewport the characters resolve roughly left to right; afterwards a few
  * characters occasionally re-glitch. Whitespace and line breaks are untouched.
+ * Elements with data-glitch="poem" | "name" keep flickering after decoding and
+ * now and then fully melt down for a moment (all glyphs scrambled, RGB split,
+ * torn slices). A window 'signal:failsafe' event melts every such element.
  */
 import { prefersReduced } from './common';
 
@@ -14,7 +17,15 @@ const CSS =
   `.${CLS}{position:relative}` +
   `.${CLS}[data-g]{color:transparent;-webkit-text-fill-color:transparent}` +
   `.${CLS}[data-g]::after{content:attr(data-g);content:attr(data-g)/"";position:absolute;left:0;top:0;` +
-  `color:var(--c-signal,#FF7A2F);-webkit-text-fill-color:var(--c-signal,#FF7A2F);pointer-events:none}`;
+  `color:var(--c-signal,#FF7A2F);-webkit-text-fill-color:var(--c-signal,#FF7A2F);pointer-events:none}` +
+  `.sd-melt{animation:sd-melt .12s steps(1,end) infinite}` +
+  `.sd-melt .${CLS}[data-g]::after{color:var(--c-trace,#5CC8D6);-webkit-text-fill-color:var(--c-trace,#5CC8D6)}` +
+  `.sd-melt .${CLS}:nth-child(3n)[data-g]::after{color:var(--c-ink,#E8EBEE);-webkit-text-fill-color:var(--c-ink,#E8EBEE)}` +
+  `@keyframes sd-melt{` +
+  `0%{transform:translate(-4px,0) skewX(-8deg);clip-path:inset(0 0 55% 0);text-shadow:3px 0 var(--c-trace),-3px 0 var(--c-signal)}` +
+  `33%{transform:translate(6px,1px) skewX(4deg);clip-path:inset(30% 0 10% 0);text-shadow:-4px 0 var(--c-trace),4px 0 var(--c-signal)}` +
+  `66%{transform:translate(-2px,-1px);clip-path:inset(10% 0 35% 0);text-shadow:2px 0 var(--c-signal),-2px 0 var(--c-trace)}` +
+  `100%{transform:none;clip-path:none;text-shadow:none}}`;
 
 let styleEl: HTMLStyleElement | null = null;
 let styleRefs = 0;
@@ -27,7 +38,15 @@ interface Item {
   state: 0 | 1 | 2; // scrambled, decoding, done
   visible: boolean;
   label: boolean; // we set aria-label
+  mode: '' | 'poem' | 'name';
+  nextFlick: number;
+  nextMelt: number;
+  meltUntil: number;
 }
+
+const FLICK: Record<'poem' | 'name', [number, number]> = { poem: [140, 420], name: [500, 1400] };
+const MELT: Record<'poem' | 'name', [number, number]> = { poem: [3500, 8000], name: [5500, 12000] };
+const rnd = (r: [number, number]): number => r[0] + Math.random() * (r[1] - r[0]);
 
 const glyph = (): string => GLYPHS[(Math.random() * GLYPHS.length) | 0] ?? '░';
 
@@ -78,11 +97,13 @@ export function decodeText(root: HTMLElement): () => void {
     const dur = Math.min(700, 220 + n * 8);
     const at = new Float32Array(n);
     for (let i = 0; i < n; i++) at[i] = 60 + (i / Math.max(1, n)) * dur + Math.random() * 140;
-    return { el, spans, at, start: 0, state: 0, visible: false, label };
+    const g = el.dataset.glitch;
+    const mode = g === 'poem' || g === 'name' ? g : '';
+    return { el, spans, at, start: 0, state: 0, visible: false, label, mode, nextFlick: 0, nextMelt: 0, meltUntil: 0 };
   });
 
   // Re-glitch pool (fixed size, no per-frame allocation).
-  const G = 8;
+  const G = 32;
   const gSpan: (HTMLSpanElement | null)[] = new Array<HTMLSpanElement | null>(G).fill(null);
   const gUntil = new Float64Array(G);
   let nextGlitch = performance.now() + 2500;
@@ -118,6 +139,44 @@ export function decodeText(root: HTMLElement): () => void {
           sp.removeAttribute('data-g');
           gSpan[k] = null;
         } else sp.setAttribute('data-g', glyph());
+      }
+      for (const it of items) {
+        if (!it.mode || it.state !== 2 || !it.visible || !it.spans.length) continue;
+        if (!it.nextMelt) {
+          it.nextMelt = now + rnd(MELT[it.mode]);
+          it.nextFlick = now + rnd(FLICK[it.mode]);
+        }
+        if (it.meltUntil) {
+          if (now >= it.meltUntil) {
+            it.meltUntil = 0;
+            it.el.classList.remove('sd-melt');
+            for (const sp of it.spans) if (!gSpan.includes(sp)) sp.removeAttribute('data-g');
+            it.nextMelt = now + rnd(MELT[it.mode]);
+          } else {
+            for (const sp of it.spans) {
+              if (Math.random() < 0.8) sp.setAttribute('data-g', glyph());
+              else sp.removeAttribute('data-g');
+            }
+          }
+          continue;
+        }
+        if (now >= it.nextMelt) {
+          it.meltUntil = now + 220 + Math.random() * (it.mode === 'poem' ? 420 : 260);
+          it.el.classList.add('sd-melt');
+          continue;
+        }
+        if (now >= it.nextFlick) {
+          it.nextFlick = now + rnd(FLICK[it.mode]);
+          const burst = 1 + ((Math.random() * (it.mode === 'poem' ? 6 : 2)) | 0);
+          for (let b = 0; b < burst; b++) {
+            const k = gSpan.indexOf(null);
+            const sp = it.spans[(Math.random() * it.spans.length) | 0];
+            if (k < 0 || !sp) break;
+            gSpan[k] = sp;
+            gUntil[k] = now + 50 + Math.random() * 160;
+            sp.setAttribute('data-g', glyph());
+          }
+        }
       }
       if (now >= nextGlitch) {
         nextGlitch = now + 1800 + Math.random() * 3600;
@@ -162,12 +221,25 @@ export function decodeText(root: HTMLElement): () => void {
   );
   for (const it of items) io.observe(it.el);
   document.addEventListener('visibilitychange', sync);
+  const onFailsafe = (e: Event): void => {
+    const ms = (e as CustomEvent<number>).detail ?? 1200;
+    const now = performance.now();
+    for (const it of items) {
+      if (!it.mode || it.state !== 2) continue;
+      it.meltUntil = now + ms;
+      it.el.classList.add('sd-melt');
+    }
+    sync();
+  };
+  window.addEventListener('signal:failsafe', onFailsafe);
 
   return () => {
     if (raf) cancelAnimationFrame(raf);
     io.disconnect();
     document.removeEventListener('visibilitychange', sync);
+    window.removeEventListener('signal:failsafe', onFailsafe);
     for (const it of items) {
+      it.el.classList.remove('sd-melt');
       for (const sp of it.spans) sp.replaceWith(document.createTextNode(sp.textContent ?? ''));
       it.el.normalize();
       if (it.label) it.el.removeAttribute('aria-label');

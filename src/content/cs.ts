@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti, a ze SRE mi zůstalo, že musí běžet i ve tři ráno.',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno: spolehlivost není feature, je to slib.',
     tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Cestování'],
     scrollHint: 'Dál',
     clickHint: '[ klik do signálu ]',
@@ -205,9 +205,10 @@ export const content: SiteContent = {
       {
         title: 'Cesty',
         text: [
-          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur přes Mexico City a polovinu Jižní Ameriky až po Kapské Město.',
+          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
+          'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
         ],
-        tags: ['Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
+        tags: ['Atacama', 'Santiago de Chile', 'Marrákeš', 'Hanoj', 'Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
       },
     ],
   },

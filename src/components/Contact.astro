@@ -6,12 +6,14 @@ interface Props { content: SiteContent }
 const c = Astro.props.content.contact;
 const id = Astro.props.content.nav[4].id;
 const digits = contact.phone.replace(/[^\d+]/g, '');
-const rows = [
-  ...(digits ? [
-    { label: c.imessageLabel, value: contact.phone, href: `sms:${digits}`, primary: true },
-    { label: c.whatsappLabel, value: contact.phone, href: `https://wa.me/${digits.replace('+', '')}`, primary: true },
-  ] : []),
-  { label: `${c.emailLabel} · ${c.emailNote}`, value: contact.email, href: `mailto:${contact.email}`, primary: !digits },
+const rows: { label: string; value: string; href: string; extra?: { label: string; href: string } }[] = [
+  ...(digits ? [{
+    label: `${c.imessageLabel} · ${c.whatsappLabel}`,
+    value: contact.phone,
+    href: `sms:${digits}`,
+    extra: { label: c.whatsappLabel, href: `https://wa.me/${digits.replace('+', '')}` },
+  }] : []),
+  { label: `${c.emailLabel} · ${c.emailNote}`, value: contact.email, href: `mailto:${contact.email}` },
 ];
 ---
 <Channel id={id} index={5} eyebrow={c.eyebrow} title={c.title} meta={c.location.toUpperCase()}>
@@ -20,10 +22,13 @@ const rows = [
     <ul class="reasons" role="list">{c.reasons.map((r) => <li>{r}</li>)}</ul>
     <div class="lines">
       {rows.map((r) => (
-        <div class:list={['line', { 'line--backup': !r.primary }]}>
+        <div class="line">
           <span class="osd">{r.label}</span>
           <a class="line__value" href={r.href}>{r.value}</a>
+          <span class="line__tools">
+          {r.extra && <a class="osd line__copy line__extra" href={r.extra.href}>{r.extra.label} ↗</a>}
           <button class="osd line__copy" type="button" data-copy={r.value} data-done={c.copiedLabel}>{c.copyLabel}</button>
+          </span>
         </div>
       ))}
       <div class="line line--links">
@@ -43,8 +48,8 @@ const rows = [
   .line { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center; padding-block: 1.2rem; border-bottom: 1px solid var(--c-line); }
   .line__value { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 0.8rem + 2.6vw, 2.8rem); letter-spacing: -0.02em; text-decoration: none; overflow-wrap: anywhere; line-height: 1.1; }
   .line__value::after { content: '_'; color: var(--c-signal); animation: blink 1s steps(1, end) infinite; margin-left: 0.05em; }
-  .line--backup .line__value { font-size: clamp(1.1rem, 0.8rem + 1.4vw, 1.7rem); color: var(--c-muted); }
-  .line--backup .line__value::after { content: none; }
+  .line__tools { display: inline-flex; gap: 0.5rem; }
+  .line__extra { text-decoration: none; }
   .line__copy { background: none; border: 1px solid var(--c-line); color: var(--c-ink); padding: 0.4rem 0.7rem; border-radius: 2px; cursor: pointer; }
   .line__copy:hover { border-color: var(--c-signal); color: var(--c-signal); }
   .line__copy[data-state='done'] { color: var(--c-signal); border-color: var(--c-signal); }
@@ -62,7 +67,7 @@ const rows = [
         await navigator.clipboard.writeText(value);
       } catch {
         const range = document.createRange();
-        const target = btn.previousElementSibling;
+        const target = btn.closest('.line')?.querySelector('.line__value');
         if (target) { range.selectNodeContents(target); getSelection()?.removeAllRanges(); getSelection()?.addRange(range); }
       }
       btn.textContent = btn.dataset.done ?? label;

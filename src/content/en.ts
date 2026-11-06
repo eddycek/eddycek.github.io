@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data, and SRE taught me it has to run at 3 a.m. too.',
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing: reliability is not a feature, it is a promise.',
     tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Travel'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
@@ -205,9 +205,10 @@ export const content: SiteContent = {
       {
         title: 'Travel',
         text: [
-          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur through Mexico City and half of South America to Cape Town.',
+          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
+          'Deserts are what I love most. The silence, the space, and a night sky that never ends. I fell hard for the Atacama and for Santiago de Chile.',
         ],
-        tags: ['Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
+        tags: ['Atacama', 'Santiago de Chile', 'Marrakech', 'Hanoi', 'Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
       },
     ],
   },
