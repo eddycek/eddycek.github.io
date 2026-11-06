@@ -21,7 +21,7 @@ const [first, ...rest] = h.name.split(' ');
     <p class="osd osd--signal hero__status">{h.osd}</p>
     <h1 class="hero__name" id="hero-name" aria-label={h.name} data-decode data-glitch="name">
       <span class="hero__line">{first}</span>
-      <span class="hero__line hero__line--scan hero__line--indent">{rest.join(' ')}</span>
+      <span class="hero__line hero__line--indent">{rest.join(' ')}</span>
     </h1>
     <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick">eddycek</span></p>
     <p class="hero__claim" data-decode>{h.claim}</p>

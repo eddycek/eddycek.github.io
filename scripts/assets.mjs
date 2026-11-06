@@ -41,7 +41,7 @@ svg.trace{position:absolute;inset:0}
 .tr{position:absolute;right:64px;top:52px;color:${C.muted}}
 .name{position:absolute;left:58px;top:118px;font-weight:800;font-size:170px;line-height:.86;letter-spacing:-.05em;font-variation-settings:'opsz' 96}
 .name span{display:block}
-.name .e{padding-left:110px;color:transparent;background:repeating-linear-gradient(to bottom,${C.ink} 0 10px,transparent 10px 12px);-webkit-background-clip:text;background-clip:text}
+.name .e{padding-left:110px}
 .aka{position:absolute;left:172px;top:432px;font-family:M;font-size:30px;color:${C.signal}}
 .aka b{color:${C.muted};font-weight:500;font-size:20px;letter-spacing:.2em;margin-right:16px}
 .claim{position:absolute;left:64px;bottom:60px;font-weight:600;font-size:44px;color:${C.signal};text-shadow:0 0 30px rgba(255,122,47,.45)}
