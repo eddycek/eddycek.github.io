@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO at Keboola',
     description:
-      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours; FPV, poetry, music, digital nomad life and gaming. Prague.',
+      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, Dark Factory, SRE and cyber security. After hours: FPV, poetry, music, digital nomad life and gaming. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Work' },
@@ -17,11 +17,11 @@ export const content: SiteContent = {
   switchLabel: 'CS',
   hero: {
     osd: 'CTO · KEBOOLA · PRAGUE',
-    name: 'Václav Eder',
+    name: 'Vaclav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
       'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
+    tags: ['CTO', 'SRE', 'Cyber security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
@@ -30,26 +30,26 @@ export const content: SiteContent = {
     title: 'What I do now',
     lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
-      'Keboola brings data scattered across dozens of systems into one governed foundation where every metric has one agreed definition. More than a thousand companies run on it.',
-      'Then came large language models. ChatGPT at the end of 2022 showed where this was heading, but the real turning point for me came in November 2025 with Claude Opus 4.5. It changed my world completely and changed the whole game. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
-      'AI agents change everything. Agents can now run processes inside companies on their own; watching the numbers, reconciling, preparing reports. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
-      'My main mission at Keboola is to build a Dark Factory. The term comes from manufacturing; a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the limits and judge the result. That is what I am building our whole engineering around; context for agents, automated quality and security gates, and human judgment exactly where it matters.',
+      'Keboola brings data scattered across dozens of systems into one governed foundation, a single source of truth where every metric has one agreed definition. More than a thousand companies run on it.',
+      'Then came LLMs. ChatGPT at the end of 2022 showed where this was heading, but the real turning point for me came in November 2025 with Claude Opus 4.5. It changed my world completely; a total game changer. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
+      'AI agents change everything. Agents can now run processes inside companies end-to-end; watching the numbers, reconciliation, reporting. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
+      'My main mission at Keboola is to build a Dark Factory. The term comes from manufacturing; a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the guardrails and review the result. That is what I am building our whole engineering around; context for agents, automated quality and security gates, and a human in the loop exactly where it matters.',
       'Our first priority is a happy customer. When they grow, we grow.',
-      'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one; code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infrastructure. And thanks to LLMs I am back at full stack, just one floor higher. “All of this has happened before, and all of this will happen again.” (Battlestar Galactica)',
+      'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one; code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infra. And thanks to LLMs I am back at full stack, just one level higher. “All of this has happened before, and all of this will happen again.” (Battlestar Galactica)',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
-      { label: 'At Keboola since', value: '2019' },
+      { label: 'Engineering', value: '~30 people' },
       { label: 'Clouds', value: 'GCP · AWS · Azure' },
       { label: 'Writing code since', value: 'childhood' },
     ],
     agnes: {
-      label: 'Main focus · agnesbrain.ai',
+      label: 'Main project · agnesbrain.ai',
       title: 'Agnes',
       text: [
         'Agnes is an AI platform we build at Keboola for whole companies, running in their own environment. It brings warehouse data, company documents, a semantic layer of agreed metric definitions and a knowledge graph together into one company brain.',
         'People and AI tools ask questions on the same traceable foundation. Answers can be explained and checked instead of just sounding plausible. Agents get jobs, not just questions, and a human reviews their output before anything goes out.',
-        'Why it matters; AI without company context is a confident guess. Agnes is where data, knowledge and rules turn into something you can trust. That is where it is being decided which companies will use AI for real.',
+        'Why it is a game changer; AI without company context is a confident guess. Agnes is where data, knowledge and rules turn into something you can trust. That is where it is being decided which companies will use AI for real.',
       ],
       url: 'https://agnesbrain.ai/',
       cta: 'agnesbrain.ai',
@@ -57,14 +57,14 @@ export const content: SiteContent = {
     crew: {
       title: 'Same DNA',
       text: [
-        'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine; the same standards, the same impatience and the same joy in building things nobody has built yet.',
-        'And I love the core team at Keboola. We enjoy this and keep looking for new technological paths. We are tuned to this work the same way, and it shows in what we build.',
+        'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine; the same mindset, the same standards, the same impatience and the same joy in building things nobody has built yet.',
+        'And I love the core team at Keboola. We enjoy this and keep looking for new tech paths. We are tuned to this work the same way, and it shows in what we ship.',
       ],
     },
     motto: {
       quote: 'All of this has happened before, and all of this will happen again.',
       source: 'Battlestar Galactica',
-      note: 'How I think about work and life. Patterns repeat in incidents, in teams, in technology waves and in my own path; from frontend through backend and infrastructure back to full stack. Spot them early and you do not have to pay for every lesson twice.',
+      note: 'How I think about work and life. Patterns repeat in incidents, in teams, in tech waves and in my own path; from frontend through backend and infra back to full stack. Spot them early and you do not have to pay for every lesson twice.',
     },
   },
   journey: {
@@ -111,7 +111,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastructure, Kubernetes, Terraform, security. I loved SRE, because it pulls every engineering skill into one.',
+        note: 'Infra, Kubernetes, Terraform, security. I loved SRE, because it pulls every engineering skill into one.',
         milestone: true,
       },
       {
@@ -120,7 +120,7 @@ export const content: SiteContent = {
         level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
-        note: 'My first bigger team. SRE across GCP, AWS and Azure, a Security Engineering function built from scratch, on-call, and incidents we actually learn from.',
+        note: 'My first bigger team. SRE across GCP, AWS and Azure, a Security Engineering function built from scratch, on-call, and incidents we write honest postmortems for.',
         milestone: true,
       },
       {
@@ -129,7 +129,18 @@ export const content: SiteContent = {
         level: 1,
         role: 'CTO',
         org: 'Keboola',
-        note: 'On a mission to build Keboola’s Dark Factory. An engineering org where people and AI agents work together, and a platform that serves both.',
+        note: 'On a mission to build Keboola’s Dark Factory. An engineering org of roughly 30 people where people and AI agents work together, and a platform that serves both.',
+        scopeLabel: 'Scope',
+        scope: [
+          'Tech strategy and platform direction',
+          'Dark Factory and AI adoption across the company',
+          'Engineering org, hiring and people growth',
+          'Architecture, reliability and SRE',
+          'Cyber security and compliance; SOC 1, SOC 2, ISO 27001',
+          'FinOps and cloud costs across GCP, AWS and Azure',
+          'Hardware, tooling and internal processes',
+          'Delivery, quality gates and developer experience',
+        ],
         milestone: true,
       },
     ],
@@ -138,7 +149,7 @@ export const content: SiteContent = {
   workshop: {
     eyebrow: 'Workshop',
     title: 'What I do after hours',
-    lead: 'I fly, print, solder and build. Mostly things I needed and could not find.',
+    lead: 'I fly, 3D print, solder and hack. Mostly things I needed and could not find.',
     items: [
       {
         name: 'FPVPIDlab',
@@ -153,7 +164,8 @@ export const content: SiteContent = {
       {
         name: 'FPV',
         tagline: '',
-        description: 'A hobby that could have been made for me. There is software, hardware, soldering, 3D printing and, in the end, content too. I cut the flights into short videos; they are on my Instagram.',
+        description:
+          'A hobby that feels made for me; an all-in-one package. There is software, hardware, soldering, 3D printing and, in the end, content too. I cut the flights into reels; you will find them on my Instagram.',
         url: 'https://www.instagram.com/eddycek_fpv/',
         linkLabel: '@eddycek_fpv',
         tags: ['Software', 'Hardware', 'Soldering', '3D printing', 'Reels'],
@@ -161,7 +173,7 @@ export const content: SiteContent = {
       {
         name: 'Home rack',
         tagline: '',
-        description: 'My own UniFi network rack, built from scratch as the backbone of a home lab. I wrote about it for UniFi Community Stories.',
+        description: 'My own UniFi network rack, built from scratch as the backbone of my homelab. I wrote about it for UniFi Community Stories.',
         tags: ['UniFi', 'Homelab'],
       },
       {
@@ -174,14 +186,14 @@ export const content: SiteContent = {
         name: 'Flipper Zero & IoT',
         tagline: '',
         description:
-          'Sub-GHz, NFC, RFID and a pile of IoT boxes that measure, switch and watch things at home. I like finding out how the devices around us talk to each other, and how easy they are to listen in on.',
-        tags: ['Flipper Zero', 'IoT', 'Security'],
+          'Sub-GHz, NFC, RFID and a pile of IoT devices that measure, switch and monitor things at home. I like finding out how the devices around us talk to each other, and how easy they are to listen in on.',
+        tags: ['Flipper Zero', 'IoT', 'Cyber security'],
       },
     ],
   },
   poetry: {
     eyebrow: 'Personal',
-    title: 'Poems, music, nomad life and games',
+    title: 'Poetry, music, nomad life and gaming',
     lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
@@ -194,13 +206,13 @@ export const content: SiteContent = {
     close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
-      'These days I experiment with audiovisual work; reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',
+      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone.',
     ],
     extras: [
       {
         title: 'Music',
         text: [
-          'Music matters enormously to me. It runs almost constantly, while I work, write and fly.',
+          'Music matters enormously to me. It runs almost constantly; while I work, write and fly. I do not go anywhere without headphones.',
           'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
@@ -208,27 +220,25 @@ export const content: SiteContent = {
       {
         title: 'Digital nomad life',
         text: [
-          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over; from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
+          'Travel matters enormously to me. I spent several months as a digital nomad, working remote from all over; from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
           'Deserts are what I love most. The silence, the space, and a night sky that never ends. I fell hard for the Atacama and for Santiago de Chile.',
-          'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A MacBook, a bit of other hardware and a place to sit down and work in peace is enough.',
+          'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A MacBook, a bit of gear and a place to sit down with room for deep work is enough.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrakech', 'Hanoi', 'Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
       },
       {
         title: 'Play to games',
-        variant: 'games',
         text: [
-          'I love playing video games. Cyberpunk 2077 hit me hardest. Johnny Silverhand is a digital construct that can control and manipulate its host. He mirrors our own mental constructs; they can be destructive, but like Johnny they can also reveal deeper truths and push us to grow. Where is the line between destruction and insight?',
+          'I love playing video games. Cyberpunk 2077 hit me hardest. Johnny Silverhand is a digital construct that can control and manipulate its host. He mirrors our own mental constructs; they can be destructive, but like Johnny they can also reveal deeper truths and push us to grow. Who is your Johnny Silverhand?',
           'Then there is competitive multiplayer. In the evenings my friends and I play Battlefield, THE FINALS, ARC Raiders and more.',
         ],
-        callout: 'Who is your Johnny Silverhand?',
         tags: ['Cyberpunk 2077', 'Battlefield', 'THE FINALS', 'ARC Raiders', 'Competitive MP'],
       },
     ],
   },
   contact: {
     eyebrow: 'Contact',
-    title: 'Get in touch',
+    title: 'Hit me up',
     lead: 'iMessage or WhatsApp work best; email is the backup. Reach out if',
     location: 'Prague',
     emailLabel: 'Email',
@@ -240,9 +250,14 @@ export const content: SiteContent = {
     copiedLabel: 'Copied',
     reasons: [
       'you are building a data or AI platform and running it at scale',
+      'you want to talk Dark Factory, AI agents in production or AI adoption across a company',
+      'you deal with SRE, cloud infra, FinOps or cyber security and want a second opinion',
       'you want to join engineering at Keboola',
-      'you want to talk about AI agents in production',
-      'you fly FPV or write, and want to share it with someone',
+      'Agnes or Keboola could help your company',
+      'you fly FPV, tune PIDs or are trying FPVPIDlab',
+      'you write, make music or do audiovisual work and want to team up',
+      'you have a tip for the next desert or a good spot for remote work',
+      'you want to squad up for Battlefield, THE FINALS or ARC Raiders in the evening',
     ],
   },
   footer: {

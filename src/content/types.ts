@@ -17,6 +17,9 @@ export interface JourneyStop {
   note: string;
   /** turning point gets a highlighted marker */
   milestone?: boolean;
+  /** optional scope / responsibilities shown as a list */
+  scope?: string[];
+  scopeLabel?: string;
 }
 
 export interface WorkshopItem {
@@ -80,7 +83,7 @@ export interface SiteContent {
     readFull: string;
     close: string;
     /** personal blocks under the poem: music, travel… */
-    extras: { title: string; text: string[]; tags: string[]; variant?: 'games'; callout?: string }[];
+    extras: { title: string; text: string[]; tags: string[] }[];
   };
   contact: {
     eyebrow: string;

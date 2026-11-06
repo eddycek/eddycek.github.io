@@ -14,14 +14,14 @@ const [first, ...rest] = h.name.split(' ');
     <span>T+ <span id="uptime">0000d</span></span>
   </div>
   <div class="hero__osd hero__osd--tr osd" aria-hidden="true">
-    <span>LQ 99</span><span>5.8G</span><span id="clock">--:--:--</span>
+    <span>LQ 99</span><span>5.8G</span><span id="clock" title="Unix epoch">0x00000000</span>
   </div>
 
   <div class="hero__inner shell">
     <p class="osd osd--signal hero__status">{h.osd}</p>
     <h1 class="hero__name" id="hero-name" aria-label={h.name} data-decode data-glitch="name">
-      <span class="hero__line">{first}</span>
-      <span class="hero__line hero__line--outline">{rest.join(' ')}</span>
+      <span class="hero__line hero__line--scan">{first}</span>
+      <span class="hero__line hero__line--indent">{rest.join(' ')}</span>
     </h1>
     <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick">eddycek</span></p>
     <p class="hero__claim" data-decode>{h.claim}</p>
@@ -45,7 +45,8 @@ const [first, ...rest] = h.name.split(' ');
   .hero__status { letter-spacing: 0.2em; }
   .hero__name { font-size: var(--t-hero); font-weight: 800; line-height: 0.86; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; display: grid; }
   .hero__line { display: block; }
-  .hero__line--outline { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 3px, transparent 3px 5px); -webkit-background-clip: text; background-clip: text; padding-left: clamp(1rem, 9vw, 9rem); }
+  .hero__line--scan { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 3px, transparent 3px 5px); -webkit-background-clip: text; background-clip: text; }
+  .hero__line--indent { padding-left: clamp(1rem, 9vw, 9rem); }
   .hero__handle { margin-top: -0.4rem; padding-left: clamp(1rem, 9vw, 9rem); font-family: var(--f-mono); font-size: clamp(1.05rem, 0.8rem + 1vw, 1.5rem); display: flex; align-items: baseline; gap: 0.7rem; }
   .hero__handle .osd { color: var(--c-muted); }
   .hero__nick { color: var(--c-signal); text-shadow: 0 0 18px var(--c-glow); }
@@ -65,7 +66,7 @@ const [first, ...rest] = h.name.split(' ');
 
   @media (max-width: 640px) {
     .hero__osd--tr span:not(:last-child) { display: none; }
-    .hero__line--outline, .hero__handle { padding-left: 0; }
+    .hero__line--indent, .hero__handle { padding-left: 0; }
     .hero__poke { display: none; }
     .hero__name { font-size: clamp(4.2rem, 24vw, 6rem); }
     .hero__intro, .hero__claim { background: color-mix(in srgb, var(--c-bg) 78%, transparent); box-shadow: 0 0 0 0.4rem color-mix(in srgb, var(--c-bg) 78%, transparent); border-radius: 2px; }
@@ -77,11 +78,12 @@ const [first, ...rest] = h.name.split(' ');
   const start = Date.UTC(2008, 5, 1);
   const up = document.getElementById('uptime');
   const clock = document.getElementById('clock');
-  const fmt = new Intl.DateTimeFormat('cs-CZ', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Prague' });
   const tick = () => {
     const days = Math.floor((Date.now() - start) / 86400000);
     if (up) up.textContent = `${days}d`;
-    if (clock) clock.textContent = fmt.format(new Date());
+    // Nerd clock: Unix epoch seconds in hex, plus decimal on wider screens.
+    const s = Math.floor(Date.now() / 1000);
+    if (clock) clock.textContent = `EPOCH 0x${s.toString(16).toUpperCase()}${innerWidth > 640 ? ` · ${s}` : ''}`;
   };
   tick();
   setInterval(tick, 1000);
