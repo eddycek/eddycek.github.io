@@ -14,13 +14,13 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Václav Eder',
-  alternateName: 'Eddy',
+  alternateName: ['Eddy', 'eddycek'],
   url: site,
   email: `mailto:${contact.email}`,
   ...(contact.phone ? { telephone: contact.phone } : {}),
   jobTitle: 'CTO',
   worksFor: { '@type': 'Organization', name: 'Keboola', url: 'https://www.keboola.com' },
-  address: { '@type': 'PostalAddress', addressLocality: 'Praha', addressCountry: 'CZ' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Prague', addressCountry: 'CZ' },
   sameAs: contact.links.map((l) => l.url),
   knowsAbout: ['Site Reliability Engineering', 'Security Engineering', 'Cloud infrastructure', 'AI agents', 'FPV drones', 'Poetry'],
 };
@@ -50,6 +50,21 @@ const jsonLd = {
     <script is:inline>
       try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
     </script>
+    {content.lang === 'cs' && (
+      <script is:inline>
+        (function () {
+          try {
+            if (/bot|crawl|spider|slurp|lighthouse|headless/i.test(navigator.userAgent)) return;
+            var saved = localStorage.getItem('lang');
+            if (saved === 'cs') return;
+            if (saved === 'en') { location.replace('/en/' + location.hash); return; }
+            var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+            var czech = langs.some(function (l) { return /^(cs|sk)\b/i.test(l); });
+            if (!czech) location.replace('/en/' + location.hash);
+          } catch (e) {}
+        })();
+      </script>
+    )}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

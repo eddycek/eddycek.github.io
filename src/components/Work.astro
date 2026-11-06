@@ -16,11 +16,46 @@ const id = Astro.props.content.nav[0];
       </div>
     ))}
   </dl>
+
+  <article class="agnes">
+    <div class="agnes__head">
+      <span class="osd osd--signal">{w.agnes.label}</span>
+      <h3 class="agnes__title">{w.agnes.title}</h3>
+    </div>
+    <div class="prose agnes__text">{w.agnes.text.map((p) => <p>{p}</p>)}</div>
+    <a class="osd agnes__cta" href={w.agnes.url}>{w.agnes.cta} ↗</a>
+  </article>
+
+  <div class="crew">
+    <div class="crew__text">
+      <h3 class="crew__title">{w.crew.title}</h3>
+      <div class="prose">{w.crew.text.map((p) => <p>{p}</p>)}</div>
+    </div>
+    <figure class="motto">
+      <blockquote class="motto__quote" data-decode>{w.motto.quote}</blockquote>
+      <figcaption class="osd motto__source">{w.motto.source}</figcaption>
+      <p class="motto__note">{w.motto.note}</p>
+    </figure>
+  </div>
 </Channel>
 
 <style>
   .readouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1px; margin: 0; background: var(--c-line); border: 1px solid var(--c-line); }
   .readout { position: relative; background: var(--c-surface); padding: 1.1rem 1.2rem 2.6rem; display: grid; gap: 0.35rem; overflow: hidden; }
   .readout dd { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: var(--t-lg); line-height: 1.2; }
+  .agnes { position: relative; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 1rem clamp(1.5rem, 4vw, 3.5rem); padding: clamp(1.25rem, 3vw, 2.4rem); border: 1px solid var(--c-line); background:
+      radial-gradient(90% 120% at 0% 0%, color-mix(in srgb, var(--c-signal) 12%, transparent), transparent 60%), var(--c-surface); overflow: hidden; }
+  .agnes::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c-signal); box-shadow: 0 0 18px var(--c-glow); }
+  .agnes__head { display: grid; gap: 0.6rem; align-content: start; }
+  .agnes__title { font-size: var(--t-2xl); line-height: 0.95; }
+  .agnes__text { color: var(--c-ink); }
+  .agnes__cta { grid-column: 2; color: var(--c-signal); text-decoration: none; }
+  .crew { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+  .crew__title { font-size: var(--t-xl); margin-bottom: 1rem; }
+  .motto { margin: 0; padding: 1.4rem 0 0 1.4rem; border-left: 1px solid var(--c-trace); display: grid; gap: 0.8rem; }
+  .motto__quote { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: var(--t-xl); line-height: 1.12; letter-spacing: -0.015em; color: var(--c-trace); text-wrap: balance; }
+  .motto__source { text-transform: none; letter-spacing: 0.04em; }
+  .motto__note { color: var(--c-muted); }
+  @media (max-width: 860px) { .agnes, .crew { grid-template-columns: 1fr; } .agnes__cta { grid-column: 1; } }
   .spark { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 2.2rem; display: block; }
 </style>

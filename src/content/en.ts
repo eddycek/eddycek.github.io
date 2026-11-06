@@ -3,9 +3,9 @@ import type { SiteContent } from './types';
 export const content: SiteContent = {
   lang: 'en',
   meta: {
-    title: 'Václav Eder · CTO at Keboola',
+    title: 'Václav Eder (eddycek) · CTO at Keboola',
     description:
-      'Václav "Eddy" Eder, CTO at Keboola. A platform for data and AI agents, SRE, security, FPV drones and poetry. Prague.',
+      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours: FPV, poetry and music. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Work' },
@@ -14,25 +14,25 @@ export const content: SiteContent = {
     { id: 'poezie', label: 'Poetry' },
     { id: 'kontakt', label: 'Contact' },
   ],
-  switchLabel: 'CZ',
+  switchLabel: 'CS',
   hero: {
     osd: 'CTO · KEBOOLA · PRAGUE',
     name: 'Václav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
       'CTO at Keboola. I build a platform where people and AI agents work with data. SRE taught me it has to run at 3 a.m. too.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry'],
-    scrollHint: 'Scroll',
+    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music'],
+    scrollHint: 'Next',
+    clickHint: '[ click the signal ]',
   },
   work: {
     eyebrow: 'Work',
     title: 'What I do now',
-    lead:
-      'Since April 2026 I have been CTO at Keboola. Keboola is a data platform, and more and more it is the place where people and AI agents work with data side by side.',
+    lead: 'Since April 2026 I have been CTO at Keboola. I live for this work, and I mean it when I say I was born for it.',
     paragraphs: [
-      'In engineering, I orchestrate AI agents. My job is deciding what context they get, where the guardrails sit, and when a human has to look at the output.',
-      'I also build the platform so agents can use it as well as people. A vague API or an error that says nothing hurts both.',
-      'I come from SRE and security. With every change, my first question is still what happens when it breaks, and who finds out first.',
+      'Keboola is a data platform and, more and more, the place where people and AI agents work with data side by side. My job is to build it so it holds up in both roles: a clear API, predictable behaviour and operations you can rely on.',
+      'In engineering, AI agents are a normal part of the team, not an experiment. I decide what context they get, where their limits are, and when a human has to check their output.',
+      'I come from SRE and security. With every change, my first question is still what happens when it fails, and who finds out first.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -40,11 +40,34 @@ export const content: SiteContent = {
       { label: 'Clouds', value: 'GCP · AWS · Azure' },
       { label: 'Writing code since', value: '2008' },
     ],
+    agnes: {
+      label: 'Main focus · agnesbrain.ai',
+      title: 'Agnes',
+      text: [
+        'Agnes is an AI platform we build at Keboola for whole companies, running in their own environment. It brings warehouse data, company documents, a semantic layer of agreed metric definitions and a knowledge graph together into one company brain.',
+        'People and AI tools ask questions on the same traceable foundation. Answers can be explained and checked instead of just sounding plausible. Agents get jobs, not just questions, and a human reviews their output before anything goes out.',
+        'Why it matters: AI without company context is a confident guess. Agnes is where data, knowledge and rules turn into something you can trust. That is where it is being decided which companies will use AI for real.',
+      ],
+      url: 'https://agnesbrain.ai/',
+      cta: 'agnesbrain.ai',
+    },
+    crew: {
+      title: 'Same DNA',
+      text: [
+        'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine: the same standards, the same impatience and the same joy in building things nobody has built yet.',
+        'We are tuned to this work the same way, and it shows in what we ship.',
+      ],
+    },
+    motto: {
+      quote: 'All of this has happened before, and all of this will happen again.',
+      source: 'Battlestar Galactica',
+      note: 'How I think about work and life. Patterns repeat in incidents, in teams and in technology waves. Spot them early and you do not have to pay for every lesson twice.',
+    },
   },
   journey: {
     eyebrow: 'Journey',
-    title: 'Flight log',
-    lead: 'A career read like a blackbox log. Smooth climb from a distance, plenty of noise up close.',
+    title: 'How I got here',
+    lead: 'From the first paid line of code to leading engineering.',
     stops: [
       {
         period: '2008–2010',
@@ -52,7 +75,7 @@ export const content: SiteContent = {
         level: 0.25,
         role: 'Full-stack developer',
         org: 'Grafické studio F13',
-        note: 'The first code anyone paid me for, plus editing a cultural portal. The web is mostly content; the tech just must not get in the way.',
+        note: 'The first code anyone paid me for, plus editing a cultural portal.',
         milestone: true,
       },
       {
@@ -61,7 +84,7 @@ export const content: SiteContent = {
         level: 0.42,
         role: 'Backend & full-stack developer',
         org: 'Studio Fresh Net',
-        note: 'A small studio in the Karlovy Vary region. Eight years of everything from backend to Android to Unity, and a breadth I still draw on.',
+        note: 'Eight years at a small studio in the Karlovy Vary region. Backend, Android, Unity, whatever was needed. I still draw on that breadth.',
       },
       {
         period: '2017–2018',
@@ -69,7 +92,7 @@ export const content: SiteContent = {
         level: 0.36,
         role: 'Senior Backend Developer',
         org: 'DataBreakers',
-        note: 'A big data and AI company. Data stopped being a MySQL table and became a problem in its own right.',
+        note: 'A startup focused on big data and AI. Data stopped being a MySQL table and became a problem in its own right.',
       },
       {
         period: '2018–2019',
@@ -77,7 +100,7 @@ export const content: SiteContent = {
         level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
-        note: 'Moved to Prague. PHP backend first, then running development, and learning that code is the easy part.',
+        note: 'Moved to Prague. Backend first, then running development, and learning that code is the easy part.',
       },
       {
         period: '2019–2024',
@@ -85,7 +108,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastructure, Kubernetes, Terraform, security. This is where I learned that production always gets the last word.',
+        note: 'Infrastructure, Kubernetes, Terraform, security. Five years in operations, where production always gets the last word.',
         milestone: true,
       },
       {
@@ -103,7 +126,7 @@ export const content: SiteContent = {
         level: 1,
         role: 'CTO',
         org: 'Keboola',
-        note: 'An engineering org where people and AI agents work together, and a platform built to serve both.',
+        note: 'An engineering org where people and AI agents work together, and a platform that serves both.',
         milestone: true,
       },
     ],
@@ -111,8 +134,8 @@ export const content: SiteContent = {
   },
   workshop: {
     eyebrow: 'Workshop',
-    title: 'What I build after hours',
-    lead: 'Things I needed. Mostly FPVPIDlab: I fly FPV and got tired of tuning PIDs by feel.',
+    title: 'What I do after hours',
+    lead: 'I fly, print, solder and build. Mostly things I needed and could not find.',
     items: [
       {
         name: 'FPVPIDlab',
@@ -120,41 +143,83 @@ export const content: SiteContent = {
         description:
           'Reads a Blackbox log, computes the FFT noise spectrum and step response, and uses Wiener deconvolution to work out how the quad really behaves. From that it suggests filter cutoffs and PID values and applies them to the flight controller in one click. Signed builds for macOS and Windows, plus Linux.',
         url: 'https://github.com/eddycek/fpvpidlab',
+        linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
         flagship: true,
+      },
+      {
+        name: 'FPV',
+        tagline: '',
+        description: 'I fly FPV drones and cut the flights into short videos. They are on my Instagram.',
+        url: 'https://www.instagram.com/eddycek/',
+        linkLabel: '@eddycek',
+        tags: ['FPV', 'Reels'],
+      },
+      {
+        name: 'Home rack',
+        tagline: '',
+        description: 'My own UniFi network rack, built from scratch as the backbone of a home lab. I wrote about it for UniFi Community Stories.',
+        tags: ['UniFi', 'Homelab'],
+      },
+      {
+        name: '3D printing',
+        tagline: '',
+        description: 'I print parts you cannot buy and prototypes that would otherwise stay on paper.',
+        tags: ['3D printing', 'CAD'],
+      },
+      {
+        name: 'Flipper Zero & IoT',
+        tagline: '',
+        description:
+          'Sub-GHz, NFC, RFID and a pile of IoT boxes that measure, switch and watch things at home. I like finding out how the devices around us talk to each other, and how easy they are to listen in on.',
+        tags: ['Flipper Zero', 'IoT', 'Security'],
       },
     ],
   },
   poetry: {
     eyebrow: 'Poetry',
-    title: 'The second channel',
-    lead: 'I write poems, in Czech. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Day of Poetry in Karlovy Vary, and a blog from 2009–2013.',
-    lines: ['Bezvěrci v mé duši,', 'tam kde byla naděje,', 'naivní poesie.'],
-    credit: 'From my poem Bezvěrci (2010). Roughly: the faithless in my soul, where hope used to be, naive poetry.',
-    paragraphs: [
-      'Tuning a drone and writing a poem share one thing: you cut until only what carries the signal is left.',
-      'The Symbolists and Baudelaire taught me a word has to carry more than it says. So does a good alerting rule.',
+    title: 'Poems and music',
+    lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
+    lines: [
+      'No escape, just broken glass,',
+      'every second burns too fast.',
+      'Nothing left, just follow noise,',
+      'cut the wires, no fucking choice.',
     ],
-    archiveLabel: 'Blog archive 2009–2013 (Czech)',
-    archiveUrl: 'http://blog.vaclaveder.cz/',
+    credit: 'The Slayer, 2025',
+    paragraphs: [
+      'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
+      'These days I experiment with audiovisual work: reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',
+    ],
+    music: {
+      title: 'Music',
+      text: [
+        'Music matters enormously to me. It runs almost constantly, while I work, write and fly, and it often decides whether a poem happens at all.',
+        'I grew up on indie rock, punk and hardcore, trip-hop mornings and electronica, plus the darker gothic and darkwave scene and the Czech alternative. Two songs have stayed with me all my life: Faithless, Giving Myself Away, and Vypsaná Fixa, Dezolát.',
+      ],
+      artists: ['Faithless', 'Vypsaná Fixa', 'The Crüxshadows', 'Guano Apes', 'trip-hop', 'indie', 'punk / HC', 'darkwave'],
+    },
   },
   contact: {
     eyebrow: 'Contact',
     title: 'Get in touch',
-    lead: 'Email works best. The more specific your first sentence, the faster I reply. Write to me if:',
+    lead: 'iMessage or WhatsApp work best; email is the backup. Reach out if:',
     location: 'Prague',
     emailLabel: 'Email',
+    emailNote: 'backup',
+    imessageLabel: 'iMessage',
+    whatsappLabel: 'WhatsApp',
     phoneLabel: 'Phone',
     copyLabel: 'Copy',
     copiedLabel: 'Copied',
     reasons: [
       'you are building a data or AI platform and running it at scale',
       'you want to join engineering at Keboola',
-      'your quad oscillates and you cannot tell why',
-      'you have a poem that deserves better than a drawer',
+      'you want to talk about AI agents in production',
+      'you fly FPV or write, and want to share it with someone',
     ],
   },
   footer: {
-    note: 'Built in Prague. No cookies, no tracking, as little noise as possible.',
+    note: 'Built with love in Prague. No cookies, no tracking.',
   },
 };

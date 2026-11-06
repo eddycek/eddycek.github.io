@@ -23,7 +23,8 @@ export interface WorkshopItem {
   name: string;
   tagline: string;
   description: string;
-  url: string;
+  url?: string;
+  linkLabel?: string;
   tags: string[];
   flagship?: boolean;
 }
@@ -41,6 +42,7 @@ export interface SiteContent {
     intro: string;          // 1–2 sentences
     tags: string[];
     scrollHint: string;
+    clickHint: string;      // OSD hint that clicking breaks the signal
   };
   work: {
     eyebrow: string;
@@ -48,6 +50,9 @@ export interface SiteContent {
     lead: string;
     paragraphs: string[];
     stats: Stat[];          // 3–4 readouts, only publicly safe facts
+    agnes: { label: string; title: string; text: string[]; url: string; cta: string };
+    crew: { title: string; text: string[] };
+    motto: { quote: string; source: string; note: string };
   };
   journey: {
     eyebrow: string;
@@ -71,8 +76,7 @@ export interface SiteContent {
     paragraphs: string[];
     /** attribution under the verse, e.g. poem title and year */
     credit: string;
-    archiveLabel: string;
-    archiveUrl: string;
+    music: { title: string; text: string[]; artists: string[] };
   };
   contact: {
     eyebrow: string;
@@ -80,6 +84,9 @@ export interface SiteContent {
     lead: string;
     location: string;       // "Praha"
     emailLabel: string;
+    emailNote: string;      // "backup"
+    imessageLabel: string;
+    whatsappLabel: string;
     phoneLabel: string;
     copyLabel: string;
     copiedLabel: string;

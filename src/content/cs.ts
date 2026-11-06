@@ -3,9 +3,9 @@ import type { SiteContent } from './types';
 export const content: SiteContent = {
   lang: 'cs',
   meta: {
-    title: 'Václav Eder · CTO v Keboole',
+    title: 'Václav Eder (eddycek) · CTO v Keboole',
     description:
-      'Václav „Eddy“ Eder, CTO v Keboole. Platforma pro data a AI agenty, SRE, security, FPV drony a poezie. Praha.',
+      'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, SRE a security. Po večerech FPV, poezie a hudba. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Práce' },
@@ -16,23 +16,23 @@ export const content: SiteContent = {
   ],
   switchLabel: 'EN',
   hero: {
-    osd: 'CTO · KEBOOLA · PRAHA',
+    osd: 'CTO · KEBOOLA · PRAGUE',
     name: 'Václav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
       'CTO v Keboole. Stavím platformu, na které s daty pracují lidi i AI agenti. Ze SRE mi zůstalo, že musí běžet i ve tři ráno.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie'],
-    scrollHint: 'Sjeď níž',
+    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba'],
+    scrollHint: 'Dál',
+    clickHint: '[ klik do signálu ]',
   },
   work: {
     eyebrow: 'Práce',
     title: 'Co dělám teď',
-    lead:
-      'Od dubna 2026 jsem CTO v Keboole. Keboola je datová platforma a čím dál víc i místo, kde s daty pracují lidi a AI agenti vedle sebe.',
+    lead: 'Od dubna 2026 jsem CTO v Keboole. Pro tuhle práci hořím a nepřeháním, když řeknu, že jsem se pro ni narodil.',
     paragraphs: [
-      'V engineeringu orchestruju AI agenty. Řeším, jaký dostanou kontext, kde mají mantinely a ve kterou chvíli se na jejich práci musí podívat člověk.',
-      'Platformu zároveň stavím tak, aby ji agenti používali stejně dobře jako lidi. Nejasné API a chybová hláška, která nic neříká, vadí oběma.',
-      'Přicházím ze SRE a security. U každé změny se pořád nejdřív ptám, co se stane, až to spadne, a kdo se o tom dozví jako první.',
+      'Keboola je datová platforma a čím dál víc i prostředí, kde s daty pracují lidi a AI agenti vedle sebe. Moje práce je postavit ji tak, aby obstála v obou rolích: srozumitelné API, předvídatelné chování a provoz, na který se dá spolehnout.',
+      'AI agenty v engineeringu bereme jako běžnou součást týmu, ne jako experiment. Rozhoduju, jaký kontext dostanou, kde mají hranice a kdy jejich výsledek musí zkontrolovat člověk.',
+      'Přicházím ze SRE a security. U každé změny se pořád nejdřív ptám, co se stane, až selže, a kdo se to dozví jako první.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -40,11 +40,34 @@ export const content: SiteContent = {
       { label: 'Cloudy', value: 'GCP · AWS · Azure' },
       { label: 'Kóduju od', value: '2008' },
     ],
+    agnes: {
+      label: 'Hlavní projekt · agnesbrain.ai',
+      title: 'Agnes',
+      text: [
+        'Agnes je AI platforma, kterou v Keboole stavíme pro celé firmy a která běží v jejich vlastním prostředí. Spojuje data ze skladu, firemní dokumenty, sémantickou vrstvu se schválenými definicemi metrik a znalostní graf do jednoho firemního mozku.',
+        'Lidi i AI nástroje se ptají nad stejným, dohledatelným základem. Odpovědi jdou vysvětlit a zkontrolovat, místo aby jen zněly věrohodně. Agenti dostávají práci, ne jen otázky, a jejich výstup před odesláním vidí člověk.',
+        'Proč je to zásadní: AI bez kontextu firmy je jen sebevědomý odhad. Agnes je místo, kde se z dat, znalostí a pravidel stává něco, čemu se dá věřit. Tam se teď rozhoduje, které firmy budou AI používat doopravdy.',
+      ],
+      url: 'https://agnesbrain.ai/',
+      cta: 'agnesbrain.ai',
+    },
+    crew: {
+      title: 'Stejná DNA',
+      text: [
+        'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já: stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
+        'Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
+      ],
+    },
+    motto: {
+      quote: 'All of this has happened before, and all of this will happen again.',
+      source: 'Battlestar Galactica',
+      note: 'Můj osobní i pracovní postoj. Vzorce se opakují v incidentech, v týmech i v technologických vlnách. Kdo je pozná včas, nemusí každou lekci platit znovu.',
+    },
   },
   journey: {
     eyebrow: 'Cesta',
-    title: 'Letový záznam',
-    lead: 'Kariéra jako blackbox log. Z dálky plynulé stoupání, zblízka spousta šumu.',
+    title: 'Kudy jsem šel',
+    lead: 'Od prvního placeného kódu po vedení engineeringu.',
     stops: [
       {
         period: '2008–2010',
@@ -52,7 +75,7 @@ export const content: SiteContent = {
         level: 0.25,
         role: 'Full-stack vývojář',
         org: 'Grafické studio F13',
-        note: 'První kód, za který mi někdo zaplatil, a k tomu redakce kulturního portálu. Web je hlavně obsah, technika ho jen nesmí kazit.',
+        note: 'První kód, za který mi někdo zaplatil, a k tomu redakce kulturního portálu.',
         milestone: true,
       },
       {
@@ -61,7 +84,7 @@ export const content: SiteContent = {
         level: 0.42,
         role: 'Backend a full-stack vývojář',
         org: 'Studio Fresh Net',
-        note: 'Malé studio v Karlovarském kraji, osm let všeho od backendu přes Android po Unity. Šíře, ze které těžím dodnes.',
+        note: 'Osm let v malém studiu v Karlovarském kraji. Backend, Android, Unity, zkrátka co bylo potřeba. Z té šíře těžím dodnes.',
       },
       {
         period: '2017–2018',
@@ -69,7 +92,7 @@ export const content: SiteContent = {
         level: 0.36,
         role: 'Senior Backend Developer',
         org: 'DataBreakers',
-        note: 'Firma kolem big data a AI. Data přestala být tabulka v MySQL a začala být problém sama o sobě.',
+        note: 'Startup zaměřený na big data a AI. Data přestala být tabulkou v MySQL a stala se samostatným problémem.',
       },
       {
         period: '2018–2019',
@@ -77,7 +100,7 @@ export const content: SiteContent = {
         level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
-        note: 'Přesun do Prahy. Nejdřív backend v PHP, pak vedení vývoje a první zkušenost s tím, že kód je ta jednodušší část.',
+        note: 'Přesun do Prahy. Nejdřív backend, pak vedení vývoje a zjištění, že kód je ta jednodušší část.',
       },
       {
         period: '2019–2024',
@@ -85,7 +108,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastruktura, Kubernetes, Terraform, security. Tady jsem pochopil, že produkce má vždycky poslední slovo.',
+        note: 'Infrastruktura, Kubernetes, Terraform, security. Pět let v provozu, kde má produkce vždycky poslední slovo.',
         milestone: true,
       },
       {
@@ -94,7 +117,7 @@ export const content: SiteContent = {
         level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
-        note: 'První vlastní tým. SRE napříč GCP, AWS a Azure, nově postavená funkce Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
+        note: 'První vlastní tým. SRE napříč GCP, AWS a Azure, od nuly postavené Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
         milestone: true,
       },
       {
@@ -103,7 +126,7 @@ export const content: SiteContent = {
         level: 1,
         role: 'CTO',
         org: 'Keboola',
-        note: 'Engineering, ve kterém pracují lidi i AI agenti, a platforma, která má sloužit oběma.',
+        note: 'Engineering, ve kterém pracují lidi i AI agenti, a platforma, která slouží oběma.',
         milestone: true,
       },
     ],
@@ -111,8 +134,8 @@ export const content: SiteContent = {
   },
   workshop: {
     eyebrow: 'Dílna',
-    title: 'Co stavím po večerech',
-    lead: 'Věci, které mi chyběly. Hlavně FPVPIDlab: létám FPV a ladit PIDy podle pocitu mě přestalo bavit.',
+    title: 'Co dělám po večerech',
+    lead: 'Létám, tisknu, pájím a stavím. Většinou věci, které mi chyběly.',
     items: [
       {
         name: 'FPVPIDlab',
@@ -120,41 +143,83 @@ export const content: SiteContent = {
         description:
           'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do letového kontroléru. Podepsané buildy pro macOS a Windows, k tomu Linux.',
         url: 'https://github.com/eddycek/fpvpidlab',
+        linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
         flagship: true,
+      },
+      {
+        name: 'FPV',
+        tagline: '',
+        description: 'Létám FPV drony a z letů stříhám krátká videa. Najdete je na mém Instagramu.',
+        url: 'https://www.instagram.com/eddycek/',
+        linkLabel: '@eddycek',
+        tags: ['FPV', 'Reels'],
+      },
+      {
+        name: 'Vlastní rack',
+        tagline: '',
+        description: 'Vlastní síťový rack na UniFi, postavený od nuly jako zázemí pro domácí lab. Psal jsem o něm pro UniFi Community Stories.',
+        tags: ['UniFi', 'Homelab'],
+      },
+      {
+        name: '3D tisk',
+        tagline: '',
+        description: 'Tisknu díly, které se nedají koupit, a prototypy, které by jinak zůstaly na papíře.',
+        tags: ['3D tisk', 'CAD'],
+      },
+      {
+        name: 'Flipper Zero a IoT',
+        tagline: '',
+        description:
+          'Sub-GHz, NFC, RFID a hromada IoT krabiček, které doma měří, spínají a hlídají. Baví mě zkoumat, jak spolu věci kolem nás mluví a jak snadno se dají odposlechnout.',
+        tags: ['Flipper Zero', 'IoT', 'Security'],
       },
     ],
   },
   poetry: {
     eyebrow: 'Poezie',
-    title: 'Druhý kanál',
-    lead: 'Píšu básně. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech, blog z let 2009–2013.',
-    lines: ['Bezvěrci v mé duši,', 'tam kde byla naděje,', 'naivní poesie.'],
-    credit: 'Z básně Bezvěrci, 2010',
-    paragraphs: [
-      'Ladění dronu a psaní básně mají společné jedno: škrtáš, dokud nezůstane jen to, co nese signál.',
-      'Symbolisti a Baudelaire mě naučili, že slovo musí unést víc, než říká. Stejně jako dobrá alertovací pravidla.',
+    title: 'Básně a hudba',
+    lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
+    lines: [
+      'No escape, just broken glass,',
+      'every second burns too fast.',
+      'Nothing left, just follow noise,',
+      'cut the wires, no fucking choice.',
     ],
-    archiveLabel: 'Archiv blogu 2009–2013',
-    archiveUrl: 'http://blog.vaclaveder.cz/',
+    credit: 'The Slayer, 2025',
+    paragraphs: [
+      'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
+      'Teď experimentuju s audiovizuální tvorbou: čtu svoje básně s hudebním podkresem. Chci se dostat k vlastní hudbě, nejdřív jako podkladu pro recitace, později i samostatně.',
+    ],
+    music: {
+      title: 'Hudba',
+      text: [
+        'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání, a často rozhoduje, jestli báseň vůbec vznikne.',
+        'Vyrostl jsem na indie rocku, punku a hardcoru, ranních trip-hopech a elektronice, k tomu temnější vlna gothic a darkwave a česká alternativa. Dvě písně mě provázejí celý život: Giving Myself Away od Faithless a Dezolát od Vypsané Fixy.',
+      ],
+      artists: ['Faithless', 'Vypsaná Fixa', 'The Crüxshadows', 'Guano Apes', 'trip-hop', 'indie', 'punk / HC', 'darkwave'],
+    },
   },
   contact: {
     eyebrow: 'Kontakt',
     title: 'Napište mi',
-    lead: 'Nejrychleji e-mailem. Odpovídám tím rychleji, čím konkrétnější je první věta. Napište mi, když:',
-    location: 'Praha',
+    lead: 'Nejradši přes iMessage nebo WhatsApp, e-mail je záloha. Ozvěte se, když:',
+    location: 'Prague',
     emailLabel: 'E-mail',
+    emailNote: 'záloha',
+    imessageLabel: 'iMessage',
+    whatsappLabel: 'WhatsApp',
     phoneLabel: 'Telefon',
     copyLabel: 'Kopírovat',
     copiedLabel: 'Zkopírováno',
     reasons: [
       'stavíte datovou nebo AI platformu a řešíte její provoz ve velkém',
-      'chcete do engineeringu v Keboole',
-      'vám osciluje dron a nevíte proč',
-      'máte báseň, kterou je škoda nechat v šuplíku',
+      'chcete k nám do engineeringu',
+      'chcete probrat AI agenty v reálném provozu',
+      'létáte FPV nebo píšete a chcete to s někým sdílet',
     ],
   },
   footer: {
-    note: 'Postaveno v Praze. Bez cookies, bez trackování, s minimem šumu.',
+    note: 'Postaveno s láskou v Praze. Bez cookies, bez trackování.',
   },
 };

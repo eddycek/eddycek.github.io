@@ -4,7 +4,9 @@
  * PID controller (orange), the controller output (cyan) and two faint noise
  * channels. Scrolling grid with OSD tick labels, occasional glitch bursts.
  * Pointer movement kicks the plant and ripples the noise at the pointer x;
- * click/tap injects a setpoint step. Noise fades as the page scrolls.
+ * click/tap shatters the signal at that point: a shockwave, torn scanlines,
+ * flying trace shards and a damaged stretch of every channel that stays until
+ * the beam sweeps over it again. Noise fades as the page scrolls.
  */
 import { clamp, createStage, mono, pad, type Stage } from './common';
 
@@ -38,6 +40,12 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   let glitch = 0, nextGlitch = 3 + Math.random() * 4;
   let ptrX = -1, ptrY = -1, ptrAge = 9, ripple = 0;
   let err = 0;
+
+  interface Shock { x: number; y: number; age: number; seed: number }
+  interface Shard { x: number; y: number; vx: number; vy: number; rot: number; vr: number; len: number; age: number; life: number; hue: 0 | 1 }
+  const shocks: Shock[] = [];
+  const shards: Shard[] = [];
+  let tear = 0;
 
   const gauss = (): number => Math.random() + Math.random() + Math.random() - 1.5;
 
@@ -112,9 +120,49 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   const onDown = (e: PointerEvent): void => {
     const r = canvas.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
+    if ((e.target as Element | null)?.closest?.('a, button, input, textarea')) return;
+    const px = e.clientX - r.left;
+    const py = e.clientY - r.top;
     newSetpoint(true);
     nextStep = simT + 2 + Math.random();
-    glitch = Math.max(glitch, 0.08);
+    dist = clamp(dist + (Math.random() < 0.5 ? -1 : 1) * 1.6, -2.4, 2.4);
+    glitch = Math.max(glitch, 0.35);
+    tear = 0.45;
+    ripple = 1.5;
+
+    // Damage every channel around the hit column; it stays until the beam rewrites it.
+    const c0 = Math.round((px / r.width) * (COLS - 1));
+    const span = 70;
+    const kick = (py / r.height - 0.5) * -2.2;
+    for (let o = -span; o <= span; o++) {
+      const c = (c0 + o + COLS) % COLS;
+      const env = Math.exp(-Math.abs(o) / 22);
+      const ring = Math.sin(o * 0.55) * env;
+      const shatter = (Math.random() * 2 - 1) * env;
+      ys[c] = (ys[c] ?? 0) + ring * 0.9 + shatter * 0.5 + kick * env;
+      us[c] = (us[c] ?? 0) + shatter * 2.4;
+      sp[c] = Math.abs(o) < 18 ? (sp[c] ?? 0) + (Math.random() * 2 - 1) * 0.6 : sp[c] ?? 0;
+      n1[c] = (n1[c] ?? 0) + (Math.random() * 2 - 1) * 2.6 * env;
+      n2[c] = (n2[c] ?? 0) + (Math.random() * 2 - 1) * 2.6 * env;
+    }
+
+    shocks.push({ x: px, y: py, age: 0, seed: Math.random() * 1000 });
+    if (shocks.length > 4) shocks.shift();
+    const count = r.width < 640 ? 26 : 44;
+    for (let k = 0; k < count; k++) {
+      const a = Math.random() * Math.PI * 2;
+      const sp0 = 180 + Math.random() * 620;
+      shards.push({
+        x: px, y: py,
+        vx: Math.cos(a) * sp0, vy: Math.sin(a) * sp0 - 120,
+        rot: a, vr: (Math.random() * 2 - 1) * 14,
+        len: 4 + Math.random() * 22,
+        age: 0, life: 0.6 + Math.random() * 0.8,
+        hue: Math.random() < 0.7 ? 0 : 1,
+      });
+    }
+    if (shards.length > 160) shards.splice(0, shards.length - 160);
+    stage?.kick();
   };
 
   const drawCh = (s: Stage, arr: Float32Array, mid: number, scale: number, color: string, lw: number, alpha: number, glow: boolean, xoff: number): void => {
@@ -174,6 +222,24 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
         nextGlitch = 3.5 + Math.random() * 6;
       }
       glitch = Math.max(0, glitch - dt);
+      tear = Math.max(0, tear - dt);
+      for (let k = shocks.length - 1; k >= 0; k--) {
+        const sh = shocks[k];
+        if (!sh) continue;
+        sh.age += dt;
+        if (sh.age > 1.2) shocks.splice(k, 1);
+      }
+      for (let k = shards.length - 1; k >= 0; k--) {
+        const p = shards[k];
+        if (!p) continue;
+        p.age += dt;
+        if (p.age > p.life) { shards.splice(k, 1); continue; }
+        p.vx *= Math.exp(-dt * 2.2);
+        p.vy = p.vy * Math.exp(-dt * 2.2) + 520 * dt;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.rot += p.vr * dt;
+      }
     }
     ctx.clearRect(0, 0, w, h);
     const mid = h * 0.5;
@@ -282,7 +348,76 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       ctx.globalAlpha = 0.08;
       ctx.fillRect(Math.random() * w * 0.6, Math.random() * h, w * 0.4, 2);
     }
+    // Impact: shockwave rings, shards, torn scanlines.
+    for (const sh of shocks) {
+      const k = sh.age / 1.2;
+      const rad = 20 + sh.age * Math.max(w, h) * 0.9;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = pal.signal.css;
+      ctx.globalAlpha = 0.7 * (1 - k) * (1 - k);
+      ctx.beginPath();
+      ctx.arc(sh.x, sh.y, rad, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.strokeStyle = pal.trace.css;
+      ctx.globalAlpha = 0.45 * (1 - k) * (1 - k);
+      ctx.beginPath();
+      ctx.arc(sh.x + 3, sh.y, rad * 0.72, 0, Math.PI * 2);
+      ctx.stroke();
+      if (sh.age < 0.25) {
+        // Crack lines radiating from the hit.
+        const f = 1 - sh.age / 0.25;
+        ctx.strokeStyle = pal.ink.css;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.55 * f;
+        ctx.beginPath();
+        for (let c = 0; c < 9; c++) {
+          let a = sh.seed + c * 0.7;
+          let cx = sh.x, cy = sh.y;
+          ctx.moveTo(cx, cy);
+          for (let seg = 0; seg < 5; seg++) {
+            a += Math.sin(sh.seed * (seg + 1) + c) * 0.5;
+            const l = 14 + ((sh.seed * (c + 3) * (seg + 7)) % 30);
+            cx += Math.cos(a) * l;
+            cy += Math.sin(a) * l;
+            ctx.lineTo(cx, cy);
+          }
+        }
+        ctx.stroke();
+        ctx.fillStyle = pal.ink.css;
+        ctx.globalAlpha = 0.25 * f;
+        ctx.fillRect(0, 0, w, h);
+      }
+    }
+    for (const p of shards) {
+      const f = 1 - p.age / p.life;
+      ctx.strokeStyle = p.hue === 0 ? pal.signal.css : pal.trace.css;
+      ctx.lineWidth = 1.6;
+      ctx.globalAlpha = f;
+      const dx = Math.cos(p.rot) * p.len * 0.5;
+      const dy = Math.sin(p.rot) * p.len * 0.5;
+      ctx.beginPath();
+      ctx.moveTo(p.x - dx, p.y - dy);
+      ctx.lineTo(p.x + dx, p.y + dy);
+      ctx.stroke();
+    }
+    if (tear > 0) {
+      // Horizontal tearing: shift random bands of the frame sideways.
+      const cw = s.canvas.width;
+      const chh = s.canvas.height;
+      const bands = 7;
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.globalAlpha = 1;
+      for (let k = 0; k < bands; k++) {
+        const bh = Math.max(2, Math.round((2 + Math.random() * 26) * s.dpr));
+        const by = Math.round(Math.random() * (chh - bh));
+        const off = Math.round((Math.random() * 2 - 1) * 60 * s.dpr * (tear / 0.45));
+        ctx.drawImage(s.canvas, 0, by, cw, bh, off, by, cw, bh);
+      }
+      ctx.restore();
+    }
     ctx.globalAlpha = 1;
+    ctx.lineWidth = 1;
   };
 
   const stage = createStage(canvas, { draw });
