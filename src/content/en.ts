@@ -186,7 +186,7 @@ export const content: SiteContent = {
         name: 'Smarthome, IoT & Flipper Zero',
         tagline: '',
         description:
-          'I built a complete smarthome from scratch. Temperature, humidity and motion sensors, lights, heating, security and automations that run on their own; the house reacts to who is home, the time of day and what is happening outside. Everything local-first, on a separate VLAN and monitored, so nothing leaks to the cloud. Plus Flipper Zero; Sub-GHz, NFC, RFID and finding out how the devices around us talk to each other, and how easy they are to listen in on.',
+          'I built a complete smarthome from scratch. Temperature, humidity and motion sensors, lights, heating, security and automations that run on their own; the house reacts to who is home, the time of day and what is happening outside. I took security seriously; my own NAS, a camera system and UniFi gear, all on a separate VLAN and monitored. Plus Flipper Zero; Sub-GHz, NFC, RFID and finding out how the devices around us talk to each other, and how easy they are to listen in on.',
         tags: ['Smarthome', 'IoT', 'Automation', 'Flipper Zero', 'Cyber security'],
       },
     ],

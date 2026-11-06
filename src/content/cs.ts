@@ -186,7 +186,7 @@ export const content: SiteContent = {
         name: 'Smarthome, IoT a Flipper Zero',
         tagline: '',
         description:
-          'Postavil jsem si komplet smarthome from scratch. Senzory teploty, vlhkosti a pohybu, světla, topení, security a automatizace, které běží samy; dům reaguje na to, kdo je doma, jaký je čas a co se děje venku. Všechno local-first, v oddělené VLAN a s monitoringem, ať to neleakuje do cloudu. K tomu Flipper Zero; Sub-GHz, NFC, RFID a zkoumání, jak spolu devices kolem nás komunikujou a jak snadno se dají odposlechnout.',
+          'Postavil jsem si komplet smarthome from scratch. Senzory teploty, vlhkosti a pohybu, světla, topení, security a automatizace, které běží samy; dům reaguje na to, kdo je doma, jaký je čas a co se děje venku. Security jsem řešil poctivě; vlastní NAS, kamerový systém a prvky od UniFi, všechno v oddělené VLAN a s monitoringem. K tomu Flipper Zero; Sub-GHz, NFC, RFID a zkoumání, jak spolu devices kolem nás komunikujou a jak snadno se dají odposlechnout.',
         tags: ['Smarthome', 'IoT', 'Automation', 'Flipper Zero', 'Cyber security'],
       },
     ],
