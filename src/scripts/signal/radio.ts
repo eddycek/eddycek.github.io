@@ -4,7 +4,12 @@
  * Falls back to the Web Speech API if the audio cannot play.
  * Only ever called from a user click, so autoplay policies allow it.
  */
-const cache = new Map<string, HTMLAudioElement>();
+// One AudioContext for everything. iOS only lets audio start inside a user gesture, so the context
+// is created/resumed on the first tap (see unlockAudio) and the voice prompts are decoded into
+// buffers up front; the 'recovered' prompt then plays from a timer without being blocked.
+let ctx: AudioContext | null = null;
+const buffers = new Map<string, AudioBuffer>();
+const SOUNDS = ['/sounds/telemetry-lost.wav', '/sounds/telemetry-recovered.wav'];
 
 function speak(text: string): void {
   const synth = window.speechSynthesis;
@@ -15,20 +20,45 @@ function speak(text: string): void {
   synth.speak(u);
 }
 
-function play(src: string, fallback: string): void {
+export function unlockAudio(): void {
   try {
-    let a = cache.get(src);
-    if (!a) {
-      a = new Audio(src);
-      a.preload = 'auto';
-      cache.set(src, a);
+    ctx ??= new AudioContext();
+    if (ctx.state === 'suspended') void ctx.resume();
+    // A silent one-sample buffer played inside the gesture fully unlocks iOS.
+    const b = ctx.createBuffer(1, 1, 22050);
+    const src = ctx.createBufferSource();
+    src.buffer = b;
+    src.connect(ctx.destination);
+    src.start(0);
+    for (const url of SOUNDS) {
+      if (buffers.has(url)) continue;
+      buffers.set(url, ctx.createBuffer(1, 1, 22050)); // placeholder so we fetch once
+      void fetch(url)
+        .then((r) => r.arrayBuffer())
+        .then((data) => ctx!.decodeAudioData(data))
+        .then((buf) => buffers.set(url, buf))
+        .catch(() => buffers.delete(url));
     }
-    a.currentTime = 0;
-    a.volume = 0.9;
-    void a.play().catch(() => speak(fallback));
   } catch {
-    speak(fallback);
+    /* no audio */
   }
+}
+
+function play(url: string, fallback: string): void {
+  const buf = buffers.get(url);
+  if (ctx && buf && buf.length > 1) {
+    if (ctx.state === 'suspended') void ctx.resume();
+    const src = ctx.createBufferSource();
+    const gain = ctx.createGain();
+    gain.gain.value = 0.9;
+    src.buffer = buf;
+    src.connect(gain).connect(ctx.destination);
+    src.start();
+    return;
+  }
+  // Not decoded yet: try a plain audio element, then speech.
+  const a = new Audio(url);
+  void a.play().catch(() => speak(fallback));
 }
 
 export const telemetryLost = (): void => play('/sounds/telemetry-lost.wav', 'Telemetry lost');
@@ -38,7 +68,6 @@ export const telemetryRecovered = (): void => play('/sounds/telemetry-recovered.
  * Hit sound for each click into the scope: a short burst of static plus a falling
  * square "zap", synthesized with Web Audio. Gets harsher as signal integrity drops.
  */
-let ctx: AudioContext | null = null;
 let last = 0;
 
 export function signalHit(damage: number): void {

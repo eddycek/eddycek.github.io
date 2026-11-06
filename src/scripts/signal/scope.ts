@@ -12,7 +12,7 @@
  * Noise fades as the page scrolls.
  */
 import { clamp, createStage, mono, pad, type Stage } from './common';
-import { signalHit, telemetryLost, telemetryRecovered } from './radio';
+import { signalHit, telemetryLost, telemetryRecovered, unlockAudio } from './radio';
 
 const COLS = 512; // columns per sweep
 const SWEEP = 2.8; // seconds per sweep
@@ -138,6 +138,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     const target = e.target as Element | null;
     if (!target?.closest?.('#signal') || target.closest('a, button, input, textarea, header')) return;
     if (failsafe > 0) return;
+    unlockAudio();
     dmg = Math.min(1, dmg + 0.13 + Math.random() * 0.05);
     if (dmg < 1) signalHit(dmg);
     if (dmg >= 1) {
