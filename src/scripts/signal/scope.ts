@@ -12,6 +12,7 @@
  * Noise fades as the page scrolls.
  */
 import { clamp, createStage, mono, pad, type Stage } from './common';
+import { telemetryLost, telemetryRecovered } from './radio';
 
 const COLS = 512; // columns per sweep
 const SWEEP = 2.8; // seconds per sweep
@@ -144,6 +145,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       failCount++;
       canvas.parentElement?.classList.add('is-failsafe');
       window.dispatchEvent(new CustomEvent('signal:failsafe', { detail: 1500 }));
+      telemetryLost();
     }
     const px = e.clientX - r.left;
     const py = e.clientY - r.top;
@@ -250,6 +252,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       if (failsafe > 0) {
         failsafe = Math.max(0, failsafe - dt);
         if (failsafe === 0) {
+          telemetryRecovered();
           canvas.parentElement?.classList.remove('is-failsafe');
           glitch = 0.4;
           tear = 0.3;

@@ -49,7 +49,8 @@ for (const pg of PAGES) {
     });
 
     test('tap targets are at least 24px', async ({ page }) => {
-      await page.goto(pg.path);
+      await page.goto(pg.path, { waitUntil: 'networkidle' });
+      await page.evaluate(() => document.fonts.ready);
       const small = await page.evaluate(() =>
         Array.from(document.querySelectorAll<HTMLElement>('a, button, [role="button"]'))
           .filter((el) => {

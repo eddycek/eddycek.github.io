@@ -9,8 +9,8 @@ export const content: SiteContent = {
   },
   nav: [
     { id: 'prace', label: 'Work' },
-    { id: 'cesta', label: 'Journey' },
-    { id: 'dilna', label: 'Workshop' },
+    { id: 'cesta', label: 'Track record' },
+    { id: 'dilna', label: 'Side quests' },
     { id: 'poezie', label: 'Personal' },
     { id: 'kontakt', label: 'Contact' },
   ],
@@ -41,7 +41,7 @@ export const content: SiteContent = {
       { label: 'Role', value: 'CTO' },
       { label: 'Engineering', value: '~30 lidí' },
       { label: 'Cloudy', value: 'GCP · AWS · Azure' },
-      { label: 'Kóduju od', value: 'dětství' },
+      { label: 'Kóduju od', value: 'co si pamatuju. Dnes to píše agent.' },
     ],
     agnes: {
       label: 'Primary focus · agnesbrain.ai',
@@ -68,7 +68,7 @@ export const content: SiteContent = {
     },
   },
   journey: {
-    eyebrow: 'Journey',
+    eyebrow: 'Track record',
     title: 'Kudy jsem šel',
     lead: 'Od prvního full-time jobu po vedení engineeringu.',
     stops: [
@@ -147,9 +147,9 @@ export const content: SiteContent = {
     education: 'Formálním vzděláním elektrotechnik.',
   },
   workshop: {
-    eyebrow: 'Workshop',
-    title: 'Co dělám po večerech',
-    lead: 'Létám, 3D printím, pájím a hackuju. Většinou věci, které mi chyběly.',
+    eyebrow: 'Side quests',
+    title: 'Co mě nenechá spát',
+    lead: 'Létám, 3D printím, pájím a hackuju.',
     items: [
       {
         name: 'FPVPIDlab',

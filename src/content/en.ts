@@ -9,8 +9,8 @@ export const content: SiteContent = {
   },
   nav: [
     { id: 'prace', label: 'Work' },
-    { id: 'cesta', label: 'Journey' },
-    { id: 'dilna', label: 'Workshop' },
+    { id: 'cesta', label: 'Track record' },
+    { id: 'dilna', label: 'Side quests' },
     { id: 'poezie', label: 'Personal' },
     { id: 'kontakt', label: 'Contact' },
   ],
@@ -41,7 +41,7 @@ export const content: SiteContent = {
       { label: 'Role', value: 'CTO' },
       { label: 'Engineering', value: '~30 people' },
       { label: 'Clouds', value: 'GCP · AWS · Azure' },
-      { label: 'Writing code since', value: 'childhood' },
+      { label: 'Writing code since', value: 'forever. Now an agent does it.' },
     ],
     agnes: {
       label: 'Primary focus · agnesbrain.ai',
@@ -68,7 +68,7 @@ export const content: SiteContent = {
     },
   },
   journey: {
-    eyebrow: 'Journey',
+    eyebrow: 'Track record',
     title: 'How I got here',
     lead: 'From my first full-time job to leading engineering.',
     stops: [
@@ -147,9 +147,9 @@ export const content: SiteContent = {
     education: 'Formal education in electrical engineering.',
   },
   workshop: {
-    eyebrow: 'Workshop',
-    title: 'What I do after hours',
-    lead: 'I fly, 3D print, solder and hack. Mostly things I needed and could not find.',
+    eyebrow: 'Side quests',
+    title: 'What keeps me up at night',
+    lead: 'I fly, 3D print, solder and hack.',
     items: [
       {
         name: 'FPVPIDlab',
