@@ -1,0 +1,67 @@
+---
+import type { SiteContent } from '../content/types';
+import { contact } from '../content/contact';
+import Channel from './Channel.astro';
+interface Props { content: SiteContent }
+const c = Astro.props.content.contact;
+const id = Astro.props.content.nav[4].id;
+const rows = [
+  { label: c.emailLabel, value: contact.email, href: `mailto:${contact.email}` },
+  ...(contact.phone ? [{ label: c.phoneLabel, value: contact.phone, href: `tel:${contact.phone.replace(/\s+/g, '')}` }] : []),
+];
+---
+<Channel id={id} index={5} eyebrow={c.eyebrow} title={c.title} meta={c.location.toUpperCase()}>
+  <div class="contact">
+    <p class="lead">{c.lead}</p>
+    <ul class="reasons" role="list">{c.reasons.map((r) => <li>{r}</li>)}</ul>
+    <div class="lines">
+      {rows.map((r) => (
+        <div class="line">
+          <span class="osd">{r.label}</span>
+          <a class="line__value" href={r.href}>{r.value}</a>
+          <button class="osd line__copy" type="button" data-copy={r.value} data-done={c.copiedLabel}>{c.copyLabel}</button>
+        </div>
+      ))}
+      <div class="line line--links">
+        <span class="osd">{c.location}</span>
+        <span class="links">{contact.links.map((l) => <a href={l.url} rel="me">{l.label} ↗</a>)}</span>
+      </div>
+    </div>
+  </div>
+</Channel>
+
+<style>
+  .contact { display: grid; gap: 2rem; }
+  .reasons { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; max-width: 60ch; }
+  .reasons li { position: relative; padding-left: 1.6rem; color: var(--c-muted); }
+  .reasons li::before { content: '›'; position: absolute; left: 0.2rem; color: var(--c-signal); font-family: var(--f-mono); }
+  .lines { display: grid; border-top: 1px solid var(--c-line); }
+  .line { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center; padding-block: 1.2rem; border-bottom: 1px solid var(--c-line); }
+  .line__value { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 0.8rem + 2.6vw, 2.8rem); letter-spacing: -0.02em; text-decoration: none; overflow-wrap: anywhere; line-height: 1.1; }
+  .line__value::after { content: '_'; color: var(--c-signal); animation: blink 1s steps(1, end) infinite; margin-left: 0.05em; }
+  .line__copy { background: none; border: 1px solid var(--c-line); color: var(--c-ink); padding: 0.4rem 0.7rem; border-radius: 2px; cursor: pointer; }
+  .line__copy:hover { border-color: var(--c-signal); color: var(--c-signal); }
+  .line__copy[data-state='done'] { color: var(--c-signal); border-color: var(--c-signal); }
+  .links { display: flex; flex-wrap: wrap; gap: 1.5rem; grid-column: 2 / -1; font-family: var(--f-mono); font-size: var(--t-sm); }
+  .links a { text-decoration: none; }
+  @media (max-width: 560px) { .line { grid-template-columns: minmax(0, 1fr) auto; } .line > .osd:first-child { grid-column: 1 / -1; } .links { grid-column: 1 / -1; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    const label = btn.textContent;
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(value);
+      } catch {
+        const range = document.createRange();
+        const target = btn.previousElementSibling;
+        if (target) { range.selectNodeContents(target); getSelection()?.removeAllRanges(); getSelection()?.addRange(range); }
+      }
+      btn.textContent = btn.dataset.done ?? label;
+      btn.dataset.state = 'done';
+      setTimeout(() => { btn.textContent = label; delete btn.dataset.state; }, 1800);
+    });
+  });
+</script>

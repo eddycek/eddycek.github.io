@@ -1,0 +1,80 @@
+---
+import type { SiteContent } from '../content/types';
+interface Props { content: SiteContent }
+const { content } = Astro.props;
+const h = content.hero;
+const [first, ...rest] = h.name.split(' ');
+---
+<section class="hero" id="signal" aria-labelledby="hero-name">
+  <canvas class="hero__scope" id="scope" aria-hidden="true"></canvas>
+  <div class="hero__scan" aria-hidden="true"></div>
+
+  <div class="hero__osd hero__osd--tl osd" aria-hidden="true">
+    <span class="osd--signal">● REC</span>
+    <span>T+ <span id="uptime">0000d</span></span>
+  </div>
+  <div class="hero__osd hero__osd--tr osd" aria-hidden="true">
+    <span>LQ 99</span><span>5.8G</span><span id="clock">--:--:--</span>
+  </div>
+
+  <div class="hero__inner shell">
+    <p class="osd osd--signal hero__status">{h.osd}</p>
+    <h1 class="hero__name" id="hero-name">
+      <span class="hero__line">{first}</span>
+      <span class="hero__line hero__line--outline">{rest.join(' ')}</span>
+    </h1>
+    <p class="hero__claim" data-decode>{h.claim}</p>
+    <p class="hero__intro">{h.intro}</p>
+    <ul class="hero__tags" role="list">
+      {h.tags.map((t) => <li>{t}</li>)}
+    </ul>
+  </div>
+
+  <a class="hero__osd hero__osd--br osd hero__hint" href={`#${content.nav[0].id}`}>{h.scrollHint} ↓</a>
+</section>
+
+<style>
+  .hero { position: relative; min-height: min(100svh - var(--bar-h), 60rem); display: grid; align-items: center; overflow: hidden; isolation: isolate; background: radial-gradient(120% 80% at 70% 40%, color-mix(in srgb, var(--c-signal) 7%, transparent), transparent 60%), var(--c-bg); }
+  .hero__scope { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; }
+  .hero__scan { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent 0 2px, color-mix(in srgb, var(--c-bg) 22%, transparent) 2px 3px); mix-blend-mode: multiply; opacity: 0.6; }
+  .hero__inner { position: relative; display: grid; gap: 1.4rem; padding-block: 6rem 7rem; width: 100%; pointer-events: none; }
+  .hero__inner a, .hero__inner li { pointer-events: auto; }
+  .hero__status { letter-spacing: 0.2em; }
+  .hero__name { font-size: var(--t-hero); font-weight: 800; line-height: 0.86; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; display: grid; }
+  .hero__line { display: block; }
+  .hero__line--outline { color: transparent; -webkit-text-stroke: 2px var(--c-ink); text-stroke: 2px var(--c-ink); padding-left: clamp(1rem, 9vw, 9rem); }
+  .hero__claim { font-family: var(--f-display); font-size: var(--t-xl); font-weight: 600; color: var(--c-signal); text-shadow: 0 0 24px var(--c-glow); letter-spacing: -0.01em; max-width: 24ch; }
+  .hero__intro { max-width: 46ch; font-size: var(--t-lg); color: var(--c-ink); opacity: 0.86; line-height: 1.5; text-shadow: 0 1px 12px var(--c-bg); }
+  .hero__tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .hero__tags li { font-family: var(--f-mono); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.1em; padding: 0.3rem 0.65rem; border: 1px solid var(--c-line); border-radius: 2px; background: color-mix(in srgb, var(--c-bg) 70%, transparent); }
+  .hero__osd { position: absolute; display: flex; gap: 1.2rem; z-index: 2; }
+  .hero__osd--tl { top: 2.4rem; left: var(--gutter-l); }
+  .hero__osd--tr { top: 2.4rem; right: var(--gutter-r); }
+    .hero__osd--br { bottom: 2.4rem; right: var(--gutter-r); }
+  .hero__hint { text-decoration: none; color: var(--c-ink); animation: nudge 2.4s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateY(4px); } }
+
+  /* entrance: visible at rest, only a short power-on flicker */
+  .hero__name .hero__line { animation: power 0.9s steps(6, end) both; }
+  .hero__name .hero__line + .hero__line { animation-delay: 0.15s; }
+  @keyframes power { 0% { opacity: 0.2; } 30% { opacity: 1; } 45% { opacity: 0.5; } 100% { opacity: 1; } }
+
+  @media (max-width: 640px) {
+    .hero__osd--tr span:not(:last-child) { display: none; }
+    .hero__line--outline { -webkit-text-stroke-width: 1.4px; }
+  }
+</style>
+
+<script>
+  const start = Date.UTC(2008, 5, 1);
+  const up = document.getElementById('uptime');
+  const clock = document.getElementById('clock');
+  const fmt = new Intl.DateTimeFormat('cs-CZ', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Prague' });
+  const tick = () => {
+    const days = Math.floor((Date.now() - start) / 86400000);
+    if (up) up.textContent = `${days}d`;
+    if (clock) clock.textContent = fmt.format(new Date());
+  };
+  tick();
+  setInterval(tick, 1000);
+</script>

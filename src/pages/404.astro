@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { content } from '../content/cs';
+---
+<Base content={{ ...content, meta: { title: '404 · Ztráta signálu', description: content.meta.description } }}>
+  <main class="lost shell">
+    <p class="osd osd--signal">NO SIGNAL · FAILSAFE</p>
+    <h1>404</h1>
+    <p>Tady nic není. Signál se ztratil, dron padá do trávy.</p>
+    <a class="osd" href="/">← zpět na vaclaveder.cz</a>
+  </main>
+</Base>
+<style>
+  .lost { min-height: 100svh; display: grid; align-content: center; gap: 1.2rem; }
+  .lost h1 { font-size: var(--t-hero); line-height: 0.9; }
+  .lost a { color: var(--c-signal); text-decoration: none; }
+</style>

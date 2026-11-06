@@ -1,0 +1,36 @@
+---
+import type { SiteContent } from '../content/types';
+import Base from '../layouts/Base.astro';
+import Bar from './Bar.astro';
+import Hero from './Hero.astro';
+import Work from './Work.astro';
+import Journey from './Journey.astro';
+import Workshop from './Workshop.astro';
+import Poetry from './Poetry.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+interface Props { content: SiteContent }
+const { content } = Astro.props;
+---
+<Base content={content}>
+  <a class="skip osd" href={`#${content.nav[0].id}`}>{content.lang === 'cs' ? 'Přeskočit na obsah' : 'Skip to content'}</a>
+  <Bar content={content} />
+  <main>
+    <Hero content={content} />
+    <Work content={content} />
+    <Journey content={content} />
+    <Workshop content={content} />
+    <Poetry content={content} />
+    <Contact content={content} />
+  </main>
+  <Footer content={content} />
+</Base>
+
+<style>
+  .skip { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--c-signal); color: var(--c-signal-ink); padding: 0.5rem 0.8rem; text-decoration: none; }
+  .skip:focus { top: 1rem; }
+</style>
+
+<script>
+  import '../scripts/boot';
+</script>

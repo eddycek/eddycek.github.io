@@ -1,0 +1,26 @@
+---
+import type { SiteContent } from '../content/types';
+import Channel from './Channel.astro';
+interface Props { content: SiteContent }
+const w = Astro.props.content.work;
+const id = Astro.props.content.nav[0];
+---
+<Channel id={id.id} index={1} eyebrow={w.eyebrow} title={w.title} lead={w.lead} meta="KEBOOLA · 2019 →">
+  <div class="prose">{w.paragraphs.map((p) => <p>{p}</p>)}</div>
+  <dl class="readouts">
+    {w.stats.map((s, i) => (
+      <div class="readout">
+        <dt class="osd">{s.label}</dt>
+        <dd>{s.value}</dd>
+        <canvas class="spark" data-spark={i} aria-hidden="true"></canvas>
+      </div>
+    ))}
+  </dl>
+</Channel>
+
+<style>
+  .readouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1px; margin: 0; background: var(--c-line); border: 1px solid var(--c-line); }
+  .readout { position: relative; background: var(--c-surface); padding: 1.1rem 1.2rem 2.6rem; display: grid; gap: 0.35rem; overflow: hidden; }
+  .readout dd { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: var(--t-lg); line-height: 1.2; }
+  .spark { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 2.2rem; display: block; }
+</style>

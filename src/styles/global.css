@@ -1,0 +1,108 @@
+/* Signál a šum: dark-first telemetry. Layout: sticky OSD bar, full-bleed hero scope, then channel sections
+   with a narrow label rail on the left and content on the right. */
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
+@import '@fontsource/ibm-plex-sans/latin-ext-400.css';
+@import '@fontsource/ibm-plex-sans/latin-ext-400-italic.css';
+@import '@fontsource/ibm-plex-sans/latin-ext-600.css';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-400-italic.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/jetbrains-mono/latin-ext-400.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-ext-500.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+
+:root {
+  --c-bg: #0B0E12;
+  --c-surface: #12161C;
+  --c-raise: #181E26;
+  --c-ink: #E8EBEE;
+  --c-muted: #8E98A5;
+  --c-line: #232A34;
+  --c-grid: #1A2029;
+  --c-noise: #3A4350;
+  --c-signal: #FF7A2F;
+  --c-signal-ink: #0B0E12;
+  --c-trace: #5CC8D6;
+  --c-glow: rgba(255, 122, 47, 0.35);
+
+  --f-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  --f-body: 'IBM Plex Sans', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-base: 1.0625rem;
+  --t-lg: 1.3rem;
+  --t-xl: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
+  --t-2xl: clamp(2.4rem, 1.4rem + 4.5vw, 4.6rem);
+  --t-hero: clamp(4rem, 1rem + 13vw, 12.5rem);
+
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --max: 78rem;
+  --bar-h: 3.25rem;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --c-bg: #ECEEF0; --c-surface: #F5F6F7; --c-raise: #FFFFFF; --c-ink: #11151B; --c-muted: #555E6A;
+    --c-line: #CBD1D8; --c-grid: #DCE0E5; --c-noise: #A5AEB9; --c-signal: #D9480F; --c-signal-ink: #FFFFFF;
+    --c-trace: #0B7C8C; --c-glow: rgba(217, 72, 15, 0.25); color-scheme: light;
+  }
+}
+:root[data-theme='light'] {
+  --c-bg: #ECEEF0; --c-surface: #F5F6F7; --c-raise: #FFFFFF; --c-ink: #11151B; --c-muted: #555E6A;
+  --c-line: #CBD1D8; --c-grid: #DCE0E5; --c-noise: #A5AEB9; --c-signal: #D9480F; --c-signal-ink: #FFFFFF;
+  --c-trace: #0B7C8C; --c-glow: rgba(217, 72, 15, 0.25); color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 1rem); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--c-bg); color: var(--c-ink);
+  font-family: var(--f-body); font-size: var(--t-base); line-height: 1.65;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+body::before {
+  content: ''; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--c-bg);
+}
+img, svg, canvas { max-width: 100%; }
+a { color: inherit; text-decoration-color: var(--c-signal); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--c-signal); }
+:focus-visible { outline: 2px solid var(--c-signal); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; line-height: 1.02; text-wrap: balance; font-weight: 800; letter-spacing: -0.025em; }
+p { margin: 0; }
+::selection { background: var(--c-signal); color: var(--c-signal-ink); }
+
+.mono { font-family: var(--f-mono); font-size: var(--t-sm); }
+.osd { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-muted); font-variant-numeric: tabular-nums; }
+.osd--signal { color: var(--c-signal); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.shell { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* channel section */
+.channel { position: relative; padding-block: clamp(4.5rem, 10vw, 9rem); border-top: 1px solid var(--c-line); }
+.channel__grid { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); }
+.channel__rail { position: sticky; top: calc(var(--bar-h) + 2rem); align-self: start; display: grid; gap: 0.6rem; }
+.channel__rail .ch { display: inline-flex; align-items: center; gap: 0.5rem; }
+.channel__rail .ch::before { content: ''; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--c-signal); box-shadow: 0 0 12px var(--c-glow); animation: blink 2.4s steps(1, end) infinite; }
+.channel__body { display: grid; gap: 2rem; min-width: 0; }
+.channel__title { font-size: var(--t-2xl); }
+.lead { font-size: var(--t-lg); color: var(--c-muted); max-width: 46ch; line-height: 1.5; }
+.prose { display: grid; gap: 1.1rem; max-width: 62ch; }
+
+@keyframes blink { 50% { opacity: 0.25; } }
+
+@media (max-width: 760px) {
+  .channel__grid { grid-template-columns: 1fr; }
+  .channel__rail { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}

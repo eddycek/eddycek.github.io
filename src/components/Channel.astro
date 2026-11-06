@@ -1,0 +1,18 @@
+---
+interface Props { id: string; index: number; eyebrow: string; title: string; lead?: string; meta?: string }
+const { id, index, eyebrow, title, lead, meta } = Astro.props;
+---
+<section class="channel" id={id} aria-labelledby={`${id}-title`}>
+  <div class="shell channel__grid">
+    <div class="channel__rail">
+      <span class="osd ch">{`CH${index}`} · {eyebrow}</span>
+      {meta && <span class="osd">{meta}</span>}
+    </div>
+    <div class="channel__body">
+      <h2 class="channel__title" id={`${id}-title`}>{title}</h2>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+  <slot name="after" />
+</section>

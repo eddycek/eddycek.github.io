@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import type { SiteContent } from '../content/types';
+import { contact } from '../content/contact';
+
+interface Props { content: SiteContent }
+const { content } = Astro.props;
+const site = 'https://vaclaveder.cz';
+const path = content.lang === 'cs' ? '/' : '/en/';
+const canonical = new URL(path, site).href;
+const ogImage = new URL('/og.png', site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Václav Eder',
+  alternateName: 'Eddy',
+  url: site,
+  email: `mailto:${contact.email}`,
+  ...(contact.phone ? { telephone: contact.phone } : {}),
+  jobTitle: 'CTO',
+  worksFor: { '@type': 'Organization', name: 'Keboola', url: 'https://www.keboola.com' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Praha', addressCountry: 'CZ' },
+  sameAs: contact.links.map((l) => l.url),
+  knowsAbout: ['Site Reliability Engineering', 'Security Engineering', 'Cloud infrastructure', 'AI agents', 'FPV drones', 'Poetry'],
+};
+---
+<!doctype html>
+<html lang={content.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{content.meta.title}</title>
+    <meta name="description" content={content.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="cs" href={`${site}/`} />
+    <link rel="alternate" hreflang="en" href={`${site}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0B0E12" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={content.meta.title} />
+    <meta property="og:description" content={content.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={content.lang === 'cs' ? 'cs_CZ' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {contact.links.map((l) => <link rel="me" href={l.url} />)}
+    <script is:inline>
+      try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
