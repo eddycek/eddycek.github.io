@@ -256,7 +256,7 @@ export const content: SiteContent = {
       'you fly FPV, tune PIDs or are trying FPVPIDlab',
       'you write, make music or do audiovisual work and want to team up',
       'you have a tip for the next desert or a good spot for remote work',
-      'you want to squad up for Battlefield, THE FINALS or ARC Raiders in the evening',
+      'you want to squad up on PS5 for Battlefield, THE FINALS or ARC Raiders in the evening',
     ],
   },
   footer: {

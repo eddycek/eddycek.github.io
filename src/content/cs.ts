@@ -256,7 +256,7 @@ export const content: SiteContent = {
       'létáš FPV, ladíš PIDy nebo zkoušíš FPVPIDlab',
       'píšeš, děláš music nebo audiovizuál a chceš něco spojit',
       'máš tip na další poušť nebo místo pro remote work',
-      'chceš dát večer squad v Battlefieldu, THE FINALS nebo ARC Raiders',
+      'chceš dát večer squad na PS5 v Battlefieldu, THE FINALS nebo ARC Raiders',
     ],
   },
   footer: {
