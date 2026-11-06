@@ -8,13 +8,17 @@ const { content } = Astro.props;
 const site = 'https://vaclaveder.cz';
 const path = content.lang === 'cs' ? '/' : '/en/';
 const canonical = new URL(path, site).href;
-const ogImage = new URL('/og.png', site).href;
+const ogImage = new URL(content.lang === 'cs' ? '/og.png' : '/og-en.png', site).href;
+const ogAlt = content.lang === 'cs'
+  ? 'Vaclav Eder, a.k.a. eddycek. CTO v Keboole. Hledám signál v šumu.'
+  : 'Vaclav Eder, a.k.a. eddycek. CTO at Keboola. I look for the signal in the noise.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Václav Eder',
   alternateName: ['Eddy', 'eddycek'],
+  image: new URL('/icon-512.png', site).href,
   url: site,
   email: `mailto:${contact.email}`,
   ...(contact.phone ? { telephone: contact.phone } : {}),
@@ -37,15 +41,36 @@ const jsonLd = {
     <link rel="alternate" hreflang="en" href={`${site}/en/`} />
     <link rel="alternate" hreflang="x-default" href={`${site}/`} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#0B0E12" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="apple-mobile-web-app-title" content="eddycek" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="application-name" content="eddycek" />
+    <meta name="msapplication-TileColor" content="#0B0E12" />
+    <meta name="author" content="Václav Eder" />
     <meta property="og:type" content="profile" />
     <meta property="og:title" content={content.meta.title} />
     <meta property="og:description" content={content.meta.description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="vaclaveder.cz" />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta property="profile:first_name" content="Václav" />
+    <meta property="profile:last_name" content="Eder" />
+    <meta property="profile:username" content="eddycek" />
     <meta property="og:locale" content={content.lang === 'cs' ? 'cs_CZ' : 'en_US'} />
+    <meta property="og:locale:alternate" content={content.lang === 'cs' ? 'en_US' : 'cs_CZ'} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={content.meta.title} />
+    <meta name="twitter:description" content={content.meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
     {contact.links.map((l) => <link rel="me" href={l.url} />)}
     <script is:inline>
       try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}

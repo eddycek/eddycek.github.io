@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "test:responsive": "npm run build && playwright test",
     "test:ui": "playwright test --ui",
-    "shots": "node scripts/shots.mjs"
+    "shots": "node scripts/shots.mjs",
+    "assets": "node scripts/assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
