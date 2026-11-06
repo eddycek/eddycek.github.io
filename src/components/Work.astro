@@ -6,7 +6,7 @@ const w = Astro.props.content.work;
 const id = Astro.props.content.nav[0];
 ---
 <Channel id={id.id} index={1} eyebrow={w.eyebrow} title={w.title} lead={w.lead} meta="KEBOOLA · 2019 →" metaAccent="∞" metaAccentLabel={Astro.props.content.lang === 'cs' ? 'bez konce' : 'no end date'}>
-  <div class="prose">{w.paragraphs.map((p) => <p>{p}</p>)}</div>
+  <div class="prose work__prose">{w.paragraphs.map((p) => <p>{p}</p>)}</div>
   <dl class="readouts">
     {w.stats.map((s, i) => (
       <div class="readout">
@@ -40,6 +40,7 @@ const id = Astro.props.content.nav[0];
 </Channel>
 
 <style>
+  .work__prose { max-width: none; }
   .readouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1px; margin: 0; background: var(--c-line); border: 1px solid var(--c-line); }
   .readout { position: relative; background: var(--c-surface); padding: 1.1rem 1.2rem 2.6rem; display: grid; gap: 0.35rem; overflow: hidden; }
   .readout dd { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: var(--t-lg); line-height: 1.2; }

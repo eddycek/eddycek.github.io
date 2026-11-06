@@ -12,7 +12,7 @@
  * Noise fades as the page scrolls.
  */
 import { clamp, createStage, mono, pad, type Stage } from './common';
-import { signalHit, telemetryLost, telemetryRecovered } from './radio';
+import { signalHit, telemetryLost, telemetryRecovered, unlockAudio } from './radio';
 
 const COLS = 512; // columns per sweep
 const SWEEP = 2.8; // seconds per sweep
@@ -131,13 +131,16 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ptrAge = 0;
     stage?.kick();
   };
-  const onDown = (e: PointerEvent): void => {
+  let lastHit = 0;
+  const onDown = (e: MouseEvent): void => {
     const r = canvas.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
     // Only clicks that land inside the hero section itself; never the sticky bar or the rest of the page.
     const target = e.target as Element | null;
     if (!target?.closest?.('#signal') || target.closest('a, button, input, textarea, header')) return;
     if (failsafe > 0) return;
+    unlockAudio();
+    lastHit = performance.now();
     dmg = Math.min(1, dmg + 0.13 + Math.random() * 0.05);
     if (dmg < 1) signalHit(dmg);
     if (dmg >= 1) {
@@ -258,7 +261,11 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
           glitch = 0.4;
           tear = 0.3;
         }
-      } else dmg = Math.max(0, dmg - dt * 0.035);
+      } else {
+        // Recover quickly once the user stops hitting the signal.
+        const idle = (performance.now() - lastHit) / 1000;
+        dmg = Math.max(0, dmg - dt * (idle > 0.7 ? 0.45 : 0.05));
+      }
       for (let k = shocks.length - 1; k >= 0; k--) {
         const sh = shocks[k];
         if (!sh) continue;
@@ -570,10 +577,31 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   if (stage.s.reduced) return () => stage.dispose();
 
   window.addEventListener('pointermove', onMove, { passive: true });
-  window.addEventListener('pointerdown', onDown, { passive: true });
+  // 'click' (not pointerdown): on touch screens it only fires for a real tap, never for a scroll.
+  // Listen on the hero itself: iOS Safari does not fire click for plain elements when the listener
+  // only sits on window/document.
+  const heroEl = canvas.parentElement ?? window;
+  heroEl.addEventListener('click', onDown as EventListener, { passive: true });
+  // Unlock audio on the very first touch anywhere, so the first hit sound is not delayed on iOS.
+  const unlockOnce = (): void => { unlockAudio(); window.removeEventListener('touchend', unlockOnce); };
+  window.addEventListener('touchend', unlockOnce, { passive: true });
+  // Scrolled away during FAILSAFE: end it silently instead of resuming (and announcing) later.
+  const away = new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (en.isIntersecting || failsafe <= 0) continue;
+      failsafe = 0;
+      dmg = 0;
+      canvas.parentElement?.classList.remove('is-failsafe');
+      if (hud) hud.dataset.on = '0';
+      hudHold = 0;
+    }
+  });
+  away.observe(canvas);
   return () => {
     stage.dispose();
     window.removeEventListener('pointermove', onMove);
-    window.removeEventListener('pointerdown', onDown);
+    heroEl.removeEventListener('click', onDown as EventListener);
+    window.removeEventListener('touchend', unlockOnce);
+    away.disconnect();
   };
 }
