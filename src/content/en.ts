@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO at Keboola',
     description:
-      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours: FPV, poetry and music. Prague.',
+      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours: FPV, poetry, music and digital nomad life. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Work' },
@@ -21,7 +21,7 @@ export const content: SiteContent = {
     claim: 'I look for the signal in the noise.',
     intro:
       'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing: reliability is not a feature, it is a promise.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Travel'],
+    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
@@ -180,7 +180,7 @@ export const content: SiteContent = {
   },
   poetry: {
     eyebrow: 'Personal',
-    title: 'Poems, music and travel',
+    title: 'Poems, music and nomad life',
     lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
@@ -203,10 +203,11 @@ export const content: SiteContent = {
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
       },
       {
-        title: 'Travel',
+        title: 'Digital nomad life',
         text: [
           'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
           'Deserts are what I love most. The silence, the space, and a night sky that never ends. I fell hard for the Atacama and for Santiago de Chile.',
+          'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A laptop, a bit of other hardware and a place to sit down and work in peace is enough.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrakech', 'Hanoi', 'Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
       },

@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO v Keboole',
     description:
-      'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, SRE a security. Po večerech FPV, poezie a hudba. Prague.',
+      'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, SRE a security. Po večerech FPV, poezie, hudba a digitální nomádství. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Práce' },
@@ -21,7 +21,7 @@ export const content: SiteContent = {
     claim: 'Hledám signál v šumu.',
     intro:
       'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno: spolehlivost není feature, je to slib.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Cestování'],
+    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Digitální nomádství'],
     scrollHint: 'Dál',
     clickHint: '[ klik do signálu ]',
   },
@@ -180,7 +180,7 @@ export const content: SiteContent = {
   },
   poetry: {
     eyebrow: 'Osobní',
-    title: 'Básně, hudba a cesty',
+    title: 'Básně, hudba a nomádství',
     lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
@@ -198,15 +198,16 @@ export const content: SiteContent = {
         title: 'Hudba',
         text: [
           'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání.',
-          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba: malí nezávislí umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba: malí independent umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
       },
       {
-        title: 'Cesty',
+        title: 'Digitální nomádství',
         text: [
           'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
           'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
+          'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí notebook, pár dalších kusů hardwaru a místo, kde se posadíš a v klidu pracuješ.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrákeš', 'Hanoj', 'Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
       },

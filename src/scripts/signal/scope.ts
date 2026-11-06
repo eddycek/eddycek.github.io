@@ -140,6 +140,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       dmg = 0;
       failsafe = FAIL_T;
       failCount++;
+      canvas.parentElement?.classList.add('is-failsafe');
       window.dispatchEvent(new CustomEvent('signal:failsafe', { detail: 1500 }));
     }
     const px = e.clientX - r.left;
@@ -247,6 +248,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       if (failsafe > 0) {
         failsafe = Math.max(0, failsafe - dt);
         if (failsafe === 0) {
+          canvas.parentElement?.classList.remove('is-failsafe');
           glitch = 0.4;
           tear = 0.3;
         }
@@ -475,6 +477,10 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   const drawFailsafe = (s: Stage, t: number): void => {
     const { ctx, w, h, pal } = s;
     const k = 1 - failsafe / FAIL_T; // 0 → 1
+    // Opaque-ish cover: the canvas sits above the hero text during FAILSAFE.
+    ctx.fillStyle = pal.bg.css;
+    ctx.globalAlpha = k > 0.85 ? 0.9 * (1 - (k - 0.85) / 0.15) : 0.9;
+    ctx.fillRect(0, 0, w, h);
     // Static.
     const cell = w < 640 ? 3 : 4;
     const n = Math.round((w * h) / (cell * cell * 9));
@@ -496,21 +502,21 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       ctx.font = `800 ${big}px ${getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif'}`;
       ctx.globalAlpha = 0.9;
       ctx.fillStyle = pal.trace.css;
-      ctx.fillText('FAILSAFE', w / 2 + 4, h * 0.36);
+      ctx.fillText('FAILSAFE', w / 2 + 4, h * 0.44);
       ctx.fillStyle = pal.signal.css;
-      ctx.fillText('FAILSAFE', w / 2 - 3, h * 0.36);
+      ctx.fillText('FAILSAFE', w / 2 - 3, h * 0.44);
     }
     mono(s, Math.max(11, Math.min(16, w / 60)));
     ctx.fillStyle = pal.ink.css;
     ctx.globalAlpha = 0.9;
     const line = FAIL_LINES[(failCount - 1) % FAIL_LINES.length] ?? '';
     const shown = line.slice(0, Math.ceil(line.length * Math.min(1, k * 2.2)));
-    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, h * 0.36 + big * 0.62);
+    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, h * 0.44 + big * 0.62);
     ctx.globalAlpha = 0.55;
     ctx.fillText(
       k > 0.72 ? 'REARMING…' : `DISARMED · FAILSAFE #${pad(failCount, 2)} · YOU BROKE IT`,
       w / 2,
-      h * 0.36 + big * 0.62 + 26,
+      h * 0.44 + big * 0.62 + 26,
     );
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';

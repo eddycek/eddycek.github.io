@@ -18,13 +18,13 @@ const CSS =
   `.${CLS}[data-g]{color:transparent;-webkit-text-fill-color:transparent}` +
   `.${CLS}[data-g]::after{content:attr(data-g);content:attr(data-g)/"";position:absolute;left:0;top:0;` +
   `color:var(--c-signal,#FF7A2F);-webkit-text-fill-color:var(--c-signal,#FF7A2F);pointer-events:none}` +
-  `.sd-melt{animation:sd-melt .12s steps(1,end) infinite}` +
+  `.sd-melt{animation:sd-melt .22s steps(1,end) infinite}` +
   `.sd-melt .${CLS}[data-g]::after{color:var(--c-trace,#5CC8D6);-webkit-text-fill-color:var(--c-trace,#5CC8D6)}` +
   `.sd-melt .${CLS}:nth-child(3n)[data-g]::after{color:var(--c-ink,#E8EBEE);-webkit-text-fill-color:var(--c-ink,#E8EBEE)}` +
   `@keyframes sd-melt{` +
-  `0%{transform:translate(-4px,0) skewX(-8deg);clip-path:inset(0 0 55% 0);text-shadow:3px 0 var(--c-trace),-3px 0 var(--c-signal)}` +
-  `33%{transform:translate(6px,1px) skewX(4deg);clip-path:inset(30% 0 10% 0);text-shadow:-4px 0 var(--c-trace),4px 0 var(--c-signal)}` +
-  `66%{transform:translate(-2px,-1px);clip-path:inset(10% 0 35% 0);text-shadow:2px 0 var(--c-signal),-2px 0 var(--c-trace)}` +
+  `0%{transform:translate(-2px,0) skewX(-3deg);clip-path:inset(0 0 35% 0);text-shadow:2px 0 var(--c-trace),-2px 0 var(--c-signal)}` +
+  `33%{transform:translate(3px,0) skewX(2deg);clip-path:inset(15% 0 5% 0);text-shadow:-2px 0 var(--c-trace),2px 0 var(--c-signal)}` +
+  `66%{transform:translate(-1px,0);clip-path:inset(5% 0 20% 0);text-shadow:1px 0 var(--c-signal),-1px 0 var(--c-trace)}` +
   `100%{transform:none;clip-path:none;text-shadow:none}}`;
 
 let styleEl: HTMLStyleElement | null = null;
@@ -44,8 +44,8 @@ interface Item {
   meltUntil: number;
 }
 
-const FLICK: Record<'poem' | 'name', [number, number]> = { poem: [140, 420], name: [500, 1400] };
-const MELT: Record<'poem' | 'name', [number, number]> = { poem: [3500, 8000], name: [5500, 12000] };
+const FLICK: Record<'poem' | 'name', [number, number]> = { poem: [600, 1600], name: [1800, 4500] };
+const MELT: Record<'poem' | 'name', [number, number]> = { poem: [8000, 15000], name: [14000, 26000] };
 const rnd = (r: [number, number]): number => r[0] + Math.random() * (r[1] - r[0]);
 
 const glyph = (): string => GLYPHS[(Math.random() * GLYPHS.length) | 0] ?? '░';
@@ -154,26 +154,26 @@ export function decodeText(root: HTMLElement): () => void {
             it.nextMelt = now + rnd(MELT[it.mode]);
           } else {
             for (const sp of it.spans) {
-              if (Math.random() < 0.8) sp.setAttribute('data-g', glyph());
+              if (Math.random() < 0.45) sp.setAttribute('data-g', glyph());
               else sp.removeAttribute('data-g');
             }
           }
           continue;
         }
         if (now >= it.nextMelt) {
-          it.meltUntil = now + 220 + Math.random() * (it.mode === 'poem' ? 420 : 260);
+          it.meltUntil = now + 180 + Math.random() * (it.mode === 'poem' ? 240 : 140);
           it.el.classList.add('sd-melt');
           continue;
         }
         if (now >= it.nextFlick) {
           it.nextFlick = now + rnd(FLICK[it.mode]);
-          const burst = 1 + ((Math.random() * (it.mode === 'poem' ? 6 : 2)) | 0);
+          const burst = 1 + ((Math.random() * (it.mode === 'poem' ? 3 : 1)) | 0);
           for (let b = 0; b < burst; b++) {
             const k = gSpan.indexOf(null);
             const sp = it.spans[(Math.random() * it.spans.length) | 0];
             if (k < 0 || !sp) break;
             gSpan[k] = sp;
-            gUntil[k] = now + 50 + Math.random() * 160;
+            gUntil[k] = now + 90 + Math.random() * 180;
             sp.setAttribute('data-g', glyph());
           }
         }
