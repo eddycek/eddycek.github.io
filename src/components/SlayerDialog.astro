@@ -80,7 +80,7 @@ const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i =
   /* Title with a split-channel glitch. */
   .slayer__head { display: grid; gap: 1rem; }
   .slayer__title { position: relative; font-size: clamp(3.6rem, 1rem + 12vw, 10rem); line-height: 0.85; letter-spacing: -0.05em; font-variation-settings: 'opsz' 96; }
-  .slayer__title::before, .slayer__title::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; }
+  .slayer__title::before, .slayer__title::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; clip-path: inset(0 0 100% 0); }
   .slayer__title::before { color: var(--c-trace); mix-blend-mode: screen; animation: t-glitch 5.5s steps(1, end) infinite; }
   .slayer__title::after { color: var(--c-signal); mix-blend-mode: screen; animation: t-glitch 5.5s steps(1, end) infinite reverse; }
   @keyframes t-glitch {

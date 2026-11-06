@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO at Keboola',
     description:
-      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours; FPV, poetry, music and digital nomad life. Prague.',
+      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours; FPV, poetry, music, digital nomad life and gaming. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Work' },
@@ -21,7 +21,7 @@ export const content: SiteContent = {
     claim: 'I look for the signal in the noise.',
     intro:
       'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad'],
+    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
@@ -181,7 +181,7 @@ export const content: SiteContent = {
   },
   poetry: {
     eyebrow: 'Personal',
-    title: 'Poems, music and nomad life',
+    title: 'Poems, music, nomad life and games',
     lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
@@ -201,9 +201,9 @@ export const content: SiteContent = {
         title: 'Music',
         text: [
           'Music matters enormously to me. It runs almost constantly, while I work, write and fly.',
-          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
+          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
       },
       {
         title: 'Digital nomad life',
@@ -214,12 +214,22 @@ export const content: SiteContent = {
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrakech', 'Hanoi', 'Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
       },
+      {
+        title: 'Play to games',
+        variant: 'games',
+        text: [
+          'I love playing video games. Cyberpunk 2077 hit me hardest. Johnny Silverhand is a digital construct that can control and manipulate its host. He mirrors our own mental constructs; they can be destructive, but like Johnny they can also reveal deeper truths and push us to grow. Where is the line between destruction and insight?',
+          'Then there is competitive multiplayer. In the evenings my friends and I play Battlefield, THE FINALS, ARC Raiders and more.',
+        ],
+        callout: 'Who is your Johnny Silverhand?',
+        tags: ['Cyberpunk 2077', 'Battlefield', 'THE FINALS', 'ARC Raiders', 'Competitive MP'],
+      },
     ],
   },
   contact: {
     eyebrow: 'Contact',
     title: 'Get in touch',
-    lead: 'iMessage or WhatsApp work best; email is the backup. Reach out if:',
+    lead: 'iMessage or WhatsApp work best; email is the backup. Reach out if',
     location: 'Prague',
     emailLabel: 'Email',
     emailNote: 'backup',

@@ -80,7 +80,7 @@ export interface SiteContent {
     readFull: string;
     close: string;
     /** personal blocks under the poem: music, travel… */
-    extras: { title: string; text: string[]; tags: string[] }[];
+    extras: { title: string; text: string[]; tags: string[]; variant?: 'games'; callout?: string }[];
   };
   contact: {
     eyebrow: string;

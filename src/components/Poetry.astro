@@ -1,6 +1,7 @@
 ---
 import type { SiteContent } from '../content/types';
 import SlayerDialog from './SlayerDialog.astro';
+import GamesBlock from './GamesBlock.astro';
 interface Props { content: SiteContent }
 const p = Astro.props.content.poetry;
 const id = Astro.props.content.nav[3].id;
@@ -28,7 +29,7 @@ const parts = (t: string): string[] => t.split(/(The Slayer)/);
         {p.paragraphs.map((t) => <p>{parts(t).map((x) => x === 'The Slayer' ? <button class="slayer-inline" type="button" data-slayer-open>{x}</button> : x)}</p>)}
       </div>
     </div>
-    {p.extras.map((x) => (
+    {p.extras.map((x) => x.variant === 'games' ? <GamesBlock item={x} /> : (
       <div class="music">
         <p class="osd music__label">{x.title}</p>
         <div class="prose music__text">{x.text.map((t) => <p>{t}</p>)}</div>

@@ -5,7 +5,7 @@ interface Props { content: SiteContent }
 const w = Astro.props.content.work;
 const id = Astro.props.content.nav[0];
 ---
-<Channel id={id.id} index={1} eyebrow={w.eyebrow} title={w.title} lead={w.lead} meta="KEBOOLA · 2019 →">
+<Channel id={id.id} index={1} eyebrow={w.eyebrow} title={w.title} lead={w.lead} meta="KEBOOLA · 2019 →" metaAccent="∞" metaAccentLabel={Astro.props.content.lang === 'cs' ? 'bez konce' : 'no end date'}>
   <div class="prose">{w.paragraphs.map((p) => <p>{p}</p>)}</div>
   <dl class="readouts">
     {w.stats.map((s, i) => (
@@ -32,7 +32,7 @@ const id = Astro.props.content.nav[0];
       <div class="prose">{w.crew.text.map((p) => <p>{p}</p>)}</div>
     </div>
     <figure class="motto">
-      <blockquote class="motto__quote" data-decode>{w.motto.quote}</blockquote>
+      <blockquote class="motto__quote" data-decode>“{w.motto.quote}”</blockquote>
       <figcaption class="osd motto__source">{w.motto.source}</figcaption>
       <p class="motto__note">{w.motto.note}</p>
     </figure>

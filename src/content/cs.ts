@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO v Keboole',
     description:
-      'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, SRE a security. Po večerech FPV, poezie, hudba a digitální nomádství. Prague.',
+      'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, SRE a security. Po večerech FPV, poezie, hudba, digitální nomádství a gaming. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Práce' },
@@ -21,21 +21,21 @@ export const content: SiteContent = {
     claim: 'Hledám signál v šumu.',
     intro:
       'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; spolehlivost není feature, je to slib.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Digitální nomádství'],
+    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Digitální nomádství', 'Gaming'],
     scrollHint: 'Dál',
     clickHint: '[ klik do signálu ]',
   },
   work: {
     eyebrow: 'Práce',
     title: 'Co dělám teď',
-    lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme datovou platformu, díky které firmy řídí byznys podle dat, a ne podle pocitu.',
+    lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme data platformu, díky které firmy řídí business podle dat, a ne podle pocitu.',
     paragraphs: [
-      'Keboola propojí data rozesetá po desítkách systémů do jednoho spravovaného základu, kde má každá metrika jednu schválenou definici. Stojí na ní přes tisíc firem.',
-      'Pak přišly velké jazykové modely. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět a změnilo to celou hru. Neodradilo mě to, naopak; jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
-      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách; hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
-      'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a nasazují kód, a lidé určují záměr, hranice a hodnotí výsledek. K tomu teď stavím celý engineering; kontext pro agenty, automatické brány kvality a bezpečnosti a lidský úsudek přesně tam, kde na něm záleží.',
-      'Naše první priorita je spokojený zákazník. Když roste on, rosteme i my.',
-      'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné; kód, sítě, databáze, cloud, bezpečnost i to, jak se lidi chovají ve tři ráno při incidentu. Moje cesta vedla od frontendu přes full stack k backendu a pak do infrastruktury. A díky LLM jsem zase zpátky u full stacku, jen o patro výš. „All of this has happened before, and all of this will happen again.“ (Battlestar Galactica)',
+      'Keboola propojí data rozesetá po desítkách systémů do jednoho governed základu, single source of truth, kde má každá metrika jednu schválenou definici. Stojí na ní přes tisíc firem.',
+      'Pak přišly LLM. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět; totální game changer. Neodradilo mě to, naopak; jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
+      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách end-to-end; hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Business člověk se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a shipují kód, a lidé určují intent, guardrails a dělají review výsledku. K tomu teď stavím celý engineering; kontext pro agenty, automatické quality a security gates a human in the loop přesně tam, kde na tom záleží.',
+      'Naše první priorita je happy zákazník. Když roste on, rosteme i my.',
+      'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny engineering skills do jednoho; kód, networking, databáze, cloud, security i to, jak se lidi chovají ve tři ráno při incidentu. Můj path vedl od frontendu přes full stack k backendu a pak do infrastruktury. A díky LLM jsem zase zpátky u full stacku, jen o patro výš. „All of this has happened before, and all of this will happen again.“ (Battlestar Galactica)',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -48,8 +48,8 @@ export const content: SiteContent = {
       title: 'Agnes',
       text: [
         'Agnes je AI platforma, kterou v Keboole stavíme pro celé firmy a která běží v jejich vlastním prostředí. Spojuje data ze skladu, firemní dokumenty, sémantickou vrstvu se schválenými definicemi metrik a znalostní graf do jednoho firemního mozku.',
-        'Lidi i AI nástroje se ptají nad stejným, dohledatelným základem. Odpovědi jdou vysvětlit a zkontrolovat, místo aby jen zněly věrohodně. Agenti dostávají práci, ne jen otázky, a jejich výstup před odesláním vidí člověk.',
-        'Proč je to zásadní; AI bez kontextu firmy je jen sebevědomý odhad. Agnes je místo, kde se z dat, znalostí a pravidel stává něco, čemu se dá věřit. Tam se teď rozhoduje, které firmy budou AI používat doopravdy.',
+        'Lidi i AI nástroje se ptají nad stejným, dohledatelným základem. Odpovědi jdou vysvětlit a zkontrolovat, místo aby jen zněly věrohodně. Agenti dostávají jobs, ne jen otázky, a jejich výstup před odesláním vidí člověk.',
+        'Proč je to game changer; AI bez kontextu firmy je jen sebevědomý odhad. Agnes je místo, kde se z dat, znalostí a pravidel stává něco, čemu se dá věřit. Tam se teď rozhoduje, které firmy budou AI používat doopravdy.',
       ],
       url: 'https://agnesbrain.ai/',
       cta: 'agnesbrain.ai',
@@ -57,8 +57,8 @@ export const content: SiteContent = {
     crew: {
       title: 'Stejná DNA',
       text: [
-        'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já; stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
-        'A mám rád core tým v Keboole. Baví nás to a pořád hledáme nové technologické cesty. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
+        'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já; stejný mindset, stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
+        'A mám rád core tým v Keboole. Baví nás to a pořád hledáme nové tech cesty. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
       ],
     },
     motto: {
@@ -111,7 +111,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastruktura, Kubernetes, Terraform, security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné.',
+        note: 'Infrastruktura, Kubernetes, Terraform, security. SRE mě strašně bavilo, protože spojuje všechny engineering skills do jednoho.',
         milestone: true,
       },
       {
@@ -120,7 +120,7 @@ export const content: SiteContent = {
         level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
-        note: 'První větší tým. SRE napříč GCP, AWS a Azure, od nuly postavené Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
+        note: 'První větší tým. SRE napříč GCP, AWS a Azure, od nuly postavené Security Engineering, on-call a incidenty, ze kterých děláme poctivé postmortemy.',
         milestone: true,
       },
       {
@@ -138,7 +138,7 @@ export const content: SiteContent = {
   workshop: {
     eyebrow: 'Dílna',
     title: 'Co dělám po večerech',
-    lead: 'Létám, tisknu, pájím a stavím. Většinou věci, které mi chyběly.',
+    lead: 'Létám, 3D printím, pájím a hackuju. Většinou věci, které mi chyběly.',
     items: [
       {
         name: 'FPVPIDlab',
@@ -153,7 +153,7 @@ export const content: SiteContent = {
       {
         name: 'FPV',
         tagline: '',
-        description: 'Hobby, které jako by vzniklo přímo pro mě. Je v tom software, hardware, pájení, 3D tisk a nakonec i tvorba kontentu. Z letů stříhám krátká videa, najdete je na mém Instagramu.',
+        description: 'Hobby, které je jak dělané přímo pro mě; all-in-one package. Je v tom software, hardware, pájení, 3D tisk a nakonec i tvorba kontentu. Z letů stříhám reels, najdete je na mém Instagramu.',
         url: 'https://www.instagram.com/eddycek_fpv/',
         linkLabel: '@eddycek_fpv',
         tags: ['Software', 'Hardware', 'Pájení', '3D tisk', 'Reels'],
@@ -161,27 +161,27 @@ export const content: SiteContent = {
       {
         name: 'Vlastní rack',
         tagline: '',
-        description: 'Vlastní síťový rack na UniFi, postavený od nuly jako zázemí pro domácí lab. Psal jsem o něm pro UniFi Community Stories.',
+        description: 'Vlastní síťový rack na UniFi, postavený from scratch jako backbone pro můj homelab. Psal jsem o něm pro UniFi Community Stories.',
         tags: ['UniFi', 'Homelab'],
       },
       {
         name: '3D tisk',
         tagline: '',
-        description: 'Tisknu díly, které se nedají koupit, a prototypy, které by jinak zůstaly na papíře.',
+        description: 'Printím parts, které se nedají koupit, a prototypy, které by jinak zůstaly na papíře.',
         tags: ['3D tisk', 'CAD'],
       },
       {
         name: 'Flipper Zero a IoT',
         tagline: '',
         description:
-          'Sub-GHz, NFC, RFID a hromada IoT krabiček, které doma měří, spínají a hlídají. Baví mě zkoumat, jak spolu věci kolem nás mluví a jak snadno se dají odposlechnout.',
+          'Sub-GHz, NFC, RFID a hromada IoT devices, které doma měří, spínají a monitorují. Baví mě zkoumat, jak spolu věci kolem nás mluví a jak snadno se dají odposlechnout.',
         tags: ['Flipper Zero', 'IoT', 'Security'],
       },
     ],
   },
   poetry: {
     eyebrow: 'Osobní',
-    title: 'Básně, hudba a nomádství',
+    title: 'Básně, hudba, nomádství a hry',
     lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
@@ -194,48 +194,58 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovizuální tvorbou; čtu svoje básně s hudebním podkresem. Chci se dostat k vlastní hudbě, nejdřív jako podkladu pro recitace, později i samostatně.',
+      'Teď experimentuju s audiovizuálním contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní hudby, nejdřív jako podkladu pro recitace, později i standalone.',
     ],
     extras: [
       {
         title: 'Hudba',
         text: [
-          'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání.',
-          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba; malí independent umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+          'Hudba je pro mě zásadní. Hraje skoro pořád; při práci, při psaní i při létání. Bez sluchátek nejedu.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; super kapela. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
       },
       {
         title: 'Digitální nomádství',
         text: [
           'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst; od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
           'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
-          'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí MacBook, pár dalších kusů hardwaru a místo, kde se posadíš a v klidu pracuješ.',
+          'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí MacBook, pár dalších kusů gearu a místo, kde se posadíš a v klidu pracuješ.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrákeš', 'Hanoj', 'Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
+      },
+      {
+        title: 'Play to games',
+        variant: 'games',
+        text: [
+          'Miluju hraní videoher. Nejvíc mě zasáhl Cyberpunk 2077. Johnny Silverhand je v něm digitální konstrukt, který dokáže ovládat a manipulovat svého nositele. Odráží naše vlastní mentální konstrukty; můžou být destruktivní, ale stejně jako Johnny dokážou odhalit hlubší pravdy a nakopnout růst. Kde leží hranice mezi destrukcí a poznáním?',
+          'A pak competitive multiplayer. S kámošema po večerech jedeme Battlefield, THE FINALS, ARC Raiders a další.',
+        ],
+        callout: 'Kdo je tvůj Johnny Silverhand?',
+        tags: ['Cyberpunk 2077', 'Battlefield', 'THE FINALS', 'ARC Raiders', 'Competitive MP'],
       },
     ],
   },
   contact: {
     eyebrow: 'Kontakt',
     title: 'Napište mi',
-    lead: 'Nejradši přes iMessage nebo WhatsApp, e-mail je záloha. Ozvěte se, když:',
+    lead: 'Nejradši přes iMessage nebo WhatsApp, e-mail je backup. Ozvěte se, když',
     location: 'Prague',
     emailLabel: 'E-mail',
-    emailNote: 'záloha',
+    emailNote: 'backup',
     imessageLabel: 'iMessage',
     whatsappLabel: 'WhatsApp',
     phoneLabel: 'Telefon',
     copyLabel: 'Kopírovat',
     copiedLabel: 'Zkopírováno',
     reasons: [
-      'stavíte datovou nebo AI platformu a řešíte její provoz ve velkém',
+      'stavíte datovou nebo AI platformu a řešíte její provoz ve scale',
       'chcete k nám do engineeringu',
-      'chcete probrat AI agenty v reálném provozu',
+      'chcete probrat AI agenty v produkci',
       'létáte FPV nebo píšete a chcete to s někým sdílet',
     ],
   },
   footer: {
-    note: 'Postaveno s láskou v Praze. Bez cookies, bez trackování.',
+    note: 'Postaveno s láskou v Praze. No cookies, no tracking.',
   },
 };
