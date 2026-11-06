@@ -509,25 +509,30 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const big = Math.min(120, w / 6.5);
+    // Centre on the part of the hero that is actually on screen (phones: hero is taller than the viewport).
+    const r = s.canvas.getBoundingClientRect();
+    const visTop = clamp(-r.top, 0, h);
+    const visBot = clamp(window.innerHeight - r.top, 0, h);
+    const cy = (visBot > visTop ? (visTop + visBot) / 2 : h * 0.44) - big * 0.25;
     if (Math.sin(t * 22) > -0.3) {
       ctx.font = `800 ${big}px ${getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif'}`;
       ctx.globalAlpha = 0.9;
       ctx.fillStyle = pal.trace.css;
-      ctx.fillText('FAILSAFE', w / 2 + 4, h * 0.44);
+      ctx.fillText('FAILSAFE', w / 2 + 4, cy);
       ctx.fillStyle = pal.signal.css;
-      ctx.fillText('FAILSAFE', w / 2 - 3, h * 0.44);
+      ctx.fillText('FAILSAFE', w / 2 - 3, cy);
     }
     mono(s, Math.max(11, Math.min(16, w / 60)));
     ctx.fillStyle = pal.ink.css;
     ctx.globalAlpha = 0.9;
     const line = FAIL_LINES[(failCount - 1) % FAIL_LINES.length] ?? '';
     const shown = line.slice(0, Math.ceil(line.length * Math.min(1, k * 2.2)));
-    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, h * 0.44 + big * 0.62);
+    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, cy + big * 0.62);
     ctx.globalAlpha = 0.55;
     ctx.fillText(
       k > 0.72 ? 'REARMING…' : `DISARMED · FAILSAFE #${pad(failCount, 2)} · YOU BROKE IT`,
       w / 2,
-      h * 0.44 + big * 0.62 + 26,
+      cy + big * 0.62 + 26,
     );
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';
