@@ -246,8 +246,8 @@ export const content: SiteContent = {
     imessageLabel: 'iMessage',
     whatsappLabel: 'WhatsApp',
     phoneLabel: 'Telefon',
-    copyLabel: 'Kopírovat',
-    copiedLabel: 'Zkopírováno',
+    copyLabel: 'Copy',
+    copiedLabel: 'Copied',
     reasons: [
       'stavíš data nebo AI platformu a řešíš její provoz ve scale',
       'chceš probrat Dark Factory, AI agenty v produkci nebo AI adopci napříč firmou',
