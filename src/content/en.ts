@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. Once I get into something, I am fully locked in; it does not let go. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',

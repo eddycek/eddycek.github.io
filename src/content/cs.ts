@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ klikni do signálu ]',
