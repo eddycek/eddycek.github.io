@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:responsive": "npm run build && playwright test",
+    "test:ui": "playwright test --ui",
+    "shots": "node scripts/shots.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -16,6 +19,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@playwright/test": "^1.65.0",
     "typescript": "^6.0.3"
   }
 }

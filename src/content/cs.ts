@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno: spolehlivost není feature, je to slib.',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; spolehlivost není feature, je to slib.',
     tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Digitální nomádství'],
     scrollHint: 'Dál',
     clickHint: '[ klik do signálu ]',
@@ -31,11 +31,11 @@ export const content: SiteContent = {
     lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme datovou platformu, díky které firmy řídí byznys podle dat, a ne podle pocitu.',
     paragraphs: [
       'Keboola propojí data rozesetá po desítkách systémů do jednoho spravovaného základu, kde má každá metrika jednu schválenou definici. Stojí na ní přes tisíc firem.',
-      'Pak přišly velké jazykové modely. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět a změnilo to celou hru. Neodradilo mě to, naopak: jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
-      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách: hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
-      'Můj hlavní fokus je dark factory. Pojem je z výroby: továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a nasazují kód, a lidé určují záměr, hranice a hodnotí výsledek. Tímhle směrem teď stavím engineering v Keboole: kontext pro agenty, automatické brány kvality a bezpečnosti a lidský úsudek přesně tam, kde na něm záleží.',
+      'Pak přišly velké jazykové modely. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět a změnilo to celou hru. Neodradilo mě to, naopak; jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
+      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách; hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a nasazují kód, a lidé určují záměr, hranice a hodnotí výsledek. K tomu teď stavím celý engineering; kontext pro agenty, automatické brány kvality a bezpečnosti a lidský úsudek přesně tam, kde na něm záleží.',
       'Naše první priorita je spokojený zákazník. Když roste on, rosteme i my.',
-      'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné: kód, sítě, databáze, cloud, bezpečnost i to, jak se lidi chovají ve tři ráno při incidentu. Moje cesta vedla od frontendu přes full stack k backendu a pak do infrastruktury. A díky LLM jsem zase zpátky u full stacku, jen o patro výš. Všechno se to už stalo a stane se to znovu.',
+      'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné; kód, sítě, databáze, cloud, bezpečnost i to, jak se lidi chovají ve tři ráno při incidentu. Moje cesta vedla od frontendu přes full stack k backendu a pak do infrastruktury. A díky LLM jsem zase zpátky u full stacku, jen o patro výš. „All of this has happened before, and all of this will happen again.“ (Battlestar Galactica)',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -49,7 +49,7 @@ export const content: SiteContent = {
       text: [
         'Agnes je AI platforma, kterou v Keboole stavíme pro celé firmy a která běží v jejich vlastním prostředí. Spojuje data ze skladu, firemní dokumenty, sémantickou vrstvu se schválenými definicemi metrik a znalostní graf do jednoho firemního mozku.',
         'Lidi i AI nástroje se ptají nad stejným, dohledatelným základem. Odpovědi jdou vysvětlit a zkontrolovat, místo aby jen zněly věrohodně. Agenti dostávají práci, ne jen otázky, a jejich výstup před odesláním vidí člověk.',
-        'Proč je to zásadní: AI bez kontextu firmy je jen sebevědomý odhad. Agnes je místo, kde se z dat, znalostí a pravidel stává něco, čemu se dá věřit. Tam se teď rozhoduje, které firmy budou AI používat doopravdy.',
+        'Proč je to zásadní; AI bez kontextu firmy je jen sebevědomý odhad. Agnes je místo, kde se z dat, znalostí a pravidel stává něco, čemu se dá věřit. Tam se teď rozhoduje, které firmy budou AI používat doopravdy.',
       ],
       url: 'https://agnesbrain.ai/',
       cta: 'agnesbrain.ai',
@@ -57,14 +57,14 @@ export const content: SiteContent = {
     crew: {
       title: 'Stejná DNA',
       text: [
-        'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já: stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
+        'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já; stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
         'A mám rád core tým v Keboole. Baví nás to a pořád hledáme nové technologické cesty. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
       ],
     },
     motto: {
       quote: 'All of this has happened before, and all of this will happen again.',
       source: 'Battlestar Galactica',
-      note: 'Můj osobní i pracovní postoj. Vzorce se opakují v incidentech, v týmech, v technologických vlnách i v mé vlastní cestě: od frontendu přes backend a infrastrukturu zpátky k full stacku. Kdo je pozná včas, nemusí každou lekci platit znovu.',
+      note: 'Můj osobní i pracovní postoj. Vzorce se opakují v incidentech, v týmech, v technologických vlnách i v mé vlastní cestě; od frontendu přes backend a infrastrukturu zpátky k full stacku. Kdo je pozná včas, nemusí každou lekci platit znovu.',
     },
   },
   journey: {
@@ -129,7 +129,7 @@ export const content: SiteContent = {
         level: 1,
         role: 'CTO',
         org: 'Keboola',
-        note: 'Engineering, ve kterém pracují lidi i AI agenti, a platforma, která slouží oběma.',
+        note: 'Mise postavit v Keboole Dark Factory. Engineering, ve kterém pracují lidi i AI agenti, a platforma, která slouží oběma.',
         milestone: true,
       },
     ],
@@ -153,9 +153,9 @@ export const content: SiteContent = {
       {
         name: 'FPV',
         tagline: '',
-        description: 'Hobby, které jako by vzniklo přímo pro mě. Je v tom software, hardware, pájení, 3D tisk a nakonec i tvorba obsahu. Z letů stříhám krátká videa, najdete je na mém Instagramu.',
-        url: 'https://www.instagram.com/eddycek/',
-        linkLabel: '@eddycek',
+        description: 'Hobby, které jako by vzniklo přímo pro mě. Je v tom software, hardware, pájení, 3D tisk a nakonec i tvorba kontentu. Z letů stříhám krátká videa, najdete je na mém Instagramu.',
+        url: 'https://www.instagram.com/eddycek_fpv/',
+        linkLabel: '@eddycek_fpv',
         tags: ['Software', 'Hardware', 'Pájení', '3D tisk', 'Reels'],
       },
       {
@@ -194,21 +194,21 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovizuální tvorbou: čtu svoje básně s hudebním podkresem. Chci se dostat k vlastní hudbě, nejdřív jako podkladu pro recitace, později i samostatně.',
+      'Teď experimentuju s audiovizuální tvorbou; čtu svoje básně s hudebním podkresem. Chci se dostat k vlastní hudbě, nejdřív jako podkladu pro recitace, později i samostatně.',
     ],
     extras: [
       {
         title: 'Hudba',
         text: [
           'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání.',
-          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba: malí independent umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba; malí independent umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
       },
       {
         title: 'Digitální nomádství',
         text: [
-          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
+          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst; od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
           'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
           'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí MacBook, pár dalších kusů hardwaru a místo, kde se posadíš a v klidu pracuješ.',
         ],

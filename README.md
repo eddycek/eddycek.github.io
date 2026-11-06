@@ -12,3 +12,13 @@ npm run build    # astro check + static build into dist/
 - Visuals: `src/scripts/signal/` (oscilloscope, spectrogram, flight-log trace, text decode).
 - Deploy: push to `master` → GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`).
 - Plan: `docs/plans/2026-11-06-redesign-v2.md`.
+
+## Testing on phones and tablets
+
+```bash
+npx playwright install chromium webkit   # once
+npm run test:responsive                  # build + Playwright on 6 phone/tablet profiles
+npm run shots                            # per-section screenshots into shots/ (needs preview on :4322)
+```
+
+The same suite runs in CI on every pull request.

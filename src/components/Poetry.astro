@@ -65,7 +65,7 @@ const parts = (t: string): string[] => t.split(/(The Slayer)/);
   .slayer-cta:hover .slayer-cta__go, .slayer-cta:hover .slayer-cta__credit { color: var(--c-signal-ink); }
   @keyframes cta-pulse { 0%, 100% { box-shadow: 0 0 0 0 var(--c-glow); } 50% { box-shadow: 0 0 0 6px transparent, 0 0 28px var(--c-glow); } }
   @keyframes cta-sweep { 0%, 35% { transform: translateX(-120%); } 75%, 100% { transform: translateX(120%); } }
-  .slayer-inline { font: inherit; color: var(--c-signal); background: none; border: 0; padding: 0; cursor: pointer;
+  .slayer-inline { display: inline; font: inherit; color: var(--c-signal); background: none; border: 0; padding: 0; cursor: pointer;
     text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-shadow: 0 0 14px var(--c-glow); }
   .slayer-inline:hover { text-decoration-thickness: 2px; }
   @media (prefers-reduced-motion: reduce) { .slayer-cta, .slayer-cta__sweep, .slayer-cta__dot { animation: none; } }

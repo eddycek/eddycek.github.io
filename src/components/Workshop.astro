@@ -47,12 +47,13 @@ const others = w.items.filter((i) => i !== flagship);
   .flag { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); border: 1px solid var(--c-line); background: var(--c-surface); }
   .flag__scope { position: relative; min-height: 20rem; background: var(--c-bg); border-right: 1px solid var(--c-line); }
   .flag__scope canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  @media (max-width: 640px) { .flag__label { display: none; } }
   .flag__label { position: absolute; left: 0.9rem; top: 0.8rem; pointer-events: none; }
   .flag__text { padding: clamp(1.25rem, 3vw, 2.2rem); display: grid; gap: 0.9rem; align-content: start; }
   .flag__name { font-size: var(--t-xl); }
-  .flag__name a { text-decoration: none; }
+  .flag__name a { display: inline-block; padding-block: 0.3rem; text-decoration: none; }
   .flag__text p { color: var(--c-muted); }
-  .flag__cta { color: var(--c-signal); text-decoration: none; }
+  .flag__cta { justify-self: start; padding-block: 0.5rem; color: var(--c-signal); text-decoration: none; overflow-wrap: anywhere; }
   .tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .tags li { font-family: var(--f-mono); font-size: var(--t-xs); padding: 0.15rem 0.5rem; border: 1px solid var(--c-line); border-radius: 2px; color: var(--c-muted); }
   .bench { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; }

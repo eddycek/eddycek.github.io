@@ -5,7 +5,7 @@ export const content: SiteContent = {
   meta: {
     title: 'Václav Eder (eddycek) · CTO at Keboola',
     description:
-      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours: FPV, poetry, music and digital nomad life. Prague.',
+      'Václav "eddycek" Eder, CTO at Keboola. Data, AI agents, SRE and security. After hours; FPV, poetry, music and digital nomad life. Prague.',
   },
   nav: [
     { id: 'prace', label: 'Work' },
@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing: reliability is not a feature, it is a promise.',
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
     tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
@@ -32,10 +32,10 @@ export const content: SiteContent = {
     paragraphs: [
       'Keboola brings data scattered across dozens of systems into one governed foundation where every metric has one agreed definition. More than a thousand companies run on it.',
       'Then came large language models. ChatGPT at the end of 2022 showed where this was heading, but the real turning point for me came in November 2025 with Claude Opus 4.5. It changed my world completely and changed the whole game. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
-      'AI agents change everything. Agents can now run processes inside companies on their own: watching the numbers, reconciling, preparing reports. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
-      'My main focus is the dark factory. The term comes from manufacturing: a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the limits and judge the result. That is the direction I am building engineering at Keboola in: context for agents, automated quality and security gates, and human judgment exactly where it matters.',
+      'AI agents change everything. Agents can now run processes inside companies on their own; watching the numbers, reconciling, preparing reports. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
+      'My main mission at Keboola is to build a Dark Factory. The term comes from manufacturing; a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the limits and judge the result. That is what I am building our whole engineering around; context for agents, automated quality and security gates, and human judgment exactly where it matters.',
       'Our first priority is a happy customer. When they grow, we grow.',
-      'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one: code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infrastructure. And thanks to LLMs I am back at full stack, just one floor higher. All of this has happened before, and it will happen again.',
+      'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one; code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infrastructure. And thanks to LLMs I am back at full stack, just one floor higher. “All of this has happened before, and all of this will happen again.” (Battlestar Galactica)',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -49,7 +49,7 @@ export const content: SiteContent = {
       text: [
         'Agnes is an AI platform we build at Keboola for whole companies, running in their own environment. It brings warehouse data, company documents, a semantic layer of agreed metric definitions and a knowledge graph together into one company brain.',
         'People and AI tools ask questions on the same traceable foundation. Answers can be explained and checked instead of just sounding plausible. Agents get jobs, not just questions, and a human reviews their output before anything goes out.',
-        'Why it matters: AI without company context is a confident guess. Agnes is where data, knowledge and rules turn into something you can trust. That is where it is being decided which companies will use AI for real.',
+        'Why it matters; AI without company context is a confident guess. Agnes is where data, knowledge and rules turn into something you can trust. That is where it is being decided which companies will use AI for real.',
       ],
       url: 'https://agnesbrain.ai/',
       cta: 'agnesbrain.ai',
@@ -57,14 +57,14 @@ export const content: SiteContent = {
     crew: {
       title: 'Same DNA',
       text: [
-        'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine: the same standards, the same impatience and the same joy in building things nobody has built yet.',
+        'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine; the same standards, the same impatience and the same joy in building things nobody has built yet.',
         'And I love the core team at Keboola. We enjoy this and keep looking for new technological paths. We are tuned to this work the same way, and it shows in what we build.',
       ],
     },
     motto: {
       quote: 'All of this has happened before, and all of this will happen again.',
       source: 'Battlestar Galactica',
-      note: 'How I think about work and life. Patterns repeat in incidents, in teams, in technology waves and in my own path: from frontend through backend and infrastructure back to full stack. Spot them early and you do not have to pay for every lesson twice.',
+      note: 'How I think about work and life. Patterns repeat in incidents, in teams, in technology waves and in my own path; from frontend through backend and infrastructure back to full stack. Spot them early and you do not have to pay for every lesson twice.',
     },
   },
   journey: {
@@ -129,7 +129,7 @@ export const content: SiteContent = {
         level: 1,
         role: 'CTO',
         org: 'Keboola',
-        note: 'An engineering org where people and AI agents work together, and a platform that serves both.',
+        note: 'On a mission to build Keboola’s Dark Factory. An engineering org where people and AI agents work together, and a platform that serves both.',
         milestone: true,
       },
     ],
@@ -154,8 +154,8 @@ export const content: SiteContent = {
         name: 'FPV',
         tagline: '',
         description: 'A hobby that could have been made for me. There is software, hardware, soldering, 3D printing and, in the end, content too. I cut the flights into short videos; they are on my Instagram.',
-        url: 'https://www.instagram.com/eddycek/',
-        linkLabel: '@eddycek',
+        url: 'https://www.instagram.com/eddycek_fpv/',
+        linkLabel: '@eddycek_fpv',
         tags: ['Software', 'Hardware', 'Soldering', '3D printing', 'Reels'],
       },
       {
@@ -194,21 +194,21 @@ export const content: SiteContent = {
     close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
-      'These days I experiment with audiovisual work: reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',
+      'These days I experiment with audiovisual work; reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',
     ],
     extras: [
       {
         title: 'Music',
         text: [
           'Music matters enormously to me. It runs almost constantly, while I work, write and fly.',
-          'Right now I am mostly into the Czech youngblood scene and niche music: small independent artists, mostly Czech but from abroad too. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
+          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
       },
       {
         title: 'Digital nomad life',
         text: [
-          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
+          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over; from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
           'Deserts are what I love most. The silence, the space, and a night sky that never ends. I fell hard for the Atacama and for Santiago de Chile.',
           'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A MacBook, a bit of other hardware and a place to sit down and work in peace is enough.',
         ],

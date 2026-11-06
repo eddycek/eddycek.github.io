@@ -46,7 +46,7 @@ const rows: { label: string; value: string; href: string; extra?: { label: strin
   .reasons li::before { content: '›'; position: absolute; left: 0.2rem; color: var(--c-signal); font-family: var(--f-mono); }
   .lines { display: grid; border-top: 1px solid var(--c-line); }
   .line { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto; gap: 1rem 1.5rem; align-items: center; padding-block: 1.2rem; border-bottom: 1px solid var(--c-line); }
-  .line__value { font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 0.8rem + 2.6vw, 2.8rem); letter-spacing: -0.02em; text-decoration: none; overflow-wrap: anywhere; line-height: 1.1; }
+  .line__value { display: inline-block; padding-block: 0.25rem; justify-self: start; font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 0.8rem + 2.6vw, 2.8rem); letter-spacing: -0.02em; text-decoration: none; overflow-wrap: anywhere; line-height: 1.1; }
   .line__value::after { content: '_'; color: var(--c-signal); animation: blink 1s steps(1, end) infinite; margin-left: 0.05em; }
   .line__tools { display: inline-flex; gap: 0.5rem; }
   .line__extra { text-decoration: none; }
@@ -54,8 +54,13 @@ const rows: { label: string; value: string; href: string; extra?: { label: strin
   .line__copy:hover { border-color: var(--c-signal); color: var(--c-signal); }
   .line__copy[data-state='done'] { color: var(--c-signal); border-color: var(--c-signal); }
   .links { display: flex; flex-wrap: wrap; gap: 1.5rem; grid-column: 2 / -1; font-family: var(--f-mono); font-size: var(--t-sm); }
-  .links a { text-decoration: none; }
-  @media (max-width: 560px) { .line { grid-template-columns: minmax(0, 1fr) auto; } .line > .osd:first-child { grid-column: 1 / -1; } .links { grid-column: 1 / -1; } }
+  .links a { display: inline-block; padding-block: 0.4rem; text-decoration: none; }
+  .line__value { white-space: nowrap; }
+  @media (max-width: 1024px) {
+    .line { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
+    .line__value { font-size: clamp(1.05rem, 0.35rem + 4.6vw, 2.2rem); }
+    .links { grid-column: 1; }
+  }
 </style>
 
 <script>

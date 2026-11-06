@@ -306,12 +306,14 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.globalAlpha = 0.38;
     ctx.textBaseline = 'alphabetic';
     let n = ticks;
+    // Fewer labels on narrow screens so they never collide with each other or the hero text.
+    const every = w < 640 ? 3 : w < 1000 ? 2 : 1;
     for (let gx = -gridShift; gx <= w; gx += div) {
-      if (gx > 8) ctx.fillText(`${pad(n * 50, 4)}ms`, gx + 4, h - 8);
+      if (gx > 8 && n % every === 0) ctx.fillText(`${pad(n * 50, 4)}ms`, gx + 4, h - 8);
       n++;
     }
     for (let k = 1; k < 8; k++) {
-      if (k === 4) continue;
+      if (k === 4 || w < 1100) continue;
       ctx.fillText(`${(4 - k) * 200 > 0 ? '+' : ''}${(4 - k) * 200}°/s`, 6, (h * k) / 8 - 4);
     }
     ctx.globalAlpha = 0.55;
