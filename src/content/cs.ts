@@ -69,8 +69,8 @@ export const content: SiteContent = {
   },
   journey: {
     eyebrow: 'Track record',
-    title: 'Kudy jsem šel',
-    lead: 'Od prvního full-time jobu po vedení engineeringu.',
+    title: 'Patch notes mojí kariéry',
+    lead: 'Od v1.0, prvního full-time jobu, po current build; CTO, který buildí Dark Factory.',
     stops: [
       {
         period: '2008–2010',

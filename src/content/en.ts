@@ -69,8 +69,8 @@ export const content: SiteContent = {
   },
   journey: {
     eyebrow: 'Track record',
-    title: 'How I got here',
-    lead: 'From my first full-time job to leading engineering.',
+    title: 'Career patch notes',
+    lead: 'From v1.0, my first full-time job, to the current build; a CTO building a Dark Factory.',
     stops: [
       {
         period: '2008–2010',
