@@ -70,7 +70,7 @@ export const content: SiteContent = {
   journey: {
     eyebrow: 'Journey',
     title: 'How I got here',
-    lead: 'From the first paid line of code to leading engineering.',
+    lead: 'From my first full-time job to leading engineering.',
     stops: [
       {
         period: '2008–2010',
