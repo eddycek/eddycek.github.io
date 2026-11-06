@@ -141,7 +141,7 @@ export function decodeText(root: HTMLElement): () => void {
         } else sp.setAttribute('data-g', glyph());
       }
       for (const it of items) {
-        if (!it.mode || it.state !== 2 || !it.visible || !it.spans.length) continue;
+        if (!it.mode || it.state !== 2 || !it.visible || !it.spans.length || it.el.dataset.reel) continue;
         if (!it.nextMelt) {
           it.nextMelt = now + rnd(MELT[it.mode]);
           it.nextFlick = now + rnd(FLICK[it.mode]);
@@ -180,7 +180,7 @@ export function decodeText(root: HTMLElement): () => void {
       }
       if (now >= nextGlitch) {
         nextGlitch = now + 1800 + Math.random() * 3600;
-        const pool = items.filter((it) => it.visible && it.state === 2 && it.spans.length);
+        const pool = items.filter((it) => it.visible && it.state === 2 && it.spans.length && !it.el.dataset.reel);
         const it = pool[(Math.random() * pool.length) | 0];
         if (it) {
           const burst = 1 + ((Math.random() * 4) | 0);

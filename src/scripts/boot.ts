@@ -1,5 +1,5 @@
 // Mounts all signal visuals on the page. Each module handles its own pausing and reduced-motion.
-import { mountScope, mountSpectrum, mountTrace, decodeText, mountCursorField } from './signal';
+import { mountScope, mountSpectrum, mountTrace, decodeText, mountCursorField, mountSlot } from './signal';
 
 const scope = document.getElementById('scope');
 if (scope instanceof HTMLCanvasElement) mountScope(scope);
@@ -17,6 +17,8 @@ if (trace instanceof HTMLCanvasElement) {
 }
 
 decodeText(document.body);
+const heroName = document.getElementById('hero-name');
+if (heroName) mountSlot(heroName);
 mountCursorField();
 
 import { mountSparks } from './spark';

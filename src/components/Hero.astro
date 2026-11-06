@@ -51,6 +51,11 @@ const claimParts = h.claim.split(/(šumu|noise)/);
   .hero__status { letter-spacing: 0.2em; }
   .hero__name { font-size: var(--t-hero); font-weight: 800; line-height: 0.86; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; display: grid; }
   .hero__line { display: block; }
+  /* Slot-machine reels (slot.ts): letters blur vertically while spinning and bounce when they land. */
+  .hero__name :global(.sd-c.reel-spin) { display: inline-block; animation: reel-spin 0.09s linear infinite; }
+  .hero__name :global(.sd-c.reel-land) { display: inline-block; animation: reel-land 0.32s cubic-bezier(0.2, 1.6, 0.4, 1); }
+  @keyframes reel-spin { 0% { transform: translateY(-0.18em); opacity: 0.55; filter: blur(1.5px); } 100% { transform: translateY(0.18em); opacity: 0.85; filter: blur(1.5px); } }
+  @keyframes reel-land { 0% { transform: translateY(-0.12em); } 60% { transform: translateY(0.04em); } 100% { transform: none; } }
   /* Safari only clips a text background on the element that owns the text node, so the decode
      spans (.sd-c) need the same scanline fill or the line disappears on iPhone. */
   .hero__line--scan, .hero__line--scan :global(.sd-c) { color: transparent; -webkit-text-fill-color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 3px, color-mix(in srgb, var(--c-ink) 62%, transparent) 3px 5px); -webkit-background-clip: text; background-clip: text; }
