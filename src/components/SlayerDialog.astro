@@ -116,14 +116,14 @@ const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i =
     color: var(--c-signal); text-shadow: 0 0 34px var(--c-glow); background: linear-gradient(90deg, color-mix(in srgb, var(--c-signal) 8%, transparent), transparent 70%); }
   .st--chorus .ln:nth-child(odd) { padding-left: clamp(0.5rem, 5vw, 4rem); }
   .st__tag { position: absolute; top: -1.6rem; left: 0; color: var(--c-muted); }
-  .st--chorus.in .ln { animation: chorus-in 0.7s calc(var(--j) * 0.28s + 0.1s) both steps(1, end); }
+  .st--chorus.in .ln { animation: chorus-in 0.75s calc(var(--j) * 0.28s + 0.1s) both linear; }
   @keyframes chorus-in {
-    0% { opacity: 0; }
-    10% { opacity: 1; transform: translateX(-12px) skewX(-12deg); clip-path: inset(0 0 60% 0); text-shadow: 6px 0 var(--c-trace), -6px 0 var(--c-signal); }
-    25% { transform: translateX(10px); clip-path: inset(40% 0 0 0); }
-    40% { opacity: 0.3; transform: none; clip-path: none; }
+    0% { opacity: 0; transform: translateX(-12px) skewX(-12deg); }
+    12% { opacity: 1; transform: translateX(-12px) skewX(-12deg); text-shadow: 6px 0 var(--c-trace), -6px 0 var(--c-signal); }
+    26% { transform: translateX(10px) skewX(4deg); }
+    40% { opacity: 0.35; transform: translateX(0); }
     55% { opacity: 1; transform: translateX(-4px); text-shadow: 3px 0 var(--c-trace), -3px 0 var(--c-signal); }
-    100% { opacity: 1; transform: none; clip-path: none; text-shadow: 0 0 34px var(--c-glow); }
+    100% { opacity: 1; transform: none; text-shadow: 0 0 34px var(--c-glow); }
   }
 
   /* Rise: every line heavier and bigger than the last. */
@@ -154,6 +154,13 @@ const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i =
   @keyframes draw { to { stroke-dashoffset: 0; } }
   .slayer__sign { color: var(--c-muted); text-transform: none; letter-spacing: 0.06em; }
 
+  /* Phones: no blur or blend modes in the reveal; they stutter on iOS. */
+  @media (max-width: 760px), (pointer: coarse) {
+    @keyframes ln-in { 0% { opacity: 0; transform: translateY(0.45em); } 100% { opacity: 1; transform: none; } }
+    .slayer__title::before, .slayer__title::after { mix-blend-mode: normal; }
+    .slayer__fx { display: none; }
+    .slayer__poem, .st .ln { will-change: transform, opacity; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .slayer.is-open, .slayer__title::before, .slayer__title::after, .is-open .slayer__head > *, .st.in .ln, .st--final.in .flat path { animation: none !important; }
     .ln { opacity: 1; }

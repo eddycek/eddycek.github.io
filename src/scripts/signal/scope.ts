@@ -202,7 +202,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       const a1 = Math.min(COLS - GAP, a0 + BW + 1);
       const fade = 1 - b / BUCKETS;
       const al = alpha * fade * fade;
-      const passes = glow && b < 2 ? 2 : 1;
+      const passes = glow && b < 2 && s.w >= 640 ? 2 : 1;
       for (let p = 0; p < passes; p++) {
         ctx.globalAlpha = p === 1 ? al * 0.18 : al;
         ctx.lineWidth = p === 1 ? lw * 5 : lw;
