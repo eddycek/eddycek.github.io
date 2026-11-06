@@ -7,11 +7,12 @@
 import { prefersReduced } from './common';
 
 const CLAIMS: [string, string][] = [
-  ['LockIn', 'Mode'],
-  ['Always', 'Ship'],
-  ['Signal', 'Lost'],
-  ['Poetic', 'Code'],
-  ['Desert', 'Mind'],
+  ['LockIn', 'Mode'], // once it grabs me, it does not let go
+  ['BornTo', 'Ship'], // born for this work
+  ['Lights', 'Out.'], // the Dark Factory: a lights-out factory
+  ['Hacker', 'Soul'], // Flipper, IoT, security, building things
+  ['Signal', 'Hunt'], // looking for the signal in the noise
+  ['Desert', 'Mind'], // deserts, silence, nomad minimalism
 ];
 const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&';
 const LOWER = 'abcdefghijklmnopqrstuvwxyz0123456789#$%&';
@@ -62,15 +63,24 @@ export function mountSlot(h1: HTMLElement): () => void {
     await Promise.all(jobs);
   };
 
+  const melt = (ms: number): void => {
+    h1.classList.add('sd-melt');
+    window.setTimeout(() => h1.classList.remove('sd-melt'), ms);
+  };
+
   const run = async (): Promise<void> => {
     if (busy || dead || !visible || document.hidden) return;
     busy = true;
     h1.dataset.reel = '1';
+    melt(220);
     const [a, b] = CLAIMS[next % CLAIMS.length]!;
     next++;
     await spinTo([a.split(''), b.split('')]);
+    melt(180);
     await sleep(3200);
+    melt(200);
     if (!dead) await spinTo(original);
+    melt(160);
     delete h1.dataset.reel;
     busy = false;
   };
