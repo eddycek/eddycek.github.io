@@ -205,7 +205,7 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone. Hodně mě láká, jak přes MCP napojit agenty na hudební tooly a začít buildit beaty; ze syntetických zvuků i ze samplů, které si nahraju sám. Agent jako parťák ve studiu, který zvládne sound design, aranž i ty nudné části, a já se můžu soustředit na vibe a slova.',
+      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone. Hodně mě láká, jak přes MCP napojit agenty na hudební tooly a začít buildit beaty; ze syntetických zvuků i ze samplů, které si nahraju sám. Agent jako parťák ve studiu, který vyladí zvuk, poskládá beat do celého tracku a odmakne i ty nudné části, a já se můžu soustředit na vibe a slova.',
     ],
     extras: [
       {

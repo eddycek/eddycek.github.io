@@ -205,7 +205,7 @@ export const content: SiteContent = {
     close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
-      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone. What really pulls me in is wiring agents to music tools over MCP and building beats; from synthetic sounds and from samples I record myself. An agent as a studio buddy that handles sound design, arrangement and the boring parts, so I can focus on the vibe and the words.',
+      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone. What really pulls me in is wiring agents to music tools over MCP and building beats; from synthetic sounds and from samples I record myself. An agent as a studio buddy that shapes the sound, builds the beat into a full track and grinds through the boring parts, so I can focus on the vibe and the words.',
     ],
     extras: [
       {
