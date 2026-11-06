@@ -20,7 +20,7 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'Jsem CTO v Keboole. Stavím platformu, na které s daty pracují lidi i AI agenti, a hlídám, aby v noci nepadala.',
+      'CTO v Keboole. Stavím platformu, na které s daty pracují lidi i AI agenti. Ze SRE mi zůstalo, že musí běžet i ve tři ráno.',
     tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie'],
     scrollHint: 'Sjeď níž',
   },
@@ -31,7 +31,7 @@ export const content: SiteContent = {
       'Od dubna 2026 jsem CTO v Keboole. Keboola je datová platforma a čím dál víc i místo, kde s daty pracují lidi a AI agenti vedle sebe.',
     paragraphs: [
       'V engineeringu orchestruju AI agenty. Řeším, jaký dostanou kontext, kde mají mantinely a ve kterou chvíli se na jejich práci musí podívat člověk.',
-      'Platformu zároveň tvaruju tak, aby ji agenti uměli používat stejně dobře jako lidi. Agent nemá trpělivost s nejasným API ani s chybovou hláškou, která nic neříká. Upřímně, lidi taky ne.',
+      'Platformu zároveň stavím tak, aby ji agenti používali stejně dobře jako lidi. Nejasné API a chybová hláška, která nic neříká, vadí oběma.',
       'Přicházím ze SRE a security. U každé změny se pořád nejdřív ptám, co se stane, až to spadne, a kdo se o tom dozví jako první.',
     ],
     stats: [
@@ -49,7 +49,7 @@ export const content: SiteContent = {
       {
         period: '2008–2010',
         year: 2008,
-        level: 0.2,
+        level: 0.25,
         role: 'Full-stack vývojář',
         org: 'Grafické studio F13',
         note: 'První kód, za který mi někdo zaplatil, a k tomu redakce kulturního portálu. Web je hlavně obsah, technika ho jen nesmí kazit.',
@@ -58,7 +58,7 @@ export const content: SiteContent = {
       {
         period: '2010–2018',
         year: 2010,
-        level: 0.32,
+        level: 0.42,
         role: 'Backend a full-stack vývojář',
         org: 'Studio Fresh Net',
         note: 'Malé studio v Karlovarském kraji, osm let všeho od backendu přes Android po Unity. Šíře, ze které těžím dodnes.',
@@ -66,7 +66,7 @@ export const content: SiteContent = {
       {
         period: '2017–2018',
         year: 2017,
-        level: 0.42,
+        level: 0.36,
         role: 'Senior Backend Developer',
         org: 'DataBreakers',
         note: 'Firma kolem big data a AI. Data přestala být tabulka v MySQL a začala být problém sama o sobě.',
@@ -74,7 +74,7 @@ export const content: SiteContent = {
       {
         period: '2018–2019',
         year: 2018,
-        level: 0.5,
+        level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
         note: 'Přesun do Prahy. Nejdřív backend v PHP, pak vedení vývoje a první zkušenost s tím, že kód je ta jednodušší část.',
@@ -82,7 +82,7 @@ export const content: SiteContent = {
       {
         period: '2019–2024',
         year: 2019,
-        level: 0.66,
+        level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
         note: 'Infrastruktura, Kubernetes, Terraform, security. Tady jsem pochopil, že produkce má vždycky poslední slovo.',
@@ -91,7 +91,7 @@ export const content: SiteContent = {
       {
         period: '2024–2026',
         year: 2024,
-        level: 0.82,
+        level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
         note: 'První vlastní tým. SRE napříč GCP, AWS a Azure, nově postavená funkce Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
@@ -107,61 +107,33 @@ export const content: SiteContent = {
         milestone: true,
       },
     ],
-    education: 'Vzděláním elektrotechnik. Leccos to vysvětluje, třeba ty drony.',
+    education: 'Formálním vzděláním elektrotechnik.',
   },
   workshop: {
     eyebrow: 'Dílna',
-    title: 'Dílna',
-    lead: 'Po večerech stavím věci, které mi chyběly. Všechno je na GitHubu, včetně kódu, za který se dnes trochu stydím.',
+    title: 'Co stavím po večerech',
+    lead: 'Věci, které mi chyběly. Hlavně FPVPIDlab: létám FPV a ladit PIDy podle pocitu mě přestalo bavit.',
     items: [
       {
         name: 'FPVPIDlab',
         tagline: 'Autotuner pro Betaflight. Leť, analyzuj, aplikuj.',
         description:
-          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do letového kontroléru. Podepsané buildy pro macOS, Windows i Linux. Ladit PIDy podle pocitu mě prostě přestalo bavit.',
+          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do letového kontroléru. Podepsané buildy pro macOS a Windows, k tomu Linux.',
         url: 'https://github.com/eddycek/fpvpidlab',
-        tags: ['Betaflight', 'FFT', 'DSP', 'Open source'],
+        tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
         flagship: true,
-      },
-      {
-        name: 'alternat',
-        tagline: 'Vysoce dostupné NAT instance na AWS.',
-        description:
-          'NAT instance v AWS, které přežijí výpadek bez ručního zásahu. Terraform, HCL a zdravá dávka SRE paranoie.',
-        url: 'https://github.com/eddycek/alternat',
-        tags: ['AWS', 'Terraform', 'HA'],
-      },
-      {
-        name: 'Controller for Mote',
-        tagline: 'Android ovladač pro hardware Mote.',
-        description:
-          'Aplikace a API pro ovládání zařízení Mote z telefonu. Rok 2017, kód, který hýbe něčím mimo obrazovku.',
-        url: 'https://github.com/eddycek/controllerformote-android',
-        tags: ['Android', 'API', '2017'],
-      },
-      {
-        name: 'flysystem-sftp',
-        tagline: 'SFTP adaptér pro PHP Flysystem.',
-        description:
-          'Malá knihovna, která dělá jednu věc: soubory přes SFTP v PHP. Památka na dobu, kdy jsem psal hlavně PHP.',
-        url: 'https://github.com/eddycek/flysystem-sftp',
-        tags: ['PHP', 'SFTP', 'Knihovna'],
       },
     ],
   },
   poetry: {
     eyebrow: 'Poezie',
     title: 'Druhý kanál',
-    lead: 'Básně píšu déle než Terraform. Symbolisti, Baudelaire, Den poezie a blog z let 2009–2013, který pořád visí na internetu.',
-    lines: [
-      'Všechno, co jsem řekl, mělo šum.',
-      'Filtroval jsem, dokud nezbylo ticho.',
-      'A v tom tichu jedno slovo,',
-      'které nešlo odfiltrovat.',
-    ],
+    lead: 'Píšu básně. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech, blog z let 2009–2013.',
+    lines: ['Bezvěrci v mé duši,', 'tam kde byla naděje,', 'naivní poesie.'],
+    credit: 'Z básně Bezvěrci, 2010',
     paragraphs: [
-      'Ladění dronu a psaní básně mají víc společného, než by se zdálo. V obou škrtáš tak dlouho, dokud nezůstane jen to, co nese signál.',
-      'V biu na GitHubu tvrdím, že kyberpunk už je tady a kdo si toho nevšiml, stojí na straně korporace. Jako CTO to teď čtu trochu jinak.',
+      'Ladění dronu a psaní básně mají společné jedno: škrtáš, dokud nezůstane jen to, co nese signál.',
+      'Symbolisti a Baudelaire mě naučili, že slovo musí unést víc, než říká. Stejně jako dobrá alertovací pravidla.',
     ],
     archiveLabel: 'Archiv blogu 2009–2013',
     archiveUrl: 'http://blog.vaclaveder.cz/',

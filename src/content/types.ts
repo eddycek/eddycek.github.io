@@ -69,6 +69,8 @@ export interface SiteContent {
     /** short lines rendered large with the decode effect; Eddy's own words */
     lines: string[];
     paragraphs: string[];
+    /** attribution under the verse, e.g. poem title and year */
+    credit: string;
     archiveLabel: string;
     archiveUrl: string;
   };

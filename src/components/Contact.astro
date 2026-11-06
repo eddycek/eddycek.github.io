@@ -23,7 +23,7 @@ const rows = [
         </div>
       ))}
       <div class="line line--links">
-        <span class="osd">{c.location}</span>
+        <span class="osd">{Astro.props.content.lang === 'cs' ? 'Odkazy' : 'Links'}</span>
         <span class="links">{contact.links.map((l) => <a href={l.url} rel="me">{l.label} ↗</a>)}</span>
       </div>
     </div>

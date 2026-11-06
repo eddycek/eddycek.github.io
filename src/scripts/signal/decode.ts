@@ -8,7 +8,7 @@
  */
 import { prefersReduced } from './common';
 
-const GLYPHS = Array.from('░▒▓█▚▞▖▗▘▙│┤┐└┴┬├─┼┘┌╳╱╲0123456789ěščřžýáíéúůďťňĚŠČŘŽ#%&@$');
+const GLYPHS = Array.from('░▒▓▚▞▖▗▘│┤┐└┴┬├─┼┘┌╱╲0123456789');
 const CLS = 'sd-c';
 const CSS =
   `.${CLS}{position:relative}` +
@@ -75,9 +75,9 @@ export function decodeText(root: HTMLElement): () => void {
       node.replaceWith(frag);
     }
     const n = spans.length;
-    const dur = Math.min(1600, 350 + n * 14);
+    const dur = Math.min(700, 220 + n * 8);
     const at = new Float32Array(n);
-    for (let i = 0; i < n; i++) at[i] = 120 + (i / Math.max(1, n)) * dur + Math.random() * 260;
+    for (let i = 0; i < n; i++) at[i] = 60 + (i / Math.max(1, n)) * dur + Math.random() * 140;
     return { el, spans, at, start: 0, state: 0, visible: false, label };
   });
 

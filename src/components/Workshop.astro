@@ -21,7 +21,7 @@ const others = w.items.filter((i) => i !== flagship);
       <a class="osd flag__cta" href={flagship.url}>github.com/eddycek/fpvpidlab ↗</a>
     </div>
   </article>
-  <ul class="bench" role="list">
+  {others.length > 0 && <ul class="bench" role="list">
     {others.map((p) => (
       <li class="bench__item">
         <a href={p.url}>
@@ -32,7 +32,7 @@ const others = w.items.filter((i) => i !== flagship);
         </a>
       </li>
     ))}
-  </ul>
+  </ul>}
 </Channel>
 
 <style>

@@ -11,6 +11,7 @@ const id = Astro.props.content.nav[3].id;
     <div class="verse" data-decode-root>
       {p.lines.map((l, i) => <p class="verse__line" data-decode style={`--i:${i}`}>{l}</p>)}
     </div>
+    <p class="osd poetry__credit">{p.credit}</p>
     <div class="poetry__foot">
       <p class="poetry__title">{p.title}</p>
       <div class="prose">
@@ -31,7 +32,8 @@ const id = Astro.props.content.nav[3].id;
   .ch-label { display: inline-flex; gap: 0.5rem; align-items: center; }
   .ch-label::before { content: ''; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--c-trace); box-shadow: 0 0 12px var(--c-trace); }
   .verse { display: grid; gap: 0.2em; font-family: var(--f-display); font-weight: 300; font-size: clamp(2rem, 1rem + 4.6vw, 5.4rem); line-height: 1.04; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; }
-  .verse__line { max-width: 22ch; }
+  .verse__line { max-width: 22ch; text-wrap: balance; }
+  .poetry__credit { margin-top: -1.5rem; text-transform: none; letter-spacing: 0.04em; }
   .verse__line:nth-child(even) { padding-left: clamp(1rem, 10vw, 10rem); color: var(--c-muted); }
   .verse__line:last-child { color: var(--c-signal); font-weight: 600; text-shadow: 0 0 28px var(--c-glow); }
   .poetry__foot { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); border-top: 1px solid var(--c-line); padding-top: 2rem; }

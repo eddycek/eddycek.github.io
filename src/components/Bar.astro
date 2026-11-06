@@ -7,9 +7,9 @@ const home = content.lang === 'cs' ? '/' : '/en/';
 ---
 <header class="bar">
   <div class="bar__inner">
-    <a class="bar__home" href={home} aria-label="Václav Eder">
+    <a class="bar__home" href={home}>
       <span class="bar__rec" aria-hidden="true"></span>
-      <span class="osd">V. EDER</span>
+      <span class="osd">V. EDER</span><span class="visually-hidden"> (Václav Eder)</span>
     </a>
     <nav class="bar__nav" aria-label={content.lang === 'cs' ? 'Sekce' : 'Sections'}>
       {content.nav.map((n, i) => (
@@ -73,11 +73,18 @@ const home = content.lang === 'cs' ? '/' : '/en/';
 
   const links = new Map<string, HTMLElement>();
   document.querySelectorAll<HTMLElement>('[data-nav]').forEach((a) => links.set(a.dataset.nav ?? '', a));
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      links.forEach((a, id) => a.setAttribute('aria-current', String(id === e.target.id)));
+  const sections = Array.from(links.keys()).map((id) => document.getElementById(id)).filter((s): s is HTMLElement => !!s);
+  let spyQueued = false;
+  const spy = () => {
+    spyQueued = false;
+    const mid = innerHeight / 2;
+    let active = '';
+    for (const s of sections) {
+      const r = s.getBoundingClientRect();
+      if (r.top <= mid && r.bottom > mid) { active = s.id; break; }
     }
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  links.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+    links.forEach((a, id) => a.setAttribute('aria-current', String(id === active)));
+  };
+  addEventListener('scroll', () => { if (!spyQueued) { spyQueued = true; requestAnimationFrame(spy); } }, { passive: true });
+  spy();
 </script>

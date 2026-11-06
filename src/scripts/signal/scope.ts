@@ -240,11 +240,12 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     const head = (written - 1) % COLS;
     const hx = (head * w) / (COLS - 1);
     const hy = mid - (ys[head] ?? 0) * amp;
+    const lightBg = pal.bg.r + pal.bg.g + pal.bg.b > 384;
     ctx.fillStyle = pal.signal.css;
-    ctx.globalAlpha = 0.07;
+    ctx.globalAlpha = lightBg ? 0.02 : 0.07;
     ctx.fillRect(hx - 18, 0, 18, h);
-    ctx.globalAlpha = 0.14;
-    ctx.fillRect(hx - 3, 0, 3, h);
+    ctx.globalAlpha = lightBg ? 0.08 : 0.14;
+    ctx.fillRect(hx - (lightBg ? 1 : 3), 0, lightBg ? 1 : 3, h);
     for (let r = 3; r >= 1; r--) {
       ctx.globalAlpha = r === 1 ? 1 : 0.12 + 0.05 / r;
       ctx.beginPath();
