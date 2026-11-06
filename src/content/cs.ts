@@ -179,8 +179,8 @@ export const content: SiteContent = {
       {
         name: '3D print',
         tagline: '',
-        description: 'Printím parts, které se nedají koupit, a prototypy, které by jinak zůstaly na papíře.',
-        tags: ['3D print', 'CAD'],
+        description: 'Printím parts, které se nedají koupit, a prototypy, které by jinak zůstaly na papíře. Modeluju ve Fusion 360, i když upřímně, modelování mi moc nejde. Díky LLM už je to ale jedno; agent ti to namodeluje.',
+        tags: ['3D print', 'Fusion 360', 'AI modeling'],
       },
       {
         name: 'Smarthome, IoT a Flipper Zero',
@@ -206,7 +206,7 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone.',
+      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone. Hodně mě láká, jak přes MCP napojit agenty na hudební tooly a začít buildit beaty; ze syntetických zvuků i ze samplů, které si nahraju sám. Agent jako parťák ve studiu, který zvládne sound design, aranž i ty nudné části, a já se můžu soustředit na vibe a slova.',
     ],
     extras: [
       {
@@ -230,7 +230,7 @@ export const content: SiteContent = {
         title: 'Play to games',
         text: [
           'Miluju hraní videoher. Nejvíc mě zasáhl Cyberpunk 2077. Johnny Silverhand je v něm digitální konstrukt, který dokáže ovládat a manipulovat svého nositele. Odráží naše vlastní mentální konstrukty; můžou být destruktivní, ale stejně jako Johnny dokážou odhalit hlubší pravdy a nakopnout růst. Kdo je tvůj Johnny Silverhand?',
-          'A pak competitive multiplayer. S kámošema po večerech jedeme Battlefield, THE FINALS, ARC Raiders a další.',
+          'A pak competitive multiplayer. Se svejma bros po večerech jedeme Battlefield, THE FINALS, ARC Raiders a další.',
         ],
         tags: ['Cyberpunk 2077', 'Battlefield', 'THE FINALS', 'ARC Raiders', 'Competitive MP'],
       },
@@ -261,6 +261,6 @@ export const content: SiteContent = {
     ],
   },
   footer: {
-    note: 'Shipnuto s láskou z Prahy; kód napsali agenti, já dělal review. No cookies, no tracking.',
+    note: 'Shipnuto s láskou z Prahy; kód napsali agenti, já ho ani neviděl. No cookies, no tracking.',
   },
 };

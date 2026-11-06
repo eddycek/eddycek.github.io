@@ -179,8 +179,8 @@ export const content: SiteContent = {
       {
         name: '3D printing',
         tagline: '',
-        description: 'I print parts you cannot buy and prototypes that would otherwise stay on paper.',
-        tags: ['3D printing', 'CAD'],
+        description: 'I print parts you cannot buy and prototypes that would otherwise stay on paper. I model in Fusion 360, though honestly modeling is not my strong suit. Thanks to LLMs that no longer matters; an agent models it for you.',
+        tags: ['3D printing', 'Fusion 360', 'AI modeling'],
       },
       {
         name: 'Smarthome, IoT & Flipper Zero',
@@ -206,7 +206,7 @@ export const content: SiteContent = {
     close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
-      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone.',
+      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone. What really pulls me in is wiring agents to music tools over MCP and building beats; from synthetic sounds and from samples I record myself. An agent as a studio buddy that handles sound design, arrangement and the boring parts, so I can focus on the vibe and the words.',
     ],
     extras: [
       {
@@ -230,7 +230,7 @@ export const content: SiteContent = {
         title: 'Play to games',
         text: [
           'I love playing video games. Cyberpunk 2077 hit me hardest. Johnny Silverhand is a digital construct that can control and manipulate its host. He mirrors our own mental constructs; they can be destructive, but like Johnny they can also reveal deeper truths and push us to grow. Who is your Johnny Silverhand?',
-          'Then there is competitive multiplayer. In the evenings my friends and I play Battlefield, THE FINALS, ARC Raiders and more.',
+          'Then there is competitive multiplayer. In the evenings I squad up with my bros in Battlefield, THE FINALS, ARC Raiders and more.',
         ],
         tags: ['Cyberpunk 2077', 'Battlefield', 'THE FINALS', 'ARC Raiders', 'Competitive MP'],
       },
@@ -261,6 +261,6 @@ export const content: SiteContent = {
     ],
   },
   footer: {
-    note: 'Shipped with love from Prague; agents wrote the code, I did the review. No cookies, no tracking.',
+    note: 'Shipped with love from Prague; agents wrote the code, I never even looked at it. No cookies, no tracking.',
   },
 };
