@@ -76,7 +76,8 @@ export interface SiteContent {
     paragraphs: string[];
     /** attribution under the verse, e.g. poem title and year */
     credit: string;
-    music: { title: string; text: string[]; artists: string[] };
+    /** personal blocks under the poem: music, travel… */
+    extras: { title: string; text: string[]; tags: string[] }[];
   };
   contact: {
     eyebrow: string;

@@ -11,7 +11,7 @@ export const content: SiteContent = {
     { id: 'prace', label: 'Work' },
     { id: 'cesta', label: 'Journey' },
     { id: 'dilna', label: 'Workshop' },
-    { id: 'poezie', label: 'Poetry' },
+    { id: 'poezie', label: 'Personal' },
     { id: 'kontakt', label: 'Contact' },
   ],
   switchLabel: 'CS',
@@ -20,25 +20,27 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I build a platform where people and AI agents work with data. SRE taught me it has to run at 3 a.m. too.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music'],
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. I build a platform where people and AI agents work with data, and SRE taught me it has to run at 3 a.m. too.',
+    tags: ['CTO', 'SRE', 'Security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Travel'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
   work: {
     eyebrow: 'Work',
     title: 'What I do now',
-    lead: 'Since April 2026 I have been CTO at Keboola. I live for this work, and I mean it when I say I was born for it.',
+    lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
-      'Keboola is a data platform and, more and more, the place where people and AI agents work with data side by side. My job is to build it so it holds up in both roles: a clear API, predictable behaviour and operations you can rely on.',
-      'In engineering, AI agents are a normal part of the team, not an experiment. I decide what context they get, where their limits are, and when a human has to check their output.',
+      'Keboola brings data scattered across dozens of systems into one governed foundation where every metric has one agreed definition. More than a thousand companies run on it.',
+      'AI agents change everything. Agents can now run processes inside companies on their own: watching the numbers, reconciling, preparing reports. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
+      'Our first priority is a happy customer. When they grow, we grow.',
+      'In engineering, AI agents are a normal part of the team. I decide what context they get, where their limits are, and when a human has to check their output.',
       'I come from SRE and security. With every change, my first question is still what happens when it fails, and who finds out first.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
       { label: 'At Keboola since', value: '2019' },
       { label: 'Clouds', value: 'GCP · AWS · Azure' },
-      { label: 'Writing code since', value: '2008' },
+      { label: 'Writing code since', value: 'childhood' },
     ],
     agnes: {
       label: 'Main focus · agnesbrain.ai',
@@ -55,7 +57,7 @@ export const content: SiteContent = {
       title: 'Same DNA',
       text: [
         'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine: the same standards, the same impatience and the same joy in building things nobody has built yet.',
-        'We are tuned to this work the same way, and it shows in what we ship.',
+        'And I love the core team at Keboola: people who know the platform down to the last bolt, pull in the same direction and still enjoy it. We are tuned to this work the same way, and it shows in what we build.',
       ],
     },
     motto: {
@@ -100,7 +102,7 @@ export const content: SiteContent = {
         level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
-        note: 'Moved to Prague. Backend first, then running development, and learning that code is the easy part.',
+        note: 'Moved to Prague. Backend first, then leading a smaller team, and learning that code is the easy part.',
       },
       {
         period: '2019–2024',
@@ -117,7 +119,7 @@ export const content: SiteContent = {
         level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
-        note: 'My first team. SRE across GCP, AWS and Azure, a Security Engineering function built from scratch, on-call, and incidents we actually learn from.',
+        note: 'My first bigger team. SRE across GCP, AWS and Azure, a Security Engineering function built from scratch, on-call, and incidents we actually learn from.',
         milestone: true,
       },
       {
@@ -150,10 +152,10 @@ export const content: SiteContent = {
       {
         name: 'FPV',
         tagline: '',
-        description: 'I fly FPV drones and cut the flights into short videos. They are on my Instagram.',
+        description: 'A hobby that could have been made for me. There is software, hardware, soldering, 3D printing and, in the end, content too. I cut the flights into short videos; they are on my Instagram.',
         url: 'https://www.instagram.com/eddycek/',
         linkLabel: '@eddycek',
-        tags: ['FPV', 'Reels'],
+        tags: ['Software', 'Hardware', 'Soldering', '3D printing', 'Reels'],
       },
       {
         name: 'Home rack',
@@ -177,8 +179,8 @@ export const content: SiteContent = {
     ],
   },
   poetry: {
-    eyebrow: 'Poetry',
-    title: 'Poems and music',
+    eyebrow: 'Personal',
+    title: 'Poems, music and travel',
     lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
@@ -191,14 +193,23 @@ export const content: SiteContent = {
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
       'These days I experiment with audiovisual work: reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',
     ],
-    music: {
-      title: 'Music',
-      text: [
-        'Music matters enormously to me. It runs almost constantly, while I work, write and fly, and it often decides whether a poem happens at all.',
-        'I grew up on indie rock, punk and hardcore, trip-hop mornings and electronica, plus the darker gothic and darkwave scene and the Czech alternative. Two songs have stayed with me all my life: Faithless, Giving Myself Away, and Vypsaná Fixa, Dezolát.',
-      ],
-      artists: ['Faithless', 'Vypsaná Fixa', 'The Crüxshadows', 'Guano Apes', 'trip-hop', 'indie', 'punk / HC', 'darkwave'],
-    },
+    extras: [
+      {
+        title: 'Music',
+        text: [
+          'Music matters enormously to me. It runs almost constantly, while I work, write and fly.',
+          'Right now I am mostly into the Czech youngblood scene and niche music: small independent artists, mostly Czech but from abroad too. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
+        ],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
+      },
+      {
+        title: 'Travel',
+        text: [
+          'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur through Mexico City and half of South America to Cape Town.',
+        ],
+        tags: ['Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
+      },
+    ],
   },
   contact: {
     eyebrow: 'Contact',

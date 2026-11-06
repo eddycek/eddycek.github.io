@@ -19,11 +19,13 @@ const id = Astro.props.content.nav[3].id;
         {p.paragraphs.map((t) => <p>{t}</p>)}
       </div>
     </div>
-    <div class="music">
-      <p class="osd music__label">{p.music.title}</p>
-      <div class="prose music__text">{p.music.text.map((t) => <p>{t}</p>)}</div>
-      <ul class="music__artists" role="list">{p.music.artists.map((a) => <li>{a}</li>)}</ul>
-    </div>
+    {p.extras.map((x) => (
+      <div class="music">
+        <p class="osd music__label">{x.title}</p>
+        <div class="prose music__text">{x.text.map((t) => <p>{t}</p>)}</div>
+        <ul class="music__artists" role="list">{x.tags.map((a) => <li>{a}</li>)}</ul>
+      </div>
+    ))}
   </div>
 </section>
 

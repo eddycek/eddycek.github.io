@@ -11,7 +11,7 @@ export const content: SiteContent = {
     { id: 'prace', label: 'Práce' },
     { id: 'cesta', label: 'Cesta' },
     { id: 'dilna', label: 'Dílna' },
-    { id: 'poezie', label: 'Poezie' },
+    { id: 'poezie', label: 'Osobní' },
     { id: 'kontakt', label: 'Kontakt' },
   ],
   switchLabel: 'EN',
@@ -20,25 +20,27 @@ export const content: SiteContent = {
     name: 'Václav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Stavím platformu, na které s daty pracují lidi i AI agenti. Ze SRE mi zůstalo, že musí běžet i ve tři ráno.',
-    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba'],
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti, a ze SRE mi zůstalo, že musí běžet i ve tři ráno.',
+    tags: ['CTO', 'SRE', 'Security', 'AI agenti', 'FPV', 'Poezie', 'Hudba', 'Cestování'],
     scrollHint: 'Dál',
     clickHint: '[ klik do signálu ]',
   },
   work: {
     eyebrow: 'Práce',
     title: 'Co dělám teď',
-    lead: 'Od dubna 2026 jsem CTO v Keboole. Pro tuhle práci hořím a nepřeháním, když řeknu, že jsem se pro ni narodil.',
+    lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme datovou platformu, díky které firmy řídí byznys podle dat, a ne podle pocitu.',
     paragraphs: [
-      'Keboola je datová platforma a čím dál víc i prostředí, kde s daty pracují lidi a AI agenti vedle sebe. Moje práce je postavit ji tak, aby obstála v obou rolích: srozumitelné API, předvídatelné chování a provoz, na který se dá spolehnout.',
-      'AI agenty v engineeringu bereme jako běžnou součást týmu, ne jako experiment. Rozhoduju, jaký kontext dostanou, kde mají hranice a kdy jejich výsledek musí zkontrolovat člověk.',
+      'Keboola propojí data rozesetá po desítkách systémů do jednoho spravovaného základu, kde má každá metrika jednu schválenou definici. Stojí na ní přes tisíc firem.',
+      'S příchodem AI agentů se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách: hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Naše první priorita je spokojený zákazník. Když roste on, rosteme i my.',
+      'V engineeringu bereme AI agenty jako běžnou součást týmu. Rozhoduju, jaký kontext dostanou, kde mají hranice a kdy jejich výsledek musí zkontrolovat člověk.',
       'Přicházím ze SRE a security. U každé změny se pořád nejdřív ptám, co se stane, až selže, a kdo se to dozví jako první.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
       { label: 'V Keboole od', value: '2019' },
       { label: 'Cloudy', value: 'GCP · AWS · Azure' },
-      { label: 'Kóduju od', value: '2008' },
+      { label: 'Kóduju od', value: 'dětství' },
     ],
     agnes: {
       label: 'Hlavní projekt · agnesbrain.ai',
@@ -55,7 +57,7 @@ export const content: SiteContent = {
       title: 'Stejná DNA',
       text: [
         'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já: stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
-        'Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
+        'A mám rád core tým v Keboole. Lidi, kteří platformu znají do posledního šroubku, táhnou za jeden provaz a pořád je to baví. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
       ],
     },
     motto: {
@@ -100,7 +102,7 @@ export const content: SiteContent = {
         level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
-        note: 'Přesun do Prahy. Nejdřív backend, pak vedení vývoje a zjištění, že kód je ta jednodušší část.',
+        note: 'Přesun do Prahy. Nejdřív backend, pak vedení menšího týmu a zjištění, že kód je ta jednodušší část.',
       },
       {
         period: '2019–2024',
@@ -117,7 +119,7 @@ export const content: SiteContent = {
         level: 0.8,
         role: 'Lead SRE Manager & Security Engineering',
         org: 'Keboola',
-        note: 'První vlastní tým. SRE napříč GCP, AWS a Azure, od nuly postavené Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
+        note: 'První větší tým. SRE napříč GCP, AWS a Azure, od nuly postavené Security Engineering, on-call a incidenty, ze kterých se opravdu učíme.',
         milestone: true,
       },
       {
@@ -150,10 +152,10 @@ export const content: SiteContent = {
       {
         name: 'FPV',
         tagline: '',
-        description: 'Létám FPV drony a z letů stříhám krátká videa. Najdete je na mém Instagramu.',
+        description: 'Hobby, které jako by vzniklo přímo pro mě. Je v tom software, hardware, pájení, 3D tisk a nakonec i tvorba obsahu. Z letů stříhám krátká videa, najdete je na mém Instagramu.',
         url: 'https://www.instagram.com/eddycek/',
         linkLabel: '@eddycek',
-        tags: ['FPV', 'Reels'],
+        tags: ['Software', 'Hardware', 'Pájení', '3D tisk', 'Reels'],
       },
       {
         name: 'Vlastní rack',
@@ -177,8 +179,8 @@ export const content: SiteContent = {
     ],
   },
   poetry: {
-    eyebrow: 'Poezie',
-    title: 'Básně a hudba',
+    eyebrow: 'Osobní',
+    title: 'Básně, hudba a cesty',
     lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
@@ -191,14 +193,23 @@ export const content: SiteContent = {
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
       'Teď experimentuju s audiovizuální tvorbou: čtu svoje básně s hudebním podkresem. Chci se dostat k vlastní hudbě, nejdřív jako podkladu pro recitace, později i samostatně.',
     ],
-    music: {
-      title: 'Hudba',
-      text: [
-        'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání, a často rozhoduje, jestli báseň vůbec vznikne.',
-        'Vyrostl jsem na indie rocku, punku a hardcoru, ranních trip-hopech a elektronice, k tomu temnější vlna gothic a darkwave a česká alternativa. Dvě písně mě provázejí celý život: Giving Myself Away od Faithless a Dezolát od Vypsané Fixy.',
-      ],
-      artists: ['Faithless', 'Vypsaná Fixa', 'The Crüxshadows', 'Guano Apes', 'trip-hop', 'indie', 'punk / HC', 'darkwave'],
-    },
+    extras: [
+      {
+        title: 'Hudba',
+        text: [
+          'Hudba je pro mě zásadní. Hraje skoro pořád, při práci, při psaní i při létání.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche hudba: malí nezávislí umělci, převážně čeští, ale i zahraniční. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+        ],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole'],
+      },
+      {
+        title: 'Cesty',
+        text: [
+          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur přes Mexico City a polovinu Jižní Ameriky až po Kapské Město.',
+        ],
+        tags: ['Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
+      },
+    ],
   },
   contact: {
     eyebrow: 'Kontakt',

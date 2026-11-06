@@ -3,7 +3,7 @@ export const contact = {
   handle: 'eddycek',
   email: 'eddycek.ve@gmail.com',
   /** E.164 without spaces is safest, e.g. '+420777123456'. Drives iMessage and WhatsApp links. */
-  phone: '' as string,
+  phone: '+420 7773 445 612' as string,
   links: [
     { label: 'Instagram', url: 'https://www.instagram.com/eddycek/' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/veder/' },
