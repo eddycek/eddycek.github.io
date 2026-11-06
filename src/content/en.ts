@@ -261,6 +261,6 @@ export const content: SiteContent = {
     ],
   },
   footer: {
-    note: 'Built with love in Prague. No cookies, no tracking.',
+    note: 'Shipped with love from Prague; agents wrote the code, I did the review. No cookies, no tracking.',
   },
 };

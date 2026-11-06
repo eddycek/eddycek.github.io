@@ -35,11 +35,12 @@ function say(text: string, delayMs: number): void {
   window.setTimeout(() => {
     const u = new SpeechSynthesisUtterance(text);
     const voices = synth.getVoices();
-    u.voice = voices.find((v) => /en[-_](US|GB)/i.test(v.lang) && /female|samantha|karen|serena|google/i.test(v.name))
+    u.voice = voices.find((v) => /en[-_]GB/i.test(v.lang) && /female|serena|kate|martha|stephanie|google uk english female/i.test(v.name))
+      ?? voices.find((v) => /en[-_](US|GB|AU)/i.test(v.lang) && /female|samantha|karen|serena|google/i.test(v.name))
       ?? voices.find((v) => /^en/i.test(v.lang)) ?? null;
     u.lang = u.voice?.lang ?? 'en-US';
-    u.rate = 1.02;
-    u.pitch = 1;
+    u.rate = 0.95;
+    u.pitch = 1.05;
     u.volume = 0.9;
     synth.cancel();
     synth.speak(u);

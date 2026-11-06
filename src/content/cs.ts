@@ -261,6 +261,6 @@ export const content: SiteContent = {
     ],
   },
   footer: {
-    note: 'Postaveno s láskou v Praze. No cookies, no tracking.',
+    note: 'Shipnuto s láskou z Prahy; kód napsali agenti, já dělal review. No cookies, no tracking.',
   },
 };

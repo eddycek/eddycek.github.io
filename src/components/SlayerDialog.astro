@@ -179,10 +179,12 @@ const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i =
     const open = (from: HTMLElement): void => {
       opener = from;
       stanzas.forEach((s) => s.classList.remove('in'));
-      if (scroller) scroller.scrollTop = 0;
+      const toTop = (): void => { if (scroller) scroller.scrollTo({ top: 0, behavior: 'instant' }); };
+      toTop();
       dlg.showModal();
       document.documentElement.style.overflow = 'hidden';
-      requestAnimationFrame(() => dlg.classList.add('is-open'));
+      // Reset again once visible; a hidden dialog can keep its old scroll position.
+      requestAnimationFrame(() => { toTop(); dlg.classList.add('is-open'); });
       io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) if (e.isIntersecting) e.target.classList.add('in');

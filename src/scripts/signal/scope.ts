@@ -53,7 +53,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   let dmg = 0; // 0..1, lost signal integrity
   let failsafe = 0; // seconds left in FAILSAFE
   let failCount = 0;
-  const FAIL_T = 3.6;
+  const FAIL_T = 6.5;
   const FAIL_LINES = [
     'cut the wires, no fucking choice.',
     'no escape, just broken glass.',
@@ -144,7 +144,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       failsafe = FAIL_T;
       failCount++;
       canvas.parentElement?.classList.add('is-failsafe');
-      window.dispatchEvent(new CustomEvent('signal:failsafe', { detail: 1500 }));
+      window.dispatchEvent(new CustomEvent('signal:failsafe', { detail: 2400 }));
       telemetryLost();
     }
     const px = e.clientX - r.left;
