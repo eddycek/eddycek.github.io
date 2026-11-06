@@ -211,7 +211,7 @@ export const content: SiteContent = {
       {
         title: 'Music',
         text: [
-          'Music matters enormously to me. It runs almost constantly; while I work, write and fly. I do not go anywhere without headphones.',
+          'Music matters enormously to me. It runs almost constantly; while I work, write and fly. Often I just put something on, lie down and listen. I pick what I listen to carefully myself and do not stay stuck with what I grew up on; I actively dig for new music.',
           'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
