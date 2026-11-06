@@ -280,6 +280,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.clearRect(0, 0, w, h);
     if (failsafe > 0) {
       drawFailsafe(s, t);
+      updateHud(s, t);
       return;
     }
     const mid = h * 0.5;
@@ -472,24 +473,41 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   const hudPct = hud?.querySelector<HTMLElement>('[data-hud-pct]') ?? null;
   const hudSegs = hud ? Array.from(hud.querySelectorAll<HTMLElement>('[data-hud-seg]')) : [];
   let hudLit = -1;
+  let hudHold = 0; // seconds to keep showing 100% after re-arm
+  let hudLastT = 0;
   const updateHud = (s: Stage, t: number): void => {
     if (!hud) return;
-    const show = dmg > 0.01 && failsafe <= 0;
+    const dt = hudLastT ? Math.min(0.1, t - hudLastT) : 0;
+    hudLastT = t;
+    // Integrity shown: live damage, or during FAILSAFE a 0% hold that refills while re-arming.
+    let integrity = 1 - dmg;
+    let show = dmg > 0.01;
+    if (failsafe > 0) {
+      const k = 1 - failsafe / FAIL_T;
+      integrity = k < 0.55 ? 0 : Math.min(1, (k - 0.55) / 0.42);
+      show = true;
+      hudHold = 0.9;
+    } else if (hudHold > 0) {
+      hudHold = Math.max(0, hudHold - dt);
+      integrity = 1;
+      show = true;
+    }
+    // Hide when the hero is scrolled away.
+    const rect = s.canvas.getBoundingClientRect();
+    if (rect.bottom < 160) show = false;
     hud.dataset.on = show ? '1' : '0';
     if (!show) return;
-    const hot = dmg > 0.6;
+    const hot = integrity < 0.4 || failsafe > 0;
     hud.dataset.hot = hot ? '1' : '0';
-    if (hudPct) hudPct.textContent = `${hot && Math.sin(t * 18) > 0 ? '⚠ ' : ''}${pad(Math.round((1 - dmg) * 100), 3)}%`;
-    const lit = Math.round(hudSegs.length * (1 - dmg));
+    if (hudPct) {
+      const label = failsafe > 0 ? (integrity > 0 ? 'REARMING ' : 'RX LOSS ') : hot && Math.sin(t * 18) > 0 ? '⚠ ' : '';
+      hudPct.textContent = `${label}${pad(Math.round(integrity * 100), 3)}%`;
+    }
+    const lit = Math.round(hudSegs.length * integrity);
     if (lit !== hudLit) {
       hudLit = lit;
       hudSegs.forEach((el, i) => el.toggleAttribute('data-lit', i < lit));
     }
-    // Float just under the sticky bar while the hero is scrolled.
-    const rect = s.canvas.getBoundingClientRect();
-    const barH = document.querySelector('.bar')?.getBoundingClientRect().height ?? 52;
-    const y = clamp(-rect.top + barH + 14, 0, Math.max(0, s.h - 80));
-    hud.style.transform = `translate(-50%, ${Math.round(y)}px)`;
   };
 
   const drawFailsafe = (s: Stage, t: number): void => {
