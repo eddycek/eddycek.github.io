@@ -20,14 +20,14 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není prázdný claim, ale slib, který držíš i ve tři ráno.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ klikni do signálu ]',
   },
   work: {
     eyebrow: 'Work',
-    title: 'Co dělám teď',
+    title: 'Main quest',
     lead: 'Od dubna 2026 jsem CTO v Keboole. Buildíme data platformu, díky které firmy řídí business podle dat, a ne podle gut feelingu.',
     paragraphs: [
       'Keboola propojí data rozesetá po desítkách systémů do jednoho governed základu, single source of truth, kde má každá metrika jednu schválenou definici. Běží na ní přes tisíc firem.',
@@ -155,7 +155,7 @@ export const content: SiteContent = {
         name: 'FPVPIDlab',
         tagline: 'Autotuner pro Betaflight. Leť, analyzuj, aplikuj.',
         description:
-          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do flight controlleru. Podepsané buildy pro macOS a Windows, k tomu Linux.',
+          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do flight controlleru. Běží na macOS, Windows i Linuxu.',
         url: 'https://github.com/eddycek/fpvpidlab',
         linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],

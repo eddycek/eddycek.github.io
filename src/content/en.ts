@@ -20,14 +20,14 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I burn for this work, and I was quite literally born for it. Once I get into something, I am fully locked in; it does not let go. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. Once I get into something, I am fully locked in; it does not let go. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not an empty claim, it is a promise you keep at 3 a.m.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
   work: {
     eyebrow: 'Work',
-    title: 'What I do now',
+    title: 'Main quest',
     lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
       'Keboola brings data scattered across dozens of systems into one governed foundation, a single source of truth where every metric has one agreed definition. More than a thousand companies run on it.',
@@ -155,7 +155,7 @@ export const content: SiteContent = {
         name: 'FPVPIDlab',
         tagline: 'A Betaflight autotuner. Fly, analyze, apply.',
         description:
-          'Reads a Blackbox log, computes the FFT noise spectrum and step response, and uses Wiener deconvolution to work out how the quad really behaves. From that it suggests filter cutoffs and PID values and applies them to the flight controller in one click. Signed builds for macOS and Windows, plus Linux.',
+          'Reads a Blackbox log, computes the FFT noise spectrum and step response, and uses Wiener deconvolution to work out how the quad really behaves. From that it suggests filter cutoffs and PID values and applies them to the flight controller in one click. Runs on macOS, Windows and Linux.',
         url: 'https://github.com/eddycek/fpvpidlab',
         linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
