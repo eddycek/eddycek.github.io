@@ -79,6 +79,12 @@ for (const pg of PAGES) {
       await expect(close).toBeInViewport();
       expect(await overflowing(page), 'dialog content past the right edge').toEqual([]);
       await page.screenshot({ path: info.outputPath(`${pg.name}-poem.png`) });
+      // The finale must never make the dialog pan sideways.
+      const scroller = page.locator('[data-slayer-scroll]');
+      await scroller.evaluate((e) => e.scrollTo({ top: e.scrollHeight, behavior: 'instant' }));
+      await page.waitForTimeout(400);
+      const { sw, cw } = await scroller.evaluate((e) => ({ sw: e.scrollWidth, cw: e.clientWidth }));
+      expect(sw, 'poem dialog scrolls sideways').toBeLessThanOrEqual(cw + 1);
       await close.click();
       await expect(dlg).toBeHidden();
     });

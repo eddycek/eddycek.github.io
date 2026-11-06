@@ -74,7 +74,9 @@ const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i =
     background: color-mix(in srgb, var(--c-bg) 80%, transparent); color: var(--c-ink); border: 1px solid var(--c-line); padding: 0.5rem 0.8rem; border-radius: 2px; cursor: pointer; }
   .slayer__close:hover { border-color: var(--c-signal); color: var(--c-signal); }
   .slayer__esc { color: var(--c-muted); border: 1px solid var(--c-line); padding: 0 0.3rem; border-radius: 2px; }
-  .slayer__scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; z-index: 1; scroll-behavior: smooth; }
+  /* overflow-x hidden: the finale 'slam' scales words up to 2.4x, which made the sheet pan sideways on phones. */
+  .slayer__scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; z-index: 1; scroll-behavior: smooth; }
+  .slayer__poem { overflow-x: clip; }
   .slayer__poem { max-width: 62rem; margin: 0 auto; padding: clamp(5rem, 12vh, 9rem) var(--gutter-r) clamp(6rem, 20vh, 12rem) var(--gutter-l); display: grid; gap: clamp(3.5rem, 10vh, 7rem); }
 
   /* Title with a split-channel glitch. */
