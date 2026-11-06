@@ -162,7 +162,9 @@ export function createStage(canvas: HTMLCanvasElement, hooks: StageHooks): Stage
 
   const ro = new ResizeObserver(() => {
     const r = canvas.getBoundingClientRect();
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    // Phones: cap the backing store lower; full-bleed canvases at 3x are what makes iOS stutter.
+    const coarse = matchMedia('(pointer: coarse)').matches;
+    const dpr = Math.min(coarse ? 1.5 : 2, window.devicePixelRatio || 1);
     s.w = r.width;
     s.h = r.height;
     s.dpr = dpr;

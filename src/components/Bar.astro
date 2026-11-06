@@ -46,7 +46,7 @@ const home = content.lang === 'cs' ? '/' : '/en/';
   .bar__theme:hover { border-color: var(--c-signal); color: var(--c-signal); }
   .bar__progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; }
   .bar__progress span { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--c-signal); box-shadow: 0 0 8px var(--c-glow); }
-  @media (max-width: 860px) { .bar__nav { display: none; } .bar__tools { margin-left: auto; } }
+  @media (max-width: 860px) { .bar__nav { display: none; } .bar__tools { margin-left: auto; } .bar { backdrop-filter: none; -webkit-backdrop-filter: none; background: color-mix(in srgb, var(--c-bg) 94%, transparent); } }
 </style>
 
 <script>
