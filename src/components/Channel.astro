@@ -1,0 +1,24 @@
+---
+interface Props { id: string; index: number; eyebrow: string; title: string; lead?: string; meta?: string; metaAccent?: string; metaAccentLabel?: string }
+const { id, index, eyebrow, title, lead, meta, metaAccent, metaAccentLabel } = Astro.props;
+---
+<section class="channel" id={id} aria-labelledby={`${id}-title`}>
+  <div class="shell channel__grid">
+    <div class="channel__rail">
+      <span class="osd ch">{`CH${index}`} · {eyebrow}</span>
+      {meta && <span class="osd">{meta}{metaAccent && <> <span class="meta-accent" title={metaAccentLabel} aria-label={metaAccentLabel}>{metaAccent}</span></>}</span>}
+    </div>
+    <div class="channel__body">
+      <h2 class="channel__title" id={`${id}-title`}>{title}</h2>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+  <slot name="after" />
+</section>
+
+<style>
+  .meta-accent { display: inline-block; color: var(--c-signal); font-size: 1.6em; line-height: 0; vertical-align: -0.12em; text-shadow: 0 0 12px var(--c-glow), 0 0 2px var(--c-signal); animation: inf 3.2s ease-in-out infinite; }
+  @keyframes inf { 0%, 100% { opacity: 1; text-shadow: 0 0 12px var(--c-glow), 0 0 2px var(--c-signal); } 50% { opacity: 0.75; text-shadow: 0 0 22px var(--c-glow), 0 0 6px var(--c-signal); } }
+  @media (prefers-reduced-motion: reduce) { .meta-accent { animation: none; } }
+</style>

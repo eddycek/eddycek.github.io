@@ -1,0 +1,53 @@
+---
+import type { SiteContent } from '../content/types';
+import Channel from './Channel.astro';
+interface Props { content: SiteContent }
+const j = Astro.props.content.journey;
+const id = Astro.props.content.nav[1].id;
+const points = j.stops.map((s) => ({ year: s.year, level: s.level, label: String(s.year), milestone: !!s.milestone }));
+const newest = [...j.stops].reverse();
+---
+<Channel id={id} index={2} eyebrow={j.eyebrow} title={j.title} lead={j.lead} meta={`${j.stops[0]?.year} → ${new Date().getFullYear()}`}>
+  <div class="log">
+    <canvas class="log__trace" id="trace" data-points={JSON.stringify(points)} aria-hidden="true"></canvas>
+  </div>
+  <ol class="stops" role="list">
+    {newest.map((s) => (
+      <li class:list={['stop', { 'stop--milestone': s.milestone }]}>
+        <span class="osd stop__period">{s.period}</span>
+        <div class="stop__body">
+          <h3 class="stop__role">{s.role} <span class="stop__org">{s.org}</span></h3>
+          <p>{s.note}</p>
+          {s.scope && (
+            <div class="scope">
+              {s.scopeLabel && <p class="osd scope__label">{s.scopeLabel}</p>}
+              <ul class="scope__list" role="list">{s.scope.map((x) => <li>{x}</li>)}</ul>
+            </div>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+  <p class="osd edu">{j.education}</p>
+</Channel>
+
+<style>
+  .log { position: relative; border: 1px solid var(--c-line); background: var(--c-surface); height: clamp(14rem, 30vw, 20rem); }
+  .log__trace { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stops { list-style: none; margin: 0; padding: 0; display: grid; }
+  .stop { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.3rem; border-top: 1px dashed var(--c-line); }
+  .stop:first-child { border-top: 0; }
+  .stop__period { padding-top: 0.35rem; }
+  .stop--milestone .stop__period { color: var(--c-signal); }
+  .stop__body { display: grid; gap: 0.35rem; }
+  .stop__role { font-size: var(--t-lg); font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+  .stop__org { color: var(--c-muted); font-weight: 400; }
+  .stop__body p { color: var(--c-muted); max-width: 60ch; }
+  .edu { border-top: 1px solid var(--c-line); padding-top: 1rem; font-family: var(--f-body); font-size: var(--t-base); text-transform: none; letter-spacing: 0; color: var(--c-muted); }
+  @media (max-width: 560px) { .stop { grid-template-columns: 1fr; gap: 0.3rem; } }
+  .scope { margin-top: 0.9rem; display: grid; gap: 0.6rem; }
+  .scope__label { color: var(--c-signal); }
+  .scope__list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 0.4rem 1.2rem; }
+  .scope__list li { position: relative; padding-left: 1.2rem; color: var(--c-muted); font-size: var(--t-sm); line-height: 1.5; }
+  .scope__list li::before { content: '›'; position: absolute; left: 0.1rem; color: var(--c-signal); font-family: var(--f-mono); }
+</style>

@@ -1,0 +1,82 @@
+---
+import type { SiteContent } from '../content/types';
+import SlayerDialog from './SlayerDialog.astro';
+interface Props { content: SiteContent }
+const p = Astro.props.content.poetry;
+const id = Astro.props.content.nav[3].id;
+const lang = Astro.props.content.lang;
+// Split paragraphs on the poem title so the mention itself opens the poem.
+const parts = (t: string): string[] => t.split(/(The Slayer)/);
+---
+<section class="poetry" id={id} aria-labelledby={`${id}-title`}>
+  <div class="shell poetry__inner">
+    <span class="osd ch-label">CH4 · {p.eyebrow}</span>
+    <h2 class="visually-hidden" id={`${id}-title`}>{p.title}</h2>
+    <div class="verse" data-decode-root data-decode data-glitch="poem" data-slayer-open role="button" tabindex="0" aria-label={`${p.lines.join(' ')} (${p.readFull})`}>
+      {p.lines.map((l, i) => <p class="verse__line" style={`--i:${i}`}>{l}</p>)}
+    </div>
+    <button class="slayer-cta" type="button" data-slayer-open>
+      <span class="slayer-cta__dot" aria-hidden="true"></span>
+      <span class="slayer-cta__credit">{p.credit}</span>
+      <span class="slayer-cta__go">▶ {p.readFull}</span>
+      <span class="slayer-cta__sweep" aria-hidden="true"></span>
+    </button>
+    <div class="poetry__foot">
+      <p class="poetry__title">{p.title}</p>
+      <div class="prose">
+        <p class="lead">{p.lead}</p>
+        {p.paragraphs.map((t) => <p>{parts(t).map((x) => x === 'The Slayer' ? <button class="slayer-inline" type="button" data-slayer-open>{x}</button> : x)}</p>)}
+      </div>
+    </div>
+    {p.extras.map((x) => (
+      <div class="music">
+        <p class="osd music__label">{x.title}</p>
+        <div class="prose music__text">{x.text.map((t) => <p>{t}</p>)}</div>
+        <ul class="music__artists" role="list">{x.tags.map((a) => <li>{a}</li>)}</ul>
+      </div>
+    ))}
+  </div>
+  <SlayerDialog lang={lang} close={p.close} />
+</section>
+
+<style>
+  .poetry { position: relative; border-top: 1px solid var(--c-line); padding-block: clamp(5rem, 12vw, 11rem); background:
+    linear-gradient(to right, var(--c-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    linear-gradient(to bottom, var(--c-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    var(--c-bg); }
+  .poetry__inner { display: grid; gap: 3rem; }
+  .ch-label { display: inline-flex; gap: 0.5rem; align-items: center; }
+  .ch-label::before { content: ''; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--c-trace); box-shadow: 0 0 12px var(--c-trace); }
+  .verse { display: grid; gap: 0.2em; font-family: var(--f-display); font-weight: 300; font-size: clamp(2rem, 1rem + 4.6vw, 5.4rem); line-height: 1.04; letter-spacing: -0.03em; font-variation-settings: 'opsz' 96; }
+  .verse__line { max-width: 22ch; text-wrap: balance; }
+  .verse { cursor: pointer; }
+  .verse:hover .verse__line:last-child { text-shadow: 0 0 40px var(--c-glow), 0 0 4px var(--c-signal); }
+  .slayer-cta { position: relative; justify-self: start; margin-top: -1.5rem; display: inline-flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;
+    padding: 0.75rem 1.1rem; background: color-mix(in srgb, var(--c-bg) 75%, transparent); color: var(--c-ink); border: 1px solid var(--c-signal);
+    border-radius: 2px; font-family: var(--f-mono); font-size: var(--t-sm); letter-spacing: 0.06em; cursor: pointer; overflow: hidden;
+    box-shadow: 0 0 0 0 var(--c-glow); animation: cta-pulse 2.6s ease-in-out infinite; }
+  .slayer-cta__dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--c-signal); box-shadow: 0 0 10px var(--c-glow); animation: blink 1.2s steps(1, end) infinite; }
+  .slayer-cta__credit { color: var(--c-muted); }
+  .slayer-cta__go { color: var(--c-signal); text-transform: uppercase; letter-spacing: 0.12em; }
+  .slayer-cta__sweep { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--c-signal) 28%, transparent) 50%, transparent 70%);
+    transform: translateX(-120%); animation: cta-sweep 3.2s ease-in-out infinite; }
+  .slayer-cta:hover { background: var(--c-signal); color: var(--c-signal-ink); }
+  .slayer-cta:hover .slayer-cta__go, .slayer-cta:hover .slayer-cta__credit { color: var(--c-signal-ink); }
+  @keyframes cta-pulse { 0%, 100% { box-shadow: 0 0 0 0 var(--c-glow); } 50% { box-shadow: 0 0 0 6px transparent, 0 0 28px var(--c-glow); } }
+  @keyframes cta-sweep { 0%, 35% { transform: translateX(-120%); } 75%, 100% { transform: translateX(120%); } }
+  .slayer-inline { display: inline; font: inherit; color: var(--c-signal); background: none; border: 0; padding: 0; cursor: pointer;
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-shadow: 0 0 14px var(--c-glow); }
+  .slayer-inline:hover { text-decoration-thickness: 2px; }
+  @media (prefers-reduced-motion: reduce) { .slayer-cta, .slayer-cta__sweep, .slayer-cta__dot { animation: none; } }
+  .verse__line:nth-child(even) { padding-left: clamp(1rem, 10vw, 10rem); color: var(--c-muted); }
+  .verse__line:last-child { color: var(--c-signal); font-weight: 600; text-shadow: 0 0 28px var(--c-glow); }
+  .poetry__foot { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); padding: clamp(1.25rem, 3vw, 2.2rem); border: 1px solid var(--c-line); background: color-mix(in srgb, var(--c-bg) 90%, transparent); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  .poetry__title { font-family: var(--f-display); font-weight: 800; font-size: var(--t-xl); line-height: 1.05; }
+  .music { display: grid; grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr); gap: 1.2rem clamp(1.5rem, 4vw, 4rem); padding: clamp(1.25rem, 3vw, 2.2rem); border: 1px solid var(--c-line); border-left: 2px solid var(--c-trace); background: color-mix(in srgb, var(--c-bg) 90%, transparent); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  .music .prose p, .poetry__foot .prose p { color: var(--c-ink); }
+  .music__label { color: var(--c-trace); }
+  .music__artists { grid-column: 2; list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .music__artists li { font-family: var(--f-mono); font-size: var(--t-xs); padding: 0.25rem 0.6rem; border: 1px solid var(--c-line); border-radius: 2px; color: var(--c-ink); background: color-mix(in srgb, var(--c-bg) 80%, transparent); }
+  @media (max-width: 760px) { .poetry__foot, .music { grid-template-columns: 1fr; } .music__artists { grid-column: 1; } }
+</style>

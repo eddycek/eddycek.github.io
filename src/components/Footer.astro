@@ -1,0 +1,17 @@
+---
+import type { SiteContent } from '../content/types';
+interface Props { content: SiteContent }
+const { content } = Astro.props;
+---
+<footer class="foot">
+  <div class="shell foot__inner">
+    <span class="osd">© {new Date().getFullYear()} Václav Eder</span>
+    <span class="osd">{content.footer.note}</span>
+    <span class="osd osd--signal" aria-hidden="true">EOF</span>
+  </div>
+</footer>
+<style>
+  .foot { border-top: 1px solid var(--c-line); padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); }
+  .foot__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; text-transform: none; }
+  .foot__inner .osd { text-transform: none; letter-spacing: 0.04em; }
+</style>
