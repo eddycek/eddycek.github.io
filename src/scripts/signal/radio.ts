@@ -22,7 +22,7 @@ function speak(text: string): void {
 
 export function unlockAudio(): void {
   try {
-    ctx ??= new AudioContext();
+    ctx ??= new AudioContext({ latencyHint: 'interactive' });
     if (ctx.state === 'suspended') void ctx.resume();
     // A silent one-sample buffer played inside the gesture fully unlocks iOS.
     const b = ctx.createBuffer(1, 1, 22050);
