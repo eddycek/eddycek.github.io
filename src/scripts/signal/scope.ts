@@ -280,6 +280,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.clearRect(0, 0, w, h);
     if (failsafe > 0) {
       drawFailsafe(s, t);
+      updateHud(s, t);
       return;
     }
     const mid = h * 0.5;
@@ -393,25 +394,8 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       ctx.globalAlpha = 0.08;
       ctx.fillRect(Math.random() * w * 0.6, Math.random() * h, w * 0.4, 2);
     }
-    // Signal integrity meter, only once something got broken.
-    if (dmg > 0.01) {
-      const pct = Math.round((1 - dmg) * 100);
-      const bw = Math.min(220, w * 0.3);
-      const bx = (w - bw) / 2;
-      const by = 22;
-      const hot = dmg > 0.6;
-      ctx.globalAlpha = 0.85;
-      ctx.fillStyle = hot ? pal.signal.css : pal.ink.css;
-      mono(s, 10);
-      ctx.textAlign = 'center';
-      ctx.fillText(`SIGNAL INTEGRITY ${pad(pct, 3)}%${hot && Math.sin(t * 18) > 0 ? '  ⚠ RSSI LOW' : ''}`, w / 2, by);
-      ctx.textAlign = 'left';
-      ctx.globalAlpha = 0.35;
-      ctx.fillRect(bx, by + 6, bw, 3);
-      ctx.globalAlpha = 0.95;
-      ctx.fillRect(bx, by + 6, bw * (1 - dmg), 3);
-      ctx.globalAlpha = 1;
-    }
+    // Signal integrity HUD (a DOM element above the hero text, see Hero.astro).
+    updateHud(s, t);
 
     // Impact: shockwave rings, shards, torn scanlines.
     for (const sh of shocks) {
@@ -485,6 +469,48 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.lineWidth = 1;
   };
 
+  const hud = canvas.parentElement?.querySelector<HTMLElement>('.hero__hud') ?? null;
+  const hudPct = hud?.querySelector<HTMLElement>('[data-hud-pct]') ?? null;
+  const hudSegs = hud ? Array.from(hud.querySelectorAll<HTMLElement>('[data-hud-seg]')) : [];
+  let hudLit = -1;
+  let hudHold = 0; // seconds to keep showing 100% after re-arm
+  let hudLastT = 0;
+  const updateHud = (s: Stage, t: number): void => {
+    if (!hud) return;
+    const dt = hudLastT ? Math.min(0.1, t - hudLastT) : 0;
+    hudLastT = t;
+    // Integrity shown: live damage, or during FAILSAFE a 0% hold that refills while re-arming.
+    let integrity = 1 - dmg;
+    let show = dmg > 0.01;
+    if (failsafe > 0) {
+      const k = 1 - failsafe / FAIL_T;
+      integrity = k < 0.55 ? 0 : Math.min(1, (k - 0.55) / 0.42);
+      show = true;
+      hudHold = 0.9;
+    } else if (hudHold > 0) {
+      hudHold = Math.max(0, hudHold - dt);
+      integrity = 1;
+      show = true;
+    }
+    // Hide when the hero is scrolled away.
+    const rect = s.canvas.getBoundingClientRect();
+    if (rect.bottom < 160) show = false;
+    hud.dataset.on = show ? '1' : '0';
+    if (!show) return;
+    // Same colour rule both ways: orange below 40 %, cyan above, also while refilling.
+    const hot = integrity < 0.4;
+    hud.dataset.hot = hot ? '1' : '0';
+    if (hudPct) {
+      const label = failsafe > 0 ? (integrity > 0 ? 'REARMING ' : 'RX LOSS ') : hot && Math.sin(t * 18) > 0 ? '⚠ ' : '';
+      hudPct.textContent = `${label}${pad(Math.round(integrity * 100), 3)}%`;
+    }
+    const lit = Math.round(hudSegs.length * integrity);
+    if (lit !== hudLit) {
+      hudLit = lit;
+      hudSegs.forEach((el, i) => el.toggleAttribute('data-lit', i < lit));
+    }
+  };
+
   const drawFailsafe = (s: Stage, t: number): void => {
     const { ctx, w, h, pal } = s;
     const k = 1 - failsafe / FAIL_T; // 0 → 1
@@ -509,25 +535,30 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const big = Math.min(120, w / 6.5);
+    // Centre on the part of the hero that is actually on screen (phones: hero is taller than the viewport).
+    const r = s.canvas.getBoundingClientRect();
+    const visTop = clamp(-r.top, 0, h);
+    const visBot = clamp(window.innerHeight - r.top, 0, h);
+    const cy = (visBot > visTop ? (visTop + visBot) / 2 : h * 0.44) - big * 0.25;
     if (Math.sin(t * 22) > -0.3) {
       ctx.font = `800 ${big}px ${getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif'}`;
       ctx.globalAlpha = 0.9;
       ctx.fillStyle = pal.trace.css;
-      ctx.fillText('FAILSAFE', w / 2 + 4, h * 0.44);
+      ctx.fillText('FAILSAFE', w / 2 + 4, cy);
       ctx.fillStyle = pal.signal.css;
-      ctx.fillText('FAILSAFE', w / 2 - 3, h * 0.44);
+      ctx.fillText('FAILSAFE', w / 2 - 3, cy);
     }
     mono(s, Math.max(11, Math.min(16, w / 60)));
     ctx.fillStyle = pal.ink.css;
     ctx.globalAlpha = 0.9;
     const line = FAIL_LINES[(failCount - 1) % FAIL_LINES.length] ?? '';
     const shown = line.slice(0, Math.ceil(line.length * Math.min(1, k * 2.2)));
-    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, h * 0.44 + big * 0.62);
+    ctx.fillText(`RX LOSS · ${shown}${Math.sin(t * 12) > 0 ? '_' : ' '}`, w / 2, cy + big * 0.62);
     ctx.globalAlpha = 0.55;
     ctx.fillText(
       k > 0.72 ? 'REARMING…' : `DISARMED · FAILSAFE #${pad(failCount, 2)} · YOU BROKE IT`,
       w / 2,
-      h * 0.44 + big * 0.62 + 26,
+      cy + big * 0.62 + 26,
     );
     ctx.textAlign = 'left';
     ctx.textBaseline = 'alphabetic';

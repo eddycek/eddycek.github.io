@@ -10,6 +10,10 @@ const claimParts = h.claim.split(/(šumu|noise)/);
 <section class="hero" id="signal" aria-labelledby="hero-name">
   <canvas class="hero__scope" id="scope" aria-hidden="true"></canvas>
   <div class="hero__scan" aria-hidden="true"></div>
+  <div class="hero__hud" aria-hidden="true" data-on="0">
+    <div class="hero__hud-row"><span>SIGNAL INTEGRITY</span><span data-hud-pct>100%</span></div>
+    <div class="hero__hud-bar">{Array.from({ length: 20 }, () => <i data-hud-seg data-lit></i>)}</div>
+  </div>
 
   <div class="hero__osd hero__osd--tl osd" aria-hidden="true">
     <span class="osd--signal">● REC</span>
@@ -62,6 +66,16 @@ const claimParts = h.claim.split(/(šumu|noise)/);
   .hero__intro { max-width: 46ch; font-size: var(--t-lg); color: var(--c-ink); opacity: 0.86; line-height: 1.5; text-shadow: 0 1px 12px var(--c-bg); }
   .hero__tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .hero__tags li { font-family: var(--f-mono); font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.1em; padding: 0.3rem 0.65rem; border: 1px solid var(--c-line); border-radius: 2px; background: color-mix(in srgb, var(--c-bg) 70%, transparent); }
+  .hero__hud { position: fixed; left: 50%; top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 12px); z-index: 45; width: min(300px, calc(100% - 48px)); padding: 0.55rem 0.75rem 0.65rem; pointer-events: none;
+    background: color-mix(in srgb, var(--c-bg) 86%, transparent); border: 1px solid var(--c-line); font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--c-ink);
+    opacity: 0; transition: opacity 0.25s; transform: translateX(-50%); }
+  .hero__hud[data-on='1'] { opacity: 1; }
+  .hero__hud[data-hot='1'] { border-color: var(--c-signal); color: var(--c-signal); box-shadow: 0 0 18px var(--c-glow); }
+  .hero__hud-row { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.45rem; }
+  .hero__hud-bar { display: grid; grid-template-columns: repeat(20, 1fr); gap: 2px; }
+  .hero__hud-bar i { height: 6px; background: var(--c-ink); opacity: 0.16; }
+  .hero__hud-bar i[data-lit] { background: var(--c-trace); opacity: 0.95; }
+  .hero__hud[data-hot='1'] .hero__hud-bar i[data-lit] { background: var(--c-signal); }
   .hero__osd { position: absolute; display: flex; gap: 1.2rem; z-index: 2; }
   .hero__osd--tl { top: 2.4rem; left: var(--gutter-l); }
   .hero__osd--tr { top: 2.4rem; right: var(--gutter-r); }
