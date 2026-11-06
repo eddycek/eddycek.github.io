@@ -1,0 +1,8 @@
+telemetry-lost.wav       = SOUNDS/en/SYSTEM/telemko.wav
+telemetry-recovered.wav  = SOUNDS/en/SYSTEM/telemok.wav
+
+Source: EdgeTX SD card sounds, release v2.12.3, default English pack
+        https://github.com/EdgeTX/edgetx-sdcard-sounds
+License: GNU General Public License v2.0
+         https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Files are redistributed unmodified.
