@@ -31,7 +31,7 @@ export const content: SiteContent = {
     lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
       'Keboola brings data scattered across dozens of systems into one governed foundation, a single source of truth where every metric has one agreed definition. More than a thousand companies run on it.',
-      'Then came LLMs. ChatGPT at the end of 2022 showed where this was heading, but the real turning point for me came in November 2025 with Claude Opus 4.5. It changed my world completely; a total game changer. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
+      'Then came LLMs, and it was a total banger. ChatGPT at the end of 2022 showed where this was heading, but the real breakthrough for me came in November 2025 with Claude Opus 4.5. It changed my world completely; a game changer. At times it cost me sleep, because suddenly I could deliver every idea I had, fast, and it was hard to stop. An incredibly exciting time for me. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
       'AI agents change everything. Agents can now run processes inside companies end-to-end; watching the numbers, reconciliation, reporting. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
       'My main mission at Keboola is to build a Dark Factory. The term comes from manufacturing; a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the guardrails and review the result. That is what I am building our whole engineering around; context for agents, automated quality and security gates, and a human in the loop exactly where it matters.',
       'Our first priority is a happy customer. When they grow, we grow.',
@@ -44,7 +44,7 @@ export const content: SiteContent = {
       { label: 'Writing code since', value: 'childhood' },
     ],
     agnes: {
-      label: 'Main project · agnesbrain.ai',
+      label: 'Primary focus · agnesbrain.ai',
       title: 'Agnes',
       text: [
         'Agnes is an AI platform we build at Keboola for whole companies, running in their own environment. It brings warehouse data, company documents, a semantic layer of agreed metric definitions and a knowledge graph together into one company brain.',
@@ -173,8 +173,8 @@ export const content: SiteContent = {
       {
         name: 'Home rack',
         tagline: '',
-        description: 'My own UniFi network rack, built from scratch as the backbone of my homelab. I wrote about it for UniFi Community Stories.',
-        tags: ['UniFi', 'Homelab'],
+        description: 'My own UniFi network rack, built entirely with my own hands; from pulling the cables through crimping the connectors and the patch panel to setting up the whole network. The backbone of my homelab and smarthome. I wrote about it for UniFi Community Stories.',
+        tags: ['UniFi', 'Homelab', 'Cabling', 'DIY'],
       },
       {
         name: '3D printing',
@@ -183,11 +183,11 @@ export const content: SiteContent = {
         tags: ['3D printing', 'CAD'],
       },
       {
-        name: 'Flipper Zero & IoT',
+        name: 'Smarthome, IoT & Flipper Zero',
         tagline: '',
         description:
-          'Sub-GHz, NFC, RFID and a pile of IoT devices that measure, switch and monitor things at home. I like finding out how the devices around us talk to each other, and how easy they are to listen in on.',
-        tags: ['Flipper Zero', 'IoT', 'Cyber security'],
+          'I built a complete smarthome from scratch. Temperature, humidity and motion sensors, lights, heating, security and automations that run on their own; the house reacts to who is home, the time of day and what is happening outside. Everything local-first, on a separate VLAN and monitored, so nothing leaks to the cloud. Plus Flipper Zero; Sub-GHz, NFC, RFID and finding out how the devices around us talk to each other, and how easy they are to listen in on.',
+        tags: ['Smarthome', 'IoT', 'Automation', 'Flipper Zero', 'Cyber security'],
       },
     ],
   },

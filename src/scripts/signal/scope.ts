@@ -133,7 +133,9 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   const onDown = (e: PointerEvent): void => {
     const r = canvas.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
-    if ((e.target as Element | null)?.closest?.('a, button, input, textarea')) return;
+    // Only clicks that land inside the hero section itself; never the sticky bar or the rest of the page.
+    const target = e.target as Element | null;
+    if (!target?.closest?.('#signal') || target.closest('a, button, input, textarea, header')) return;
     if (failsafe > 0) return;
     dmg = Math.min(1, dmg + 0.13 + Math.random() * 0.05);
     if (dmg >= 1) {

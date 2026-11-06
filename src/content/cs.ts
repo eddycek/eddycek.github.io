@@ -8,11 +8,11 @@ export const content: SiteContent = {
       'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, Dark Factory, SRE a cyber security. Po večerech FPV, poezie, music, digitální nomádství a gaming. Prague.',
   },
   nav: [
-    { id: 'prace', label: 'Práce' },
-    { id: 'cesta', label: 'Cesta' },
-    { id: 'dilna', label: 'Dílna' },
-    { id: 'poezie', label: 'Osobní' },
-    { id: 'kontakt', label: 'Kontakt' },
+    { id: 'prace', label: 'Work' },
+    { id: 'cesta', label: 'Journey' },
+    { id: 'dilna', label: 'Workshop' },
+    { id: 'poezie', label: 'Personal' },
+    { id: 'kontakt', label: 'Contact' },
   ],
   switchLabel: 'EN',
   hero: {
@@ -20,21 +20,21 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Stavím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
-    tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poezie', 'Music', 'Digitální nomádství', 'Gaming'],
-    scrollHint: 'Dál',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
+    tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
+    scrollHint: 'Next',
     clickHint: '[ klikni do signálu ]',
   },
   work: {
-    eyebrow: 'Práce',
+    eyebrow: 'Work',
     title: 'Co dělám teď',
-    lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme data platformu, díky které firmy řídí business podle dat, a ne podle pocitu.',
+    lead: 'Od dubna 2026 jsem CTO v Keboole. Buildíme data platformu, díky které firmy řídí business podle dat, a ne podle gut feelingu.',
     paragraphs: [
       'Keboola propojí data rozesetá po desítkách systémů do jednoho governed základu, single source of truth, kde má každá metrika jednu schválenou definici. Běží na ní přes tisíc firem.',
-      'Pak přišly LLM. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět; totální game changer. Neodradilo mě to, naopak; jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
-      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách end-to-end; hlídat čísla, reconciliation, reporting. Data už nemusí chystat data engineer. Business člověk se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
-      'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a shipují kód, a lidi určují intent, guardrails a dělají review výsledku. K tomu teď stavím celý engineering; kontext pro agenty, automatické quality a security gates a human in the loop přesně tam, kde na tom záleží.',
-      'Naše první priorita je happy zákazník. Když roste on, rosteme i my.',
+      'Pak přišly LLM a byl to totální banger. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný breakthrough pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět; game changer. Chvílemi jsem kvůli tomu měl problémy se spánkem, protože najednou šlo rychle deliverovat všechny moje nápady a nešlo přestat. Pro mě extrémně exciting doba. Neodradilo mě to, naopak; jsem happy, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
+      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách end-to-end; hlídat čísla, reconciliation, reporting. Data už nemusí preparovat data engineer. Business člověk se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a shipují kód, a lidi určují intent, guardrails a dělají review výsledku. K tomu teď buildím celý engineering; kontext pro agenty, automatické quality a security gates a human in the loop přesně tam, kde na tom záleží.',
+      'Naše první priorita je happy customer. Když roste on, rosteme i my.',
       'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny engineering skills do jednoho; kód, networking, databáze, cloud, security i to, jak se lidi chovají ve tři ráno při incidentu. Můj path vedl od frontendu přes full stack k backendu a pak do infry. A díky LLM jsem zase zpátky u full stacku, jen o level výš. „All of this has happened before, and all of this will happen again.“ (Battlestar Galactica)',
     ],
     stats: [
@@ -44,7 +44,7 @@ export const content: SiteContent = {
       { label: 'Kóduju od', value: 'dětství' },
     ],
     agnes: {
-      label: 'Main project · agnesbrain.ai',
+      label: 'Primary focus · agnesbrain.ai',
       title: 'Agnes',
       text: [
         'Agnes je AI platforma, kterou v Keboole stavíme pro celé firmy a která běží v jejich vlastním prostředí. Spojuje data z warehouse, firemní dokumenty, semantic layer se schválenými definicemi metrik a knowledge graph do jednoho company brain.',
@@ -68,7 +68,7 @@ export const content: SiteContent = {
     },
   },
   journey: {
-    eyebrow: 'Cesta',
+    eyebrow: 'Journey',
     title: 'Kudy jsem šel',
     lead: 'Od prvního placeného kódu po vedení engineeringu.',
     stops: [
@@ -147,7 +147,7 @@ export const content: SiteContent = {
     education: 'Formálním vzděláním elektrotechnik.',
   },
   workshop: {
-    eyebrow: 'Dílna',
+    eyebrow: 'Workshop',
     title: 'Co dělám po večerech',
     lead: 'Létám, 3D printím, pájím a hackuju. Většinou věci, které mi chyběly.',
     items: [
@@ -173,8 +173,8 @@ export const content: SiteContent = {
       {
         name: 'Vlastní rack',
         tagline: '',
-        description: 'Vlastní síťový rack na UniFi, postavený from scratch jako backbone pro můj homelab. Psal jsem o něm pro UniFi Community Stories.',
-        tags: ['UniFi', 'Homelab'],
+        description: 'Vlastní network rack na UniFi, postavený komplet celý vlastníma rukama; od tahání kabelů přes krimpování konektorů a patch panel až po setup celé sítě. Backbone pro můj homelab a smarthome. Psal jsem o něm pro UniFi Community Stories.',
+        tags: ['UniFi', 'Homelab', 'Cabling', 'DIY'],
       },
       {
         name: '3D print',
@@ -183,17 +183,17 @@ export const content: SiteContent = {
         tags: ['3D print', 'CAD'],
       },
       {
-        name: 'Flipper Zero a IoT',
+        name: 'Smarthome, IoT a Flipper Zero',
         tagline: '',
         description:
-          'Sub-GHz, NFC, RFID a hromada IoT devices, které doma měří, spínají a monitorují. Baví mě zkoumat, jak spolu věci kolem nás komunikujou a jak snadno se dají odposlechnout.',
-        tags: ['Flipper Zero', 'IoT', 'Cyber security'],
+          'Postavil jsem si komplet smarthome from scratch. Senzory teploty, vlhkosti a pohybu, světla, topení, security a automatizace, které běží samy; dům reaguje na to, kdo je doma, jaký je čas a co se děje venku. Všechno local-first, v oddělené VLAN a s monitoringem, ať to neleakuje do cloudu. K tomu Flipper Zero; Sub-GHz, NFC, RFID a zkoumání, jak spolu devices kolem nás komunikujou a jak snadno se dají odposlechnout.',
+        tags: ['Smarthome', 'IoT', 'Automation', 'Flipper Zero', 'Cyber security'],
       },
     ],
   },
   poetry: {
-    eyebrow: 'Osobní',
-    title: 'Poezie, music, nomádství a gaming',
+    eyebrow: 'Personal',
+    title: 'Poetry, music, nomad life a gaming',
     lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
@@ -206,7 +206,7 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovizuálním contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone.',
+      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone.',
     ],
     extras: [
       {
@@ -218,9 +218,9 @@ export const content: SiteContent = {
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
       },
       {
-        title: 'Digitální nomádství',
+        title: 'Digital nomad life',
         text: [
-          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval remote z různých míst; od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
+          'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digital nomad a pracoval remote z různých míst; od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
           'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
           'Na nomádství mě baví, že zjistíš, jak málo k životu potřebuješ. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí MacBook, pár kusů gearu a místo, kde se posadíš a máš klid na deep work.',
         ],
@@ -237,8 +237,8 @@ export const content: SiteContent = {
     ],
   },
   contact: {
-    eyebrow: 'Kontakt',
-    title: 'Napiš mi',
+    eyebrow: 'Contact',
+    title: 'Hit me up',
     lead: 'Nejradši přes iMessage nebo WhatsApp, e-mail je backup. Ozvi se klidně, když',
     location: 'Prague',
     emailLabel: 'E-mail',
