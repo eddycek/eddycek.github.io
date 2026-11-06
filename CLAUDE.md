@@ -6,7 +6,7 @@ Personal site of Václav "eddycek" Eder. Astro (static), vanilla Canvas animatio
 - All copy lives in `src/content/cs.ts` and `src/content/en.ts` (same shape, `types.ts`). Keep both in sync.
 - `src/content/slayer.ts` holds the full poem (verbatim, never edit wording).
 - Contact details and social links: `src/content/contact.ts`.
-- Style rules for copy: no em dash; use semicolons instead of colons in prose; "Dark Factory" capitalised; "kontent" instead of "obsah"; "independent" for artists; "MacBook" not "notebook". Czech copy uses ty (tykání, "Napiš mi"), never vy. Use Eddy's anglicisms (business, shipovat, mindset, game changer, scale…). "Music" not "hudba", "Cyber security" not "Security". Hero shows "Vaclav" without diacritics; meta and JSON-LD keep "Václav". Never mention moving to Prague. Hero: "Vaclav" solid light, "Eder" solid but muted (var(--c-muted)), no stripes. Never put game or film artwork or a recognisable character likeness on the site.
+- Style rules for copy: no em dash; use semicolons instead of colons in prose; "Dark Factory" capitalised; "kontent" instead of "obsah"; "independent" for artists; "MacBook" not "notebook". Czech copy uses ty (tykání, "Napiš mi"), never vy. Use Eddy's anglicisms (business, shipovat, mindset, game changer, scale…). "Music" not "hudba", "Cyber security" not "Security". Hero shows "Vaclav" without diacritics; meta and JSON-LD keep "Václav". Never mention moving to Prague. Hero (final, do not change): "Vaclav" solid light, "Eder" with the original scanline fill (3px ink / 2px gap), indented. Never put game or film artwork or a recognisable character likeness on the site.
 
 ## Workflow for every change
 1. `npm run dev` for live work (http://localhost:4321).
