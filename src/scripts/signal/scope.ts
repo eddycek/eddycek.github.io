@@ -497,7 +497,8 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     if (rect.bottom < 160) show = false;
     hud.dataset.on = show ? '1' : '0';
     if (!show) return;
-    const hot = integrity < 0.4 || failsafe > 0;
+    // Same colour rule both ways: orange below 40 %, cyan above, also while refilling.
+    const hot = integrity < 0.4;
     hud.dataset.hot = hot ? '1' : '0';
     if (hudPct) {
       const label = failsafe > 0 ? (integrity > 0 ? 'REARMING ' : 'RX LOSS ') : hot && Math.sin(t * 18) > 0 ? '⚠ ' : '';
