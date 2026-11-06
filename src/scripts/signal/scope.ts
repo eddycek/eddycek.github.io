@@ -393,25 +393,8 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       ctx.globalAlpha = 0.08;
       ctx.fillRect(Math.random() * w * 0.6, Math.random() * h, w * 0.4, 2);
     }
-    // Signal integrity meter, only once something got broken.
-    if (dmg > 0.01) {
-      const pct = Math.round((1 - dmg) * 100);
-      const bw = Math.min(220, w * 0.3);
-      const bx = (w - bw) / 2;
-      const by = 22;
-      const hot = dmg > 0.6;
-      ctx.globalAlpha = 0.85;
-      ctx.fillStyle = hot ? pal.signal.css : pal.ink.css;
-      mono(s, 10);
-      ctx.textAlign = 'center';
-      ctx.fillText(`SIGNAL INTEGRITY ${pad(pct, 3)}%${hot && Math.sin(t * 18) > 0 ? '  ⚠ RSSI LOW' : ''}`, w / 2, by);
-      ctx.textAlign = 'left';
-      ctx.globalAlpha = 0.35;
-      ctx.fillRect(bx, by + 6, bw, 3);
-      ctx.globalAlpha = 0.95;
-      ctx.fillRect(bx, by + 6, bw * (1 - dmg), 3);
-      ctx.globalAlpha = 1;
-    }
+    // Signal integrity HUD (a DOM element above the hero text, see Hero.astro).
+    updateHud(s, t);
 
     // Impact: shockwave rings, shards, torn scanlines.
     for (const sh of shocks) {
@@ -483,6 +466,30 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     }
     ctx.globalAlpha = 1;
     ctx.lineWidth = 1;
+  };
+
+  const hud = canvas.parentElement?.querySelector<HTMLElement>('.hero__hud') ?? null;
+  const hudPct = hud?.querySelector<HTMLElement>('[data-hud-pct]') ?? null;
+  const hudSegs = hud ? Array.from(hud.querySelectorAll<HTMLElement>('[data-hud-seg]')) : [];
+  let hudLit = -1;
+  const updateHud = (s: Stage, t: number): void => {
+    if (!hud) return;
+    const show = dmg > 0.01 && failsafe <= 0;
+    hud.dataset.on = show ? '1' : '0';
+    if (!show) return;
+    const hot = dmg > 0.6;
+    hud.dataset.hot = hot ? '1' : '0';
+    if (hudPct) hudPct.textContent = `${hot && Math.sin(t * 18) > 0 ? '⚠ ' : ''}${pad(Math.round((1 - dmg) * 100), 3)}%`;
+    const lit = Math.round(hudSegs.length * (1 - dmg));
+    if (lit !== hudLit) {
+      hudLit = lit;
+      hudSegs.forEach((el, i) => el.toggleAttribute('data-lit', i < lit));
+    }
+    // Float just under the sticky bar while the hero is scrolled.
+    const rect = s.canvas.getBoundingClientRect();
+    const barH = document.querySelector('.bar')?.getBoundingClientRect().height ?? 52;
+    const y = clamp(-rect.top + barH + 14, 0, Math.max(0, s.h - 80));
+    hud.style.transform = `translate(-50%, ${Math.round(y)}px)`;
   };
 
   const drawFailsafe = (s: Stage, t: number): void => {
