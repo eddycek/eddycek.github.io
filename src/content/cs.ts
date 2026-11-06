@@ -144,7 +144,6 @@ export const content: SiteContent = {
         milestone: true,
       },
     ],
-    education: 'Formálním vzděláním elektrotechnik.',
   },
   workshop: {
     eyebrow: 'Side quests',
@@ -215,7 +214,7 @@ export const content: SiteContent = {
           'Music je pro mě zásadní. Hraje skoro pořád; při práci, při psaní i při létání. Bez sluchátek nejedu.',
           'Teď mě nejvíc táhne česká youngblood scéna a niche music; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; super kapela. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },
       {
         title: 'Digital nomad life',

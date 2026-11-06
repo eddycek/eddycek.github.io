@@ -144,7 +144,6 @@ export const content: SiteContent = {
         milestone: true,
       },
     ],
-    education: 'Formal education in electrical engineering.',
   },
   workshop: {
     eyebrow: 'Side quests',
@@ -215,7 +214,7 @@ export const content: SiteContent = {
           'Music matters enormously to me. It runs almost constantly; while I work, write and fly. I do not go anywhere without headphones.',
           'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },
       {
         title: 'Digital nomad life',
