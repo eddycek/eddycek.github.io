@@ -103,7 +103,7 @@ export const content: SiteContent = {
         level: 0.58,
         role: 'Senior Backend Developer, Head of Software Development',
         org: 'Ušetřeno.cz, Mana',
-        note: 'Přesun do Prahy. Nejdřív backend, pak leadování menšího teamu a zjištění, že kód je ta jednodušší část.',
+        note: 'Nejdřív backend, pak leadování menšího teamu a zjištění, že kód je ta jednodušší část.',
       },
       {
         period: '2019–2024',
