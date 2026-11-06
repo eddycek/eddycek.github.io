@@ -193,7 +193,7 @@ export const content: SiteContent = {
   poetry: {
     eyebrow: 'Personal',
     title: 'Poetry, music, nomad life and gaming',
-    lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
+    lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary, at Cross Club in Prague and at other public venues, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
       'every second burns too fast.',
@@ -212,7 +212,7 @@ export const content: SiteContent = {
         title: 'Music',
         text: [
           'Music matters enormously to me. It runs almost constantly; while I work, write and fly. Often I just put something on, lie down and listen. I pick what I listen to carefully myself and do not stay stuck with what I grew up on; I actively dig for new music.',
-          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
+          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; exactly the direction I love most, where the lyrics are poetic and abstract. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },

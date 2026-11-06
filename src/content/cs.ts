@@ -193,7 +193,7 @@ export const content: SiteContent = {
   poetry: {
     eyebrow: 'Personal',
     title: 'Poetry, music, nomad life a gaming',
-    lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
+    lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech, v pražském Crossu i na dalších veřejných místech, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
       'every second burns too fast.',
@@ -212,7 +212,7 @@ export const content: SiteContent = {
         title: 'Music',
         text: [
           'Music je pro mě zásadní. Hraje skoro pořád; při práci, při psaní i při létání. A často si ji pustím jen tak, lehnu si a poslouchám. Co poslouchám, si pečlivě vybírám sám a nezůstávám u věcí z mládí; novou hudbu aktivně hledám.',
-          'Teď mě nejvíc táhne česká youngblood scéna a niche music; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; super kapela. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche music; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; přesně ten směr, který miluju nejvíc, kdy je lyrika poetická a abstraktní. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
         tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },

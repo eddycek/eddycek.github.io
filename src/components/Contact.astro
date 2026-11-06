@@ -6,6 +6,9 @@ interface Props { content: SiteContent }
 const c = Astro.props.content.contact;
 const id = Astro.props.content.nav[4].id;
 const digits = contact.phone.replace(/[^\d+]/g, '');
+// Anti-scraper: real values ship only base64(reversed) and are decoded in the browser.
+const enc = (s: string): string => Buffer.from([...s].reverse().join(''), 'utf8').toString('base64');
+const mask = (s: string): string => s.includes('@') ? s.replace(/^([^@]{3})[^@]*@.*$/, '$1··· ⟨at⟩ ···') : s.replace(/\d(?=(?:\D*\d){4})/g, '·');
 const rows: { label: string; value: string; href: string; extra?: { label: string; href: string } }[] = [
   ...(digits ? [{
     label: `${c.imessageLabel} · ${c.whatsappLabel}`,
@@ -24,10 +27,10 @@ const rows: { label: string; value: string; href: string; extra?: { label: strin
       {rows.map((r) => (
         <div class="line">
           <span class="osd">{r.label}</span>
-          <a class="line__value" href={r.href}>{r.value}</a>
+          <a class="line__value" href={`#${id}`} data-enc-href={enc(r.href)} data-enc-text={enc(r.value)}>{mask(r.value)}</a>
           <span class="line__tools">
-          {r.extra && <a class="osd line__copy line__extra" href={r.extra.href}>{r.extra.label} ↗</a>}
-          <button class="osd line__copy" type="button" data-copy={r.value} data-done={c.copiedLabel}>{c.copyLabel}</button>
+          {r.extra && <a class="osd line__copy line__extra" href={`#${id}`} data-enc-href={enc(r.extra.href)} data-external>{r.extra.label} ↗</a>}
+          <button class="osd line__copy" type="button" data-enc-copy={enc(r.value)} data-done={c.copiedLabel}>{c.copyLabel}</button>
           </span>
         </div>
       ))}
@@ -64,6 +67,15 @@ const rows: { label: string; value: string; href: string; extra?: { label: strin
 </style>
 
 <script>
+  const dec = (s?: string): string => {
+    try { return Array.from(new TextDecoder().decode(Uint8Array.from(atob(s ?? ''), (ch) => ch.charCodeAt(0)))).reverse().join(''); } catch { return ''; }
+  };
+  document.querySelectorAll<HTMLAnchorElement>('[data-enc-href]').forEach((a) => {
+    a.href = dec(a.dataset.encHref);
+    if (a.dataset.encText) a.textContent = dec(a.dataset.encText);
+    if ('external' in a.dataset) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-enc-copy]').forEach((btn) => { btn.dataset.copy = dec(btn.dataset.encCopy); });
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
     const label = btn.textContent;
     btn.addEventListener('click', async () => {

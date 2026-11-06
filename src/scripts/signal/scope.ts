@@ -320,7 +320,10 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     }
     for (let k = 1; k < 8; k++) {
       if (k === 4 || w < 1100) continue;
-      ctx.fillText(`${(4 - k) * 200 > 0 ? '+' : ''}${(4 - k) * 200}°/s`, 6, (h * k) / 8 - 4);
+      // Right edge, so the labels never sit under the hero text.
+      ctx.textAlign = 'right';
+      ctx.fillText(`${(4 - k) * 200 > 0 ? '+' : ''}${(4 - k) * 200}°/s`, w - 6, (h * k) / 8 - 4);
+      ctx.textAlign = 'left';
     }
     ctx.globalAlpha = 0.55;
     if (w > 760) ctx.fillText('CH1 SP/GYRO  CH2 PID  CH3·4 NOISE', 6, 16);
