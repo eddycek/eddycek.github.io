@@ -9,7 +9,8 @@
     "test:responsive": "npm run build && playwright test",
     "test:ui": "playwright test --ui",
     "shots": "node scripts/shots.mjs",
-    "assets": "node scripts/assets.mjs"
+    "assets": "node scripts/assets.mjs",
+    "shots:iphone": "node scripts/iphone.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
