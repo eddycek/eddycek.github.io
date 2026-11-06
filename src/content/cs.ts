@@ -31,10 +31,11 @@ export const content: SiteContent = {
     lead: 'Od dubna 2026 jsem CTO v Keboole. Stavíme datovou platformu, díky které firmy řídí byznys podle dat, a ne podle pocitu.',
     paragraphs: [
       'Keboola propojí data rozesetá po desítkách systémů do jednoho spravovaného základu, kde má každá metrika jednu schválenou definici. Stojí na ní přes tisíc firem.',
-      'S příchodem AI agentů se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách: hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Pak přišly velké jazykové modely. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný zlom pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět a změnilo to celou hru. Neodradilo mě to, naopak: jsem rád, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
+      'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách: hlídat čísla, odsouhlasovat, připravovat podklady. Data už nemusí chystat data engineer. Člověk z byznysu se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
+      'Můj hlavní fokus je dark factory. Pojem je z výroby: továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a nasazují kód, a lidé určují záměr, hranice a hodnotí výsledek. Tímhle směrem teď stavím engineering v Keboole: kontext pro agenty, automatické brány kvality a bezpečnosti a lidský úsudek přesně tam, kde na něm záleží.',
       'Naše první priorita je spokojený zákazník. Když roste on, rosteme i my.',
-      'V engineeringu bereme AI agenty jako běžnou součást týmu. Rozhoduju, jaký kontext dostanou, kde mají hranice a kdy jejich výsledek musí zkontrolovat člověk.',
-      'Přicházím ze SRE a security. U každé změny se pořád nejdřív ptám, co se stane, až selže, a kdo se to dozví jako první.',
+      'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné: kód, sítě, databáze, cloud, bezpečnost i to, jak se lidi chovají ve tři ráno při incidentu. Moje cesta vedla od frontendu přes full stack k backendu a pak do infrastruktury. A díky LLM jsem zase zpátky u full stacku, jen o patro výš. Všechno se to už stalo a stane se to znovu.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -57,13 +58,13 @@ export const content: SiteContent = {
       title: 'Stejná DNA',
       text: [
         'Nejúžeji pracuju s Pavlem Doležalem, CEO a spoluzakladatelem Keboly, a se spoluzakladatelem Petrem Šimečkem. Miluju to, protože jsou to lidi se stejnou DNA jako já: stejné nároky, stejnou netrpělivost a stejnou radost z věcí, které ještě nikdo nepostavil.',
-        'A mám rád core tým v Keboole. Lidi, kteří platformu znají do posledního šroubku, táhnou za jeden provaz a pořád je to baví. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
+        'A mám rád core tým v Keboole. Baví nás to a pořád hledáme nové technologické cesty. Na tuhle práci jsme naladění stejně a je to vidět na tom, co stavíme.',
       ],
     },
     motto: {
       quote: 'All of this has happened before, and all of this will happen again.',
       source: 'Battlestar Galactica',
-      note: 'Můj osobní i pracovní postoj. Vzorce se opakují v incidentech, v týmech i v technologických vlnách. Kdo je pozná včas, nemusí každou lekci platit znovu.',
+      note: 'Můj osobní i pracovní postoj. Vzorce se opakují v incidentech, v týmech, v technologických vlnách i v mé vlastní cestě: od frontendu přes backend a infrastrukturu zpátky k full stacku. Kdo je pozná včas, nemusí každou lekci platit znovu.',
     },
   },
   journey: {
@@ -110,7 +111,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastruktura, Kubernetes, Terraform, security. Pět let v provozu, kde má produkce vždycky poslední slovo.',
+        note: 'Infrastruktura, Kubernetes, Terraform, security. SRE mě strašně bavilo, protože spojuje všechny inženýrské dovednosti do jedné.',
         milestone: true,
       },
       {
@@ -209,7 +210,7 @@ export const content: SiteContent = {
         text: [
           'Cestování je pro mě zásadní. Několik měsíců jsem žil jako digitální nomád a pracoval z různých míst: od Kuala Lumpur a Hanoje přes Mexico City a polovinu Jižní Ameriky po Marrákeš a Kapské Město.',
           'Nejvíc miluju pouště. Ticho, prostor a nebe, které v noci nemá konec. Úplně jsem propadl poušti Atacama a Santiagu de Chile.',
-          'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí notebook, pár dalších kusů hardwaru a místo, kde se posadíš a v klidu pracuješ.',
+          'Na nomádství mě baví, že člověk zjistí, jak málo k životu potřebuje. Drží tě to u minimalismu, protože na konci dne nevlastníš ty věci ty, ale ony vlastní tebe. Stačí MacBook, pár dalších kusů hardwaru a místo, kde se posadíš a v klidu pracuješ.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrákeš', 'Hanoj', 'Kuala Lumpur', 'Mexico City', 'Jižní Amerika', 'Kapské Město'],
       },

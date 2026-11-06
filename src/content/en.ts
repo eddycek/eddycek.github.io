@@ -31,10 +31,11 @@ export const content: SiteContent = {
     lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
       'Keboola brings data scattered across dozens of systems into one governed foundation where every metric has one agreed definition. More than a thousand companies run on it.',
+      'Then came large language models. ChatGPT at the end of 2022 showed where this was heading, but the real turning point for me came in November 2025 with Claude Opus 4.5. It changed my world completely and changed the whole game. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
       'AI agents change everything. Agents can now run processes inside companies on their own: watching the numbers, reconciling, preparing reports. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
+      'My main focus is the dark factory. The term comes from manufacturing: a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the limits and judge the result. That is the direction I am building engineering at Keboola in: context for agents, automated quality and security gates, and human judgment exactly where it matters.',
       'Our first priority is a happy customer. When they grow, we grow.',
-      'In engineering, AI agents are a normal part of the team. I decide what context they get, where their limits are, and when a human has to check their output.',
-      'I come from SRE and security. With every change, my first question is still what happens when it fails, and who finds out first.',
+      'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one: code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infrastructure. And thanks to LLMs I am back at full stack, just one floor higher. All of this has happened before, and it will happen again.',
     ],
     stats: [
       { label: 'Role', value: 'CTO' },
@@ -57,13 +58,13 @@ export const content: SiteContent = {
       title: 'Same DNA',
       text: [
         'I work most closely with Pavel Doležal, Keboola’s CEO and co-founder, and co-founder Petr Šimeček. I love it, because I get to work with people with the same DNA as mine: the same standards, the same impatience and the same joy in building things nobody has built yet.',
-        'And I love the core team at Keboola: people who know the platform down to the last bolt, pull in the same direction and still enjoy it. We are tuned to this work the same way, and it shows in what we build.',
+        'And I love the core team at Keboola. We enjoy this and keep looking for new technological paths. We are tuned to this work the same way, and it shows in what we build.',
       ],
     },
     motto: {
       quote: 'All of this has happened before, and all of this will happen again.',
       source: 'Battlestar Galactica',
-      note: 'How I think about work and life. Patterns repeat in incidents, in teams and in technology waves. Spot them early and you do not have to pay for every lesson twice.',
+      note: 'How I think about work and life. Patterns repeat in incidents, in teams, in technology waves and in my own path: from frontend through backend and infrastructure back to full stack. Spot them early and you do not have to pay for every lesson twice.',
     },
   },
   journey: {
@@ -110,7 +111,7 @@ export const content: SiteContent = {
         level: 0.48,
         role: 'Senior Software Developer & SRE',
         org: 'Keboola',
-        note: 'Infrastructure, Kubernetes, Terraform, security. Five years in operations, where production always gets the last word.',
+        note: 'Infrastructure, Kubernetes, Terraform, security. I loved SRE, because it pulls every engineering skill into one.',
         milestone: true,
       },
       {
@@ -209,7 +210,7 @@ export const content: SiteContent = {
         text: [
           'Travel matters enormously to me. I spent several months as a digital nomad, working from all over: from Kuala Lumpur and Hanoi through Mexico City and half of South America to Marrakech and Cape Town.',
           'Deserts are what I love most. The silence, the space, and a night sky that never ends. I fell hard for the Atacama and for Santiago de Chile.',
-          'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A laptop, a bit of other hardware and a place to sit down and work in peace is enough.',
+          'What I love about nomad life is finding out how little you actually need. It keeps you minimal, because at the end of the day you do not own your things, they own you. A MacBook, a bit of other hardware and a place to sit down and work in peace is enough.',
         ],
         tags: ['Atacama', 'Santiago de Chile', 'Marrakech', 'Hanoi', 'Kuala Lumpur', 'Mexico City', 'South America', 'Cape Town'],
       },
