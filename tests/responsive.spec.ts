@@ -39,13 +39,14 @@ for (const pg of PAGES) {
       page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
       await page.goto(pg.path);
       await page.waitForLoadState('networkidle');
+      await page.evaluate(() => document.fonts.ready);
       expect(errors, 'console / page errors').toEqual([]);
 
       const { sw, vw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, vw: window.innerWidth }));
       expect(sw, 'document wider than viewport').toBeLessThanOrEqual(vw + 1);
       expect(await overflowing(page), 'elements past the right edge').toEqual([]);
 
-      await page.screenshot({ path: info.outputPath(`${pg.name}-full.png`), fullPage: true });
+      await page.screenshot({ path: info.outputPath(`${pg.name}-full.png`), fullPage: true, scale: 'css' });
     });
 
     test('tap targets are at least 24px', async ({ page }) => {
