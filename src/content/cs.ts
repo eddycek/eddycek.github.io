@@ -78,7 +78,7 @@ export const content: SiteContent = {
         level: 0.25,
         role: 'Full-stack vývojář',
         org: 'Grafické studio F13',
-        note: 'První kód, za který mi někdo zaplatil, a k tomu redakce kulturního portálu.',
+        note: 'První full-time job, kde jsem se naplno začal věnovat engineeringu. K tomu redakce kulturního portálu.',
         milestone: true,
       },
       {

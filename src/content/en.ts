@@ -78,7 +78,7 @@ export const content: SiteContent = {
         level: 0.25,
         role: 'Full-stack developer',
         org: 'Grafické studio F13',
-        note: 'The first code anyone paid me for, plus editing a cultural portal.',
+        note: 'My first full-time job, where I went all in on engineering. Plus editing a cultural portal.',
         milestone: true,
       },
       {
