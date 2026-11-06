@@ -20,21 +20,21 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'Hledám signál v šumu.',
     intro:
-      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není feature, je to slib.',
+      'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není prázdný claim, ale slib, který držíš i ve tři ráno.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ klikni do signálu ]',
   },
   work: {
     eyebrow: 'Work',
-    title: 'Co dělám teď',
+    title: 'Main quest',
     lead: 'Od dubna 2026 jsem CTO v Keboole. Buildíme data platformu, díky které firmy řídí business podle dat, a ne podle gut feelingu.',
     paragraphs: [
       'Keboola propojí data rozesetá po desítkách systémů do jednoho governed základu, single source of truth, kde má každá metrika jednu schválenou definici. Běží na ní přes tisíc firem.',
       'Pak přišly LLM a byl to totální banger. ChatGPT na konci roku 2022 ukázal, kam to míří, ale skutečný breakthrough pro mě přišel v listopadu 2025 s Claude Opus 4.5. Komplet mi to změnilo svět; game changer. Chvílemi jsem kvůli tomu měl problémy se spánkem, protože najednou šlo rychle deliverovat všechny moje nápady a nešlo přestat. Pro mě extrémně exciting doba. Neodradilo mě to, naopak; jsem happy, že se konečně zase něco děje. Jsme u změny, o které se bude psát v učebnicích, stejně jako o parním stroji, elektřině nebo internetu.',
       'S AI agenty se mění všechno. Agenti dnes zvládnou sami řídit procesy ve firmách end-to-end; hlídat čísla, reconciliation, reporting. Data už nemusí preparovat data engineer. Business člověk se prostě zeptá na to, co ho zajímá, a dostane odpověď, kterou jde dohledat. Tak jednoduchý je dnes náš svět.',
       'Moje hlavní mise v Keboole je postavit Dark Factory. Pojem je z výroby; továrna, kde se nesvítí, protože v ní nejsou lidi. V softwaru to znamená, že agenti sami píšou, testují a shipují kód, a lidi určují intent, guardrails a dělají review výsledku. K tomu teď buildím celý engineering; kontext pro agenty, automatické quality a security gates a human in the loop přesně tam, kde na tom záleží.',
-      'Naše první priorita je happy customer. Když roste on, rosteme i my.',
+      'Naše první priorita je vždy happy customer. Když roste on, rosteme i my.',
       'Přicházím ze SRE a security. SRE mě strašně bavilo, protože spojuje všechny engineering skills do jednoho; kód, networking, databáze, cloud, security i to, jak se lidi chovají ve tři ráno při incidentu. Můj path vedl od frontendu přes full stack k backendu a pak do infry. A díky LLM jsem zase zpátky u full stacku, jen o level výš. „All of this has happened before, and all of this will happen again.“ (Battlestar Galactica)',
     ],
     stats: [
@@ -144,7 +144,6 @@ export const content: SiteContent = {
         milestone: true,
       },
     ],
-    education: 'Formálním vzděláním elektrotechnik.',
   },
   workshop: {
     eyebrow: 'Side quests',
@@ -155,7 +154,7 @@ export const content: SiteContent = {
         name: 'FPVPIDlab',
         tagline: 'Autotuner pro Betaflight. Leť, analyzuj, aplikuj.',
         description:
-          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do flight controlleru. Podepsané buildy pro macOS a Windows, k tomu Linux.',
+          'Načte Blackbox log, spočítá FFT spektrum šumu a step response a přes Wienerovu dekonvoluci odhadne, jak se dron doopravdy chová. Z toho navrhne cutoffy filtrů a PID hodnoty a jedním klikem je nahraje do flight controlleru. Běží na macOS, Windows i Linuxu.',
         url: 'https://github.com/eddycek/fpvpidlab',
         linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
@@ -194,7 +193,7 @@ export const content: SiteContent = {
   poetry: {
     eyebrow: 'Personal',
     title: 'Poetry, music, nomad life a gaming',
-    lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech i v pražském Crossu, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
+    lead: 'Poezii jsem se nejvíc věnoval v letech 2009–2013. Autorská čtení v Karlových Varech, v pražském Crossu i na dalších veřejných místech, spoluorganizace Dne poezie v Karlových Varech a několik blogů pod různými alter egy.',
     lines: [
       'No escape, just broken glass,',
       'every second burns too fast.',
@@ -206,16 +205,16 @@ export const content: SiteContent = {
     close: 'Zavřít',
     paragraphs: [
       'Většinu toho, co jsem tehdy napsal, jsem spálil. V roce 2025 jsem začal znovu od nuly a The Slayer je z téhle nové etapy.',
-      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone. Hodně mě láká, jak přes MCP napojit agenty na hudební tooly a začít buildit beaty; ze syntetických zvuků i ze samplů, které si nahraju sám. Agent jako parťák ve studiu, který zvládne sound design, aranž i ty nudné části, a já se můžu soustředit na vibe a slova.',
+      'Teď experimentuju s audiovisual contentem; čtu svoje básně přes beat. Chci se dostat k produkci vlastní music, nejdřív jako podkladu pro recitace, později i standalone. Hodně mě láká, jak přes MCP napojit agenty na hudební tooly a začít buildit beaty; ze syntetických zvuků i ze samplů, které si nahraju sám. Agent jako parťák ve studiu, který vyladí zvuk, poskládá beat do celého tracku a odmakne i ty nudné části, a já se můžu soustředit na vibe a slova.',
     ],
     extras: [
       {
         title: 'Music',
         text: [
-          'Music je pro mě zásadní. Hraje skoro pořád; při práci, při psaní i při létání. Bez sluchátek nejedu.',
-          'Teď mě nejvíc táhne česká youngblood scéna a niche music; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; super kapela. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
+          'Music je pro mě zásadní. Hraje skoro pořád; při práci, při psaní i při létání. A často si ji pustím jen tak, lehnu si a poslouchám. Co poslouchám, si pečlivě vybírám sám a nezůstávám u věcí z mládí; novou hudbu aktivně hledám.',
+          'Teď mě nejvíc táhne česká youngblood scéna a niche music; malí independent umělci, převážně čeští, ale i zahraniční. Z české scény musím zmínit WWW Neurobeat; přesně ten směr, který miluju nejvíc, kdy je lyrika poetická a abstraktní. Vyrostl jsem na indie rocku, punku, hardcoru a trip-hopu a to je v tom pořád slyšet.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },
       {
         title: 'Digital nomad life',
@@ -246,8 +245,8 @@ export const content: SiteContent = {
     imessageLabel: 'iMessage',
     whatsappLabel: 'WhatsApp',
     phoneLabel: 'Telefon',
-    copyLabel: 'Kopírovat',
-    copiedLabel: 'Zkopírováno',
+    copyLabel: 'Copy',
+    copiedLabel: 'Copied',
     reasons: [
       'stavíš data nebo AI platformu a řešíš její provoz ve scale',
       'chceš probrat Dark Factory, AI agenty v produkci nebo AI adopci napříč firmou',
@@ -257,7 +256,7 @@ export const content: SiteContent = {
       'létáš FPV, ladíš PIDy nebo zkoušíš FPVPIDlab',
       'píšeš, děláš music nebo audiovizuál a chceš něco spojit',
       'máš tip na další poušť nebo místo pro remote work',
-      'chceš dát večer squad v Battlefieldu, THE FINALS nebo ARC Raiders',
+      'chceš dát večer squad na PS5 v Battlefieldu, THE FINALS nebo ARC Raiders',
     ],
   },
   footer: {

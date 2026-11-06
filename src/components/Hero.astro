@@ -4,6 +4,8 @@ interface Props { content: SiteContent }
 const { content } = Astro.props;
 const h = content.hero;
 const [first, ...rest] = h.name.split(' ');
+// The 'noise' word in the claim keeps glitching on its own.
+const claimParts = h.claim.split(/(šumu|noise)/);
 ---
 <section class="hero" id="signal" aria-labelledby="hero-name">
   <canvas class="hero__scope" id="scope" aria-hidden="true"></canvas>
@@ -20,11 +22,11 @@ const [first, ...rest] = h.name.split(' ');
   <div class="hero__inner shell">
     <p class="osd osd--signal hero__status">{h.osd}</p>
     <h1 class="hero__name" id="hero-name" aria-label={h.name} data-decode data-glitch="name">
-      <span class="hero__line">{first}</span>
+      <span class="hero__line hero__line--scan">{first}</span>
       <span class="hero__line hero__line--indent">{rest.join(' ')}</span>
     </h1>
-    <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick">eddycek</span></p>
-    <p class="hero__claim" data-decode>{h.claim}</p>
+    <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick" data-decode data-glitch="name">eddycek</span></p>
+    <p class="hero__claim" aria-label={h.claim}>{claimParts.map((x) => (x === 'šumu' || x === 'noise') ? <span class="hero__noise" data-decode data-glitch="poem">{x}</span> : x)}</p>
     <p class="hero__intro">{h.intro}</p>
     <ul class="hero__tags" role="list">
       {h.tags.map((t) => <li>{t}</li>)}
@@ -45,12 +47,13 @@ const [first, ...rest] = h.name.split(' ');
   .hero__status { letter-spacing: 0.2em; }
   .hero__name { font-size: var(--t-hero); font-weight: 800; line-height: 0.86; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; display: grid; }
   .hero__line { display: block; }
-  .hero__line--scan { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 6px, transparent 6px 7px); -webkit-background-clip: text; background-clip: text; }
-  .hero__line--indent { padding-left: clamp(1rem, 9vw, 9rem); color: var(--c-muted); }
+  .hero__line--scan { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 3px, color-mix(in srgb, var(--c-ink) 62%, transparent) 3px 5px); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(-2px 0 0 color-mix(in srgb, var(--c-trace) 70%, transparent)) drop-shadow(2px 0 0 color-mix(in srgb, var(--c-signal) 70%, transparent)); }
+  .hero__line--indent { padding-left: clamp(1rem, 9vw, 9rem); }
   .hero__handle { margin-top: -0.4rem; padding-left: clamp(1rem, 9vw, 9rem); font-family: var(--f-mono); font-size: clamp(1.05rem, 0.8rem + 1vw, 1.5rem); display: flex; align-items: baseline; gap: 0.7rem; }
   .hero__handle .osd { color: var(--c-muted); }
   .hero__nick { color: var(--c-signal); text-shadow: 0 0 18px var(--c-glow); }
   .hero__nick::after { content: '_'; animation: blink 1s steps(1, end) infinite; }
+  .hero__noise { display: inline-block; }
   .hero__claim { font-family: var(--f-display); font-size: var(--t-xl); font-weight: 600; color: var(--c-signal); text-shadow: 0 0 24px var(--c-glow); letter-spacing: -0.01em; max-width: 24ch; }
   .hero__intro { max-width: 46ch; font-size: var(--t-lg); color: var(--c-ink); opacity: 0.86; line-height: 1.5; text-shadow: 0 1px 12px var(--c-bg); }
   .hero__tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }

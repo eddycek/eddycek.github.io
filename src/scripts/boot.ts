@@ -21,3 +21,13 @@ mountCursorField();
 
 import { mountSparks } from './spark';
 mountSparks();
+
+// External links (other hosts) open in a new tab, safely.
+document.querySelectorAll<HTMLAnchorElement>('a[href^="http"]').forEach((a) => {
+  if (a.host === location.host) return;
+  a.target = '_blank';
+  const rel = new Set((a.rel || '').split(/\s+/).filter(Boolean));
+  rel.add('noopener');
+  rel.add('noreferrer');
+  a.rel = Array.from(rel).join(' ');
+});

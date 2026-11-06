@@ -62,7 +62,6 @@ export interface SiteContent {
     title: string;
     lead: string;
     stops: JourneyStop[];   // chronological, oldest first
-    education: string;      // single line about formal electrical engineering education
   };
   workshop: {
     eyebrow: string;

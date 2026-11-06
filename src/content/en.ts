@@ -20,21 +20,21 @@ export const content: SiteContent = {
     name: 'Vaclav Eder',
     claim: 'I look for the signal in the noise.',
     intro:
-      'CTO at Keboola. I burn for this work, and I was quite literally born for it. Once I get into something, I am fully locked in; it does not let go. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not a feature, it is a promise.',
+      'CTO at Keboola. I burn for this work, and I was quite literally born for it. Once I get into something, I am fully locked in; it does not let go. I build a platform where people and AI agents work with data. Years in SRE taught me one thing; reliability is not an empty claim, it is a promise you keep at 3 a.m.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agents', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
     clickHint: '[ click the signal ]',
   },
   work: {
     eyebrow: 'Work',
-    title: 'What I do now',
+    title: 'Main quest',
     lead: 'Since April 2026 I have been CTO at Keboola. We build a data platform that lets companies run their business on data, not gut feeling.',
     paragraphs: [
       'Keboola brings data scattered across dozens of systems into one governed foundation, a single source of truth where every metric has one agreed definition. More than a thousand companies run on it.',
       'Then came LLMs, and it was a total banger. ChatGPT at the end of 2022 showed where this was heading, but the real breakthrough for me came in November 2025 with Claude Opus 4.5. It changed my world completely; a game changer. At times it cost me sleep, because suddenly I could deliver every idea I had, fast, and it was hard to stop. An incredibly exciting time for me. It did not scare me off; I am glad something big is finally happening again. This is a shift history books will write about, like the steam engine, electricity or the internet.',
       'AI agents change everything. Agents can now run processes inside companies end-to-end; watching the numbers, reconciliation, reporting. Data no longer has to be prepared by a data engineer. A business person simply asks what they want to know and gets an answer they can trace. That is how simple our world is today.',
       'My main mission at Keboola is to build a Dark Factory. The term comes from manufacturing; a factory that runs with the lights off because no people work on the floor. In software it means agents write, test and ship code on their own, while people set the intent and the guardrails and review the result. That is what I am building our whole engineering around; context for agents, automated quality and security gates, and a human in the loop exactly where it matters.',
-      'Our first priority is a happy customer. When they grow, we grow.',
+      'Our first priority is always a happy customer. When they grow, we grow.',
       'I come from SRE and security. I loved SRE, because it pulls every engineering skill into one; code, networking, databases, cloud, security, and how people behave at 3 a.m. during an incident. My path went from frontend through full stack to backend and then into infra. And thanks to LLMs I am back at full stack, just one level higher. “All of this has happened before, and all of this will happen again.” (Battlestar Galactica)',
     ],
     stats: [
@@ -144,7 +144,6 @@ export const content: SiteContent = {
         milestone: true,
       },
     ],
-    education: 'Formal education in electrical engineering.',
   },
   workshop: {
     eyebrow: 'Side quests',
@@ -155,7 +154,7 @@ export const content: SiteContent = {
         name: 'FPVPIDlab',
         tagline: 'A Betaflight autotuner. Fly, analyze, apply.',
         description:
-          'Reads a Blackbox log, computes the FFT noise spectrum and step response, and uses Wiener deconvolution to work out how the quad really behaves. From that it suggests filter cutoffs and PID values and applies them to the flight controller in one click. Signed builds for macOS and Windows, plus Linux.',
+          'Reads a Blackbox log, computes the FFT noise spectrum and step response, and uses Wiener deconvolution to work out how the quad really behaves. From that it suggests filter cutoffs and PID values and applies them to the flight controller in one click. Runs on macOS, Windows and Linux.',
         url: 'https://github.com/eddycek/fpvpidlab',
         linkLabel: 'github.com/eddycek/fpvpidlab',
         tags: ['Betaflight', 'FFT', 'DSP', 'TypeScript'],
@@ -194,7 +193,7 @@ export const content: SiteContent = {
   poetry: {
     eyebrow: 'Personal',
     title: 'Poetry, music, nomad life and gaming',
-    lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary and at Cross Club in Prague, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
+    lead: 'Poetry was my main focus from 2009 to 2013. Readings in Karlovy Vary, at Cross Club in Prague and at other public venues, co-organizing the Den poezie festival in Karlovy Vary, and several blogs written under different alter egos.',
     lines: [
       'No escape, just broken glass,',
       'every second burns too fast.',
@@ -206,16 +205,16 @@ export const content: SiteContent = {
     close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
-      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone. What really pulls me in is wiring agents to music tools over MCP and building beats; from synthetic sounds and from samples I record myself. An agent as a studio buddy that handles sound design, arrangement and the boring parts, so I can focus on the vibe and the words.',
+      'These days I experiment with audiovisual content; reading my poems over a beat. I want to get into producing my own music, first as backing for the readings and later standalone. What really pulls me in is wiring agents to music tools over MCP and building beats; from synthetic sounds and from samples I record myself. An agent as a studio buddy that shapes the sound, builds the beat into a full track and grinds through the boring parts, so I can focus on the vibe and the words.',
     ],
     extras: [
       {
         title: 'Music',
         text: [
-          'Music matters enormously to me. It runs almost constantly; while I work, write and fly. I do not go anywhere without headphones.',
-          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; a great band. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
+          'Music matters enormously to me. It runs almost constantly; while I work, write and fly. Often I just put something on, lie down and listen. I pick what I listen to carefully myself and do not stay stuck with what I grew up on; I actively dig for new music.',
+          'Right now I am mostly into the Czech youngblood scene and niche music; small independent artists, mostly Czech but from abroad too. From the Czech scene I have to name WWW Neurobeat; exactly the direction I love most, where the lyrics are poetic and abstract. I grew up on indie rock, punk, hardcore and trip-hop, and you can still hear it.',
         ],
-        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'DRAIN DK', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'Chocolate Hole', 'WWW Neurobeat'],
+        tags: ['$uicideboy$', 'Ghostemane', 'TOOL', 'Arleta', 'Hellhills', 'Dethrone the crown', 'REDZED', 'yanntray', 'noyada', 'thc luna g', 'Berlin Manson', '$lim Gucci', 'TOKYO DRIFT', 'WWW Neurobeat'],
       },
       {
         title: 'Digital nomad life',
@@ -257,7 +256,7 @@ export const content: SiteContent = {
       'you fly FPV, tune PIDs or are trying FPVPIDlab',
       'you write, make music or do audiovisual work and want to team up',
       'you have a tip for the next desert or a good spot for remote work',
-      'you want to squad up for Battlefield, THE FINALS or ARC Raiders in the evening',
+      'you want to squad up on PS5 for Battlefield, THE FINALS or ARC Raiders in the evening',
     ],
   },
   footer: {

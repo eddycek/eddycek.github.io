@@ -22,3 +22,9 @@ npm run shots                            # per-section screenshots into shots/ (
 ```
 
 The same suite runs in CI on every pull request.
+
+## Third-party assets
+
+`public/sounds/telemetry-*.wav` are the stock EdgeTX voice prompts (`telemko.wav`, `telemok.wav`) from
+[EdgeTX/edgetx-sdcard-sounds](https://github.com/EdgeTX/edgetx-sdcard-sounds) v2.12.3, licensed GPL-2.0, redistributed unmodified.
+See `public/sounds/NOTICE.txt`.

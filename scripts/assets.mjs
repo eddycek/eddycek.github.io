@@ -41,7 +41,8 @@ svg.trace{position:absolute;inset:0}
 .tr{position:absolute;right:64px;top:52px;color:${C.muted}}
 .name{position:absolute;left:58px;top:118px;font-weight:800;font-size:170px;line-height:.86;letter-spacing:-.05em;font-variation-settings:'opsz' 96}
 .name span{display:block}
-.name .e{padding-left:110px;color:${C.muted}}
+.name .e{padding-left:110px}
+.name .v{color:transparent;background:repeating-linear-gradient(to bottom,${C.ink} 0 5px,rgba(232,235,238,.62) 5px 8px);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(-3px 0 0 rgba(92,200,214,.7)) drop-shadow(3px 0 0 rgba(255,122,47,.7))}
 .aka{position:absolute;left:172px;top:432px;font-family:M;font-size:30px;color:${C.signal}}
 .aka b{color:${C.muted};font-weight:500;font-size:20px;letter-spacing:.2em;margin-right:16px}
 .claim{position:absolute;left:64px;bottom:60px;font-weight:600;font-size:44px;color:${C.signal};text-shadow:0 0 30px rgba(255,122,47,.45)}
@@ -57,7 +58,7 @@ svg.trace{position:absolute;inset:0}
 <div class="scan"></div>
 <div class="osd tl"><i></i>CTO · KEBOOLA · PRAGUE</div>
 <div class="osd tr">CH1 · SIGNAL</div>
-<h1 class="name"><span>Vaclav</span><span class="e">Eder</span></h1>
+<h1 class="name"><span class="v">Vaclav</span><span class="e">Eder</span></h1>
 <p class="aka"><b>A.K.A.</b>eddycek_</p>
 <p class="claim">${claim}</p>
 <p class="osd url">vaclaveder.cz</p>
