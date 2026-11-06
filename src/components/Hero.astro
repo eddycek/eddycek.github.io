@@ -23,7 +23,7 @@ const [first, ...rest] = h.name.split(' ');
       <span class="hero__line">{first}</span>
       <span class="hero__line hero__line--scan hero__line--indent">{rest.join(' ')}</span>
     </h1>
-    <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick">eddycek</span></p>
+    <p class="hero__handle"><span class="osd">a.k.a.</span> <span class="hero__nick" data-decode data-glitch="name">eddycek</span></p>
     <p class="hero__claim" data-decode>{h.claim}</p>
     <p class="hero__intro">{h.intro}</p>
     <ul class="hero__tags" role="list">
@@ -45,7 +45,7 @@ const [first, ...rest] = h.name.split(' ');
   .hero__status { letter-spacing: 0.2em; }
   .hero__name { font-size: var(--t-hero); font-weight: 800; line-height: 0.86; letter-spacing: -0.045em; font-variation-settings: 'opsz' 96; display: grid; }
   .hero__line { display: block; }
-  .hero__line--scan { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 7px, var(--c-signal) 7px 8.5px); -webkit-background-clip: text; background-clip: text; }
+  .hero__line--scan { color: transparent; background: repeating-linear-gradient(to bottom, var(--c-ink) 0 7px, transparent 7px 8.5px); -webkit-background-clip: text; background-clip: text; }
   .hero__line--indent { padding-left: clamp(1rem, 9vw, 9rem); }
   .hero__handle { margin-top: -0.4rem; padding-left: clamp(1rem, 9vw, 9rem); font-family: var(--f-mono); font-size: clamp(1.05rem, 0.8rem + 1vw, 1.5rem); display: flex; align-items: baseline; gap: 0.7rem; }
   .hero__handle .osd { color: var(--c-muted); }
