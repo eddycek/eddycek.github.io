@@ -189,6 +189,8 @@ export const content: SiteContent = {
       'cut the wires, no fucking choice.',
     ],
     credit: 'The Slayer, 2025',
+    readFull: 'Read the full poem (Czech & English)',
+    close: 'Close',
     paragraphs: [
       'I burned most of what I wrote back then. In 2025 I started again from zero, and The Slayer comes from this new chapter.',
       'These days I experiment with audiovisual work: reading my poems over music. I want to get to making my own music, first as backing for the readings and later on its own.',

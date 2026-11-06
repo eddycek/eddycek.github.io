@@ -1,0 +1,226 @@
+---
+/*
+ * Full-screen reading of "The Slayer". Opens with a CRT power-on, then each stanza
+ * reveals as it scrolls into view: a quiet opening, the English chorus glitching in
+ * hot, an escalating middle (weight and size climb line by line) and a finale where
+ * "Bez hodin. / Bez času. / Bez tebe." slam in, followed by a flatline.
+ */
+import { slayer } from '../content/slayer';
+interface Props { lang: 'cs' | 'en'; close: string }
+const { lang, close } = Astro.props;
+const last = slayer.stanzas.length - 1;
+const kind = (i: number): string => (i === 0 ? 'open' : i === 1 ? 'chorus' : i === last ? 'final' : 'rise');
+---
+<dialog class="slayer" id="slayer" aria-labelledby="slayer-title" lang="cs">
+  <div class="slayer__fx" aria-hidden="true"></div>
+  <div class="slayer__bar" aria-hidden="true"><span></span></div>
+  <button class="slayer__close osd" type="button" data-slayer-close>
+    <span aria-hidden="true">✕</span> {close} <span class="slayer__esc" aria-hidden="true">ESC</span>
+  </button>
+
+  <div class="slayer__scroll" data-slayer-scroll>
+    <article class="slayer__poem">
+      <header class="slayer__head">
+        <span class="osd osd--signal">● REC · CH4 · {lang === 'cs' ? 'POEZIE' : 'POETRY'} · {slayer.year}</span>
+        <h2 class="slayer__title" id="slayer-title" data-text={slayer.title}>{slayer.title}</h2>
+      </header>
+
+      {slayer.stanzas.map((st, i) => (
+        <div class={`st st--${kind(i)}`} data-stanza style={`--n:${st.length}`}>
+          {kind(i) === 'chorus' && <span class="osd st__tag" aria-hidden="true">EN · CHORUS</span>}
+          {st.map((ln, j) => (
+            <p
+              class:list={['ln', { 'ln--q': ln.trim().endsWith('?') && ln.length < 12, 'ln--shout': ln.trim().endsWith('!') }]}
+              style={`--j:${j};--k:${st.length > 1 ? j / (st.length - 1) : 1}`}
+            >{ln}</p>
+          ))}
+          {kind(i) === 'final' && (
+            <svg class="flat" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 30 H170 L186 8 L200 54 L214 18 L226 30 H600" />
+            </svg>
+          )}
+        </div>
+      ))}
+
+      <footer class="osd slayer__sign">Václav Eder · {slayer.year} · EOF</footer>
+    </article>
+  </div>
+</dialog>
+
+<style>
+  .slayer {
+    position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+    color: var(--c-ink); overflow: hidden;
+    background:
+      radial-gradient(80% 60% at 75% 15%, color-mix(in srgb, var(--c-signal) 10%, transparent), transparent 60%),
+      radial-gradient(60% 50% at 10% 90%, color-mix(in srgb, var(--c-trace) 7%, transparent), transparent 60%),
+      linear-gradient(to right, var(--c-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+      linear-gradient(to bottom, var(--c-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+      var(--c-bg);
+  }
+  .slayer::backdrop { background: rgba(0, 0, 0, 0.85); }
+  .slayer[open] { display: block; }
+  .slayer.is-open { animation: crt-on 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes crt-on {
+    0% { clip-path: inset(49.6% 0 49.6% 0); filter: brightness(4); }
+    45% { clip-path: inset(49.6% 0 49.6% 0); filter: brightness(3); }
+    100% { clip-path: inset(0 0 0 0); filter: none; }
+  }
+  .slayer__fx { position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background: repeating-linear-gradient(to bottom, transparent 0 2px, color-mix(in srgb, var(--c-bg) 35%, transparent) 2px 3px); opacity: 0.55; }
+  .slayer__bar { position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 3; }
+  .slayer__bar span { display: block; height: 100%; background: var(--c-signal); box-shadow: 0 0 12px var(--c-glow); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); }
+  .slayer__close { position: absolute; top: 1rem; right: max(1rem, env(safe-area-inset-right, 0px)); z-index: 4; display: inline-flex; gap: 0.6rem; align-items: center;
+    background: color-mix(in srgb, var(--c-bg) 80%, transparent); color: var(--c-ink); border: 1px solid var(--c-line); padding: 0.5rem 0.8rem; border-radius: 2px; cursor: pointer; }
+  .slayer__close:hover { border-color: var(--c-signal); color: var(--c-signal); }
+  .slayer__esc { color: var(--c-muted); border: 1px solid var(--c-line); padding: 0 0.3rem; border-radius: 2px; }
+  .slayer__scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; z-index: 1; scroll-behavior: smooth; }
+  .slayer__poem { max-width: 62rem; margin: 0 auto; padding: clamp(5rem, 12vh, 9rem) var(--gutter-r) clamp(6rem, 20vh, 12rem) var(--gutter-l); display: grid; gap: clamp(3.5rem, 10vh, 7rem); }
+
+  /* Title with a split-channel glitch. */
+  .slayer__head { display: grid; gap: 1rem; }
+  .slayer__title { position: relative; font-size: clamp(3.6rem, 1rem + 12vw, 10rem); line-height: 0.85; letter-spacing: -0.05em; font-variation-settings: 'opsz' 96; }
+  .slayer__title::before, .slayer__title::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; }
+  .slayer__title::before { color: var(--c-trace); mix-blend-mode: screen; animation: t-glitch 5.5s steps(1, end) infinite; }
+  .slayer__title::after { color: var(--c-signal); mix-blend-mode: screen; animation: t-glitch 5.5s steps(1, end) infinite reverse; }
+  @keyframes t-glitch {
+    0%, 86%, 100% { transform: none; clip-path: inset(0 0 100% 0); }
+    87% { transform: translate(-5px, 0); clip-path: inset(10% 0 55% 0); }
+    89% { transform: translate(6px, 0); clip-path: inset(60% 0 8% 0); }
+    91% { transform: translate(-3px, 0); clip-path: inset(30% 0 40% 0); }
+    93% { transform: none; clip-path: inset(0 0 100% 0); }
+  }
+  .is-open .slayer__head > * { animation: ln-in 0.9s 0.45s both cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .is-open .slayer__title { animation-delay: 0.6s; }
+
+  /* Lines: hidden until their stanza scrolls into view. */
+  .ln { opacity: 0; }
+  .st.in .ln { animation: ln-in 0.9s calc(var(--j) * 0.32s + 0.1s) both cubic-bezier(0.2, 0.8, 0.2, 1); }
+  @keyframes ln-in {
+    0% { opacity: 0; transform: translateY(0.45em); filter: blur(10px); letter-spacing: 0.12em; }
+    60% { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: none; filter: none; }
+  }
+
+  .st { display: grid; gap: 0.25em; }
+  .st--open { font-family: var(--f-display); font-weight: 300; font-size: clamp(1.7rem, 1rem + 2.6vw, 3.2rem); line-height: 1.12; letter-spacing: -0.02em; }
+  .st--open .ln:nth-child(2) { padding-left: clamp(1rem, 6vw, 5rem); }
+  .st--open .ln:nth-child(3) { color: var(--c-muted); }
+  .ln--q { font-weight: 800; color: var(--c-signal); font-size: 1.6em; line-height: 1; margin-block: 0.25em; text-shadow: 0 0 30px var(--c-glow); }
+  .st.in .ln--q { animation-name: ln-in, q-pulse; animation-duration: 0.9s, 2.8s; animation-iteration-count: 1, infinite; animation-delay: calc(var(--j) * 0.32s + 0.1s), 2s; }
+  @keyframes q-pulse { 0%, 92%, 100% { opacity: 1; } 94% { opacity: 0.2; } 96% { opacity: 1; } 97% { opacity: 0.4; } }
+
+  /* Chorus: hot, glitching in, set apart with a signal rail. */
+  .st--chorus { position: relative; padding: 1.4rem 0 1.4rem clamp(1rem, 4vw, 2.5rem); border-left: 3px solid var(--c-signal);
+    font-family: var(--f-display); font-weight: 800; font-size: clamp(1.9rem, 1rem + 3.4vw, 4rem); line-height: 1.02; letter-spacing: -0.03em;
+    color: var(--c-signal); text-shadow: 0 0 34px var(--c-glow); background: linear-gradient(90deg, color-mix(in srgb, var(--c-signal) 8%, transparent), transparent 70%); }
+  .st--chorus .ln:nth-child(odd) { padding-left: clamp(0.5rem, 5vw, 4rem); }
+  .st__tag { position: absolute; top: -1.6rem; left: 0; color: var(--c-muted); }
+  .st--chorus.in .ln { animation: chorus-in 0.7s calc(var(--j) * 0.28s + 0.1s) both steps(1, end); }
+  @keyframes chorus-in {
+    0% { opacity: 0; }
+    10% { opacity: 1; transform: translateX(-12px) skewX(-12deg); clip-path: inset(0 0 60% 0); text-shadow: 6px 0 var(--c-trace), -6px 0 var(--c-signal); }
+    25% { transform: translateX(10px); clip-path: inset(40% 0 0 0); }
+    40% { opacity: 0.3; transform: none; clip-path: none; }
+    55% { opacity: 1; transform: translateX(-4px); text-shadow: 3px 0 var(--c-trace), -3px 0 var(--c-signal); }
+    100% { opacity: 1; transform: none; clip-path: none; text-shadow: 0 0 34px var(--c-glow); }
+  }
+
+  /* Rise: every line heavier and bigger than the last. */
+  .st--rise { font-family: var(--f-display); line-height: 1.04; letter-spacing: -0.03em; }
+  .st--rise .ln { font-size: calc(clamp(1.6rem, 1rem + 2.2vw, 2.8rem) * (1 + var(--k) * 0.45)); font-variation-settings: 'wght' calc(300 + var(--k) * 500), 'opsz' 96; font-weight: 300; }
+  .st--rise .ln:nth-child(even) { padding-left: clamp(0.5rem, 5vw, 4rem); }
+  .ln--shout { color: var(--c-signal); text-shadow: 0 0 26px var(--c-glow); }
+  .st.in .ln--shout { animation-name: ln-in, shake; animation-duration: 0.9s, 0.5s; animation-delay: calc(var(--j) * 0.32s + 0.1s), calc(var(--j) * 0.32s + 0.7s); animation-iteration-count: 1, 2; }
+  @keyframes shake { 0%, 100% { transform: none; } 20% { transform: translate(-4px, 1px) rotate(-0.6deg); } 40% { transform: translate(4px, -1px) rotate(0.6deg); } 60% { transform: translate(-3px, 0); } 80% { transform: translate(2px, 1px); } }
+  .st--rise .ln:last-child { color: var(--c-ink); }
+
+  /* Finale: three slams and a flatline. */
+  .st--final { gap: 0; font-family: var(--f-display); font-weight: 800; letter-spacing: -0.05em; line-height: 0.92; font-variation-settings: 'opsz' 96; }
+  .st--final .ln { font-size: clamp(3rem, 1rem + 9vw, 8.5rem); }
+  .st--final .ln:nth-child(2) { padding-left: clamp(1rem, 10vw, 9rem); color: var(--c-muted); }
+  .st--final .ln:nth-child(3) { color: var(--c-signal); text-shadow: 0 0 50px var(--c-glow); padding-left: clamp(2rem, 20vw, 18rem); }
+  .st--final.in .ln { animation: slam 0.55s calc(var(--j) * 0.75s + 0.2s) both cubic-bezier(0.2, 0.9, 0.25, 1.15); }
+  @keyframes slam {
+    0% { opacity: 0; transform: scale(2.4); filter: blur(14px); }
+    55% { opacity: 1; filter: blur(0); }
+    70% { transform: scale(0.96); }
+    100% { opacity: 1; transform: none; filter: none; }
+  }
+  .flat { width: 100%; height: 3.5rem; margin-top: 2.5rem; overflow: visible; }
+  .flat path { fill: none; stroke: var(--c-signal); stroke-width: 2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px var(--c-glow));
+    stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+  .st--final.in .flat path { animation: draw 2.4s 2.6s forwards cubic-bezier(0.4, 0, 0.2, 1); }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .slayer__sign { color: var(--c-muted); text-transform: none; letter-spacing: 0.06em; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slayer.is-open, .slayer__title::before, .slayer__title::after, .is-open .slayer__head > *, .st.in .ln, .st--final.in .flat path { animation: none !important; }
+    .ln { opacity: 1; }
+    .flat path { stroke-dashoffset: 0; }
+  }
+</style>
+
+<script>
+  const dlg = document.getElementById('slayer');
+  if (dlg instanceof HTMLDialogElement) {
+    const scroller = dlg.querySelector<HTMLElement>('[data-slayer-scroll]');
+    const bar = dlg.querySelector<HTMLElement>('.slayer__bar');
+    const stanzas = Array.from(dlg.querySelectorAll<HTMLElement>('[data-stanza]'));
+    let io: IntersectionObserver | null = null;
+    let opener: HTMLElement | null = null;
+
+    const onScroll = (): void => {
+      if (!scroller || !bar) return;
+      const max = scroller.scrollHeight - scroller.clientHeight;
+      bar.style.setProperty('--p', String(max > 0 ? scroller.scrollTop / max : 1));
+    };
+
+    const open = (from: HTMLElement): void => {
+      opener = from;
+      stanzas.forEach((s) => s.classList.remove('in'));
+      if (scroller) scroller.scrollTop = 0;
+      dlg.showModal();
+      document.documentElement.style.overflow = 'hidden';
+      requestAnimationFrame(() => dlg.classList.add('is-open'));
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) if (e.isIntersecting) e.target.classList.add('in');
+        },
+        { root: scroller, threshold: 0.35 },
+      );
+      // Give the CRT power-on a moment before the first stanza starts.
+      setTimeout(() => stanzas.forEach((s) => io?.observe(s)), 650);
+      onScroll();
+    };
+
+    const shut = (): void => {
+      if (dlg.open) dlg.close();
+    };
+
+    dlg.addEventListener('close', () => {
+      dlg.classList.remove('is-open');
+      document.documentElement.style.overflow = '';
+      io?.disconnect();
+      io = null;
+      opener?.focus();
+    });
+    scroller?.addEventListener('scroll', onScroll, { passive: true });
+    dlg.querySelector('[data-slayer-close]')?.addEventListener('click', shut);
+
+    document.querySelectorAll<HTMLElement>('[data-slayer-open]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open(el);
+      });
+      if (el.tagName !== 'BUTTON') {
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            open(el);
+          }
+        });
+      }
+    });
+  }
+</script>

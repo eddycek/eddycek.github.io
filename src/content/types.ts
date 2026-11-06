@@ -76,6 +76,9 @@ export interface SiteContent {
     paragraphs: string[];
     /** attribution under the verse, e.g. poem title and year */
     credit: string;
+    /** labels for the full-poem dialog */
+    readFull: string;
+    close: string;
     /** personal blocks under the poem: music, travel… */
     extras: { title: string; text: string[]; tags: string[] }[];
   };
