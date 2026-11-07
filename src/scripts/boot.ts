@@ -1,4 +1,12 @@
 // Mounts all signal visuals on the page. Each module handles its own pausing and reduced-motion.
+
+// Old Czech section anchors keep working after the switch to English ones.
+const OLD_ANCHORS: Record<string, string> = { prace: 'work', cesta: 'track-record', dilna: 'side-quests', poezie: 'personal', kontakt: 'contact' };
+const oldHash = location.hash.slice(1);
+if (OLD_ANCHORS[oldHash]) {
+  history.replaceState(null, '', `#${OLD_ANCHORS[oldHash]}`);
+  document.getElementById(OLD_ANCHORS[oldHash]!)?.scrollIntoView();
+}
 import { mountScope, mountSpectrum, mountTrace, decodeText, mountCursorField } from './signal';
 
 const scope = document.getElementById('scope');
