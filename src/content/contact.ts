@@ -1,4 +1,4 @@
-/** Contact details rendered in #kontakt and JSON-LD. Messaging rows render only when phone is set. */
+/** Contact details rendered in #contact and JSON-LD. Messaging rows render only when phone is set. */
 export const contact = {
   handle: 'eddycek',
   email: 'eddycek.ve@gmail.com',

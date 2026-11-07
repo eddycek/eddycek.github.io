@@ -1,4 +1,4 @@
-// Tiny live sparklines under the OSD readouts in #prace.
+// Tiny live sparklines under the OSD readouts in #work.
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export function mountSparks(): void {

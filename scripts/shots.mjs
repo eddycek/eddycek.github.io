@@ -10,7 +10,7 @@ const DEVICES = [
   ['ipad-mini', 'iPad Mini', webkit],
   ['ipad-pro-landscape', 'iPad Pro 11 landscape', webkit],
 ];
-const SECTIONS = ['signal', 'prace', 'cesta', 'dilna', 'poezie', 'kontakt'];
+const SECTIONS = ['signal', 'work', 'track-record', 'side-quests', 'personal', 'contact'];
 
 for (const [slug, name, engine] of DEVICES) {
   const browser = await engine.launch();

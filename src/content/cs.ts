@@ -8,11 +8,11 @@ export const content: SiteContent = {
       'Václav „eddycek“ Eder, CTO v Keboole. Data, AI agenti, Dark Factory, SRE a cyber security. Po večerech FPV, poezie, music, digitální nomádství a gaming. Prague.',
   },
   nav: [
-    { id: 'prace', label: 'Work' },
-    { id: 'cesta', label: 'Track record' },
-    { id: 'dilna', label: 'Side quests' },
-    { id: 'poezie', label: 'Personal' },
-    { id: 'kontakt', label: 'Contact' },
+    { id: 'work', label: 'Work' },
+    { id: 'track-record', label: 'Track record' },
+    { id: 'side-quests', label: 'Side quests' },
+    { id: 'personal', label: 'Personal' },
+    { id: 'contact', label: 'Contact' },
   ],
   switchLabel: 'EN',
   hero: {
