@@ -3,7 +3,49 @@
  * custom properties, DPR-aware sizing (capped at 2), and a RAF loop that pauses
  * off-screen / in hidden tabs, redraws on theme change and renders a single
  * static frame under prefers-reduced-motion. Draws nothing by itself.
+ *
+ * Performance rules shared by every canvas:
+ *  - draw at most ~60 fps; 120 Hz phones would otherwise run every loop twice;
+ *  - never read layout per frame or per pointer event: viewRect() serves the
+ *    element's viewport rect from a cache (page offset + scrollY), refreshed by
+ *    ResizeObservers, so the text glitch's DOM writes never force a reflow.
  */
+
+/** Viewport rect of an element without touching layout on every call. */
+export interface ViewRect { top: number; left: number; width: number; height: number; bottom: number; right: number }
+
+export function viewRect(el: Element): { get(): ViewRect; refresh(): void; dispose(): void } {
+  let top = 0, left = 0, width = 0, height = 0;
+  const refresh = (): void => {
+    const r = el.getBoundingClientRect();
+    top = r.top + window.scrollY;
+    left = r.left + window.scrollX;
+    width = r.width;
+    height = r.height;
+  };
+  refresh();
+  // The element's own size, and anything above it that changes the page height.
+  const ro = new ResizeObserver(refresh);
+  ro.observe(el);
+  ro.observe(document.body);
+  window.addEventListener('resize', refresh, { passive: true });
+  void document.fonts?.ready.then(refresh);
+  return {
+    get(): ViewRect {
+      const t = top - window.scrollY;
+      const l = left - window.scrollX;
+      return { top: t, left: l, width, height, bottom: t + height, right: l + width };
+    },
+    refresh,
+    dispose(): void {
+      ro.disconnect();
+      window.removeEventListener('resize', refresh);
+    },
+  };
+}
+
+/** Minimum time between drawn frames (s): ~60 fps cap with a little slack for 60 Hz jitter. */
+const MIN_FRAME = 1 / 64;
 
 export interface Rgb {
   r: number;
@@ -96,6 +138,8 @@ export interface Stage {
   dpr: number;
   pal: Palette;
   reduced: boolean;
+  /** Cached viewport rect of the canvas (see viewRect). */
+  view(): ViewRect;
 }
 
 export interface StageHooks {
@@ -115,7 +159,8 @@ export interface StageHandle {
 export function createStage(canvas: HTMLCanvasElement, hooks: StageHooks): StageHandle | null {
   const ctx = canvas.getContext('2d');
   if (!ctx) return null;
-  const s: Stage = { canvas, ctx, w: 0, h: 0, dpr: 1, pal: readPalette(canvas), reduced: prefersReduced() };
+  const vr = viewRect(canvas);
+  const s: Stage = { canvas, ctx, w: 0, h: 0, dpr: 1, pal: readPalette(canvas), reduced: prefersReduced(), view: vr.get };
   let raf = 0;
   let oneOff = 0;
   let last = 0;
@@ -128,6 +173,10 @@ export function createStage(canvas: HTMLCanvasElement, hooks: StageHooks): Stage
     raf = 0;
     if (!live()) return;
     const t = now / 1000;
+    if (last && t - last < MIN_FRAME) {
+      raf = requestAnimationFrame(frame);
+      return;
+    }
     const dt = last ? Math.min(0.05, t - last) : 0;
     last = t;
     hooks.draw(s, t, dt);
@@ -209,6 +258,7 @@ export function createStage(canvas: HTMLCanvasElement, hooks: StageHooks): Stage
       if (raf) cancelAnimationFrame(raf);
       if (oneOff) cancelAnimationFrame(oneOff);
       ro.disconnect();
+      vr.dispose();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVis);
       unTheme();

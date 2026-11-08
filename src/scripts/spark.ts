@@ -19,17 +19,35 @@ export function mountSparks(): void {
   });
   canvases.forEach((c) => io.observe(c));
 
+  // Colours are read once (and again on theme switch), not on every redraw.
+  let colors: string[] = [];
+  const readColors = (): void => {
+    colors = canvases.map((c, k) => getComputedStyle(c).getPropertyValue(k % 2 ? '--c-trace' : '--c-signal').trim());
+  };
+  readColors();
+  // Sizes come from a ResizeObserver; reading clientWidth per redraw forced a reflow whenever the text glitch had just written to the DOM.
+  const sizes = canvases.map(() => ({ w: 0, h: 0 }));
+  const ro = new ResizeObserver((entries) => {
+    for (const e of entries) {
+      const k = canvases.indexOf(e.target as HTMLCanvasElement);
+      if (k >= 0) sizes[k] = { w: e.contentRect.width, h: e.contentRect.height };
+    }
+    draw();
+  });
+  canvases.forEach((c) => ro.observe(c));
+  new MutationObserver(() => { readColors(); draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
   function draw(): void {
     canvases.forEach((c, k) => {
       const dpr = Math.min(devicePixelRatio || 1, 2);
-      const w = c.clientWidth, h = c.clientHeight;
+      const { w, h } = sizes[k] ?? { w: 0, h: 0 };
+      if (!w) return;
       if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
       const ctx = c.getContext('2d');
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
-      const cs = getComputedStyle(c);
-      const col = k % 2 ? cs.getPropertyValue('--c-trace') : cs.getPropertyValue('--c-signal');
+      const col = colors[k] ?? '';
       const s = series[k];
       ctx.beginPath();
       for (let i = 0; i < N; i++) {
@@ -37,7 +55,7 @@ export function mountSparks(): void {
         const y = h - 4 - s[i] * (h - 8);
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
-      ctx.strokeStyle = col.trim() || '#FF7A2F';
+      ctx.strokeStyle = col || '#FF7A2F';
       ctx.globalAlpha = 0.85;
       ctx.lineWidth = 1.25;
       ctx.stroke();

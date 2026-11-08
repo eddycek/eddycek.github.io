@@ -94,15 +94,13 @@ const claimParts = h.claim.split(/(šumu|noise)/);
   .hero__portrait { --fade: linear-gradient(to bottom, #000 38%, transparent 94%); position: absolute; z-index: -3; margin: 0; top: 4.2rem; right: 0; height: min(80%, 56vw); aspect-ratio: 3 / 4; pointer-events: none;
     -webkit-mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 18%); -webkit-mask-composite: source-in;
     mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 18%); mask-composite: intersect; }
-  .hero__portrait img, .hero__portrait canvas { position: absolute; inset: 4% 0 0 0; width: 100%; height: 96%; display: block; object-fit: contain; object-position: right top; }
-  .hero__portrait canvas { opacity: 0; }
-  /* The same cyan / orange split as "Vaclav", applied to the silhouette edge. */
-  .hero__portrait { --split: 2px; --split-a: 45%; --halo: drop-shadow(0 0 22px color-mix(in srgb, var(--c-glow) 60%, transparent)); }
-  .hero__portrait img, .hero__portrait canvas { transition: filter 0.4s; filter: drop-shadow(calc(var(--split) * -1) 0 0 color-mix(in srgb, var(--c-trace) var(--split-a), transparent)) drop-shadow(var(--split) 0 0 color-mix(in srgb, var(--c-signal) var(--split-a), transparent)) var(--halo); }
-  .hero__portrait[data-glitch] { --split: 8px; --split-a: 80%; }
-  .hero__portrait[data-state='busy'] { --halo: drop-shadow(0 0 0 transparent); }
-  :global(:root[data-theme='light']) .hero__portrait { --split: 1px; --halo: drop-shadow(0 0 0 transparent); }
-  .hero__portrait[data-glitch] canvas { transition: none; }
+  .hero__portrait img, .hero__portrait canvas { position: absolute; inset: 4% 0 0 0; width: 100%; height: 96%;
+    /* canvas: full box, the picture inside starts 4% down (portrait.ts) */ display: block; object-fit: contain; object-position: right top; }
+  .hero__portrait canvas { opacity: 0; inset: 0; height: 100%; }
+  /* The same cyan / orange split as "Vaclav" on the silhouette edge. Only the static <img> fallback uses CSS
+     filters; the canvas has the split and halo baked in (portrait.ts), so nothing re-blurs while it animates. */
+  .hero__portrait img { filter: drop-shadow(-2px 0 0 color-mix(in srgb, var(--c-trace) 45%, transparent)) drop-shadow(2px 0 0 color-mix(in srgb, var(--c-signal) 45%, transparent)) drop-shadow(0 0 22px color-mix(in srgb, var(--c-glow) 60%, transparent)); }
+  :global(:root[data-theme='light']) .hero__portrait img { filter: drop-shadow(-1px 0 0 color-mix(in srgb, var(--c-trace) 45%, transparent)) drop-shadow(1px 0 0 color-mix(in srgb, var(--c-signal) 45%, transparent)); }
   :global(.hero__portrait.is-live) img { opacity: 0; }
   :global(.hero__portrait.is-live) canvas { opacity: 1; }
   .hero__cam { position: absolute; left: var(--cam-x, 18%); top: var(--cam-y, 4%); white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; color: var(--c-trace); font-size: 10px; }
