@@ -15,18 +15,16 @@ const FONTS = `
 @font-face{font-family:M;src:url(${font('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2')});font-weight:500}
 @font-face{font-family:M;src:url(${font('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-ext-500-normal.woff2')});font-weight:500;unicode-range:U+0100-024F}`;
 
-/** The mark: a PID step response (overshoot, ringing, settle) on a dark tile, beam head in cyan. */
+/** The mark: "e_" (eddycek_ at a prompt). The "e" is Bricolage Grotesque 800 baked to a path, so the SVG needs no font. */
+const E_GLYPH = 'M287 -14Q212 -14 161.5 7.5Q111 29 80 66.5Q49 104 35.5 152Q22 200 22 253Q22 310 36.5 362Q51 414 81.5 454.5Q112 495 160.5 518.5Q209 542 277 542Q345 542 393.5 518.5Q442 495 471 453Q500 411 508.5 356Q517 301 506 237L123 231L123 319L382 324L361 273Q367 319 359.5 350.5Q352 382 332 398.5Q312 415 277 415Q240 415 218 396Q196 377 187 342.5Q178 308 178 261Q178 180 205 143Q232 106 288 106Q312 106 328 112Q344 118 354 129.5Q364 141 368 157.5Q372 174 371 195L519 187Q522 154 512.5 119Q503 84 477 54Q451 24 404.5 5Q358 -14 287 -14Z';
 const mark = ({ pad = 0, radius = 14 } = {}) => {
-  const s = 64 - pad * 2;
-  const t = (x, y) => `${(pad + (x / 64) * s).toFixed(2)} ${(pad + (y / 64) * s).toFixed(2)}`;
+  const k = (64 - pad * 2) / 64;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="${radius}" fill="${C.bg}"/>
-  <g stroke="${C.grid}" stroke-width="1">
-    <path d="M${t(8, 44)} H${t(56, 44).split(' ')[0]}"/>
+  <g transform="translate(${pad} ${pad}) scale(${k})">
+    <path transform="translate(9 44) scale(0.046 -0.046)" d="${E_GLYPH}" fill="${C.ink}"/>
+    <rect x="38" y="40" width="17" height="6" rx="1" fill="${C.signal}"/>
   </g>
-  <path d="M${t(8, 44)} L${t(18, 44)} C${t(21, 44)} ${t(22, 12)} ${t(27, 14)} S${t(32, 30)} ${t(36, 25)} S${t(41, 20)} ${t(44, 23)} S${t(50, 22)} ${t(56, 22)}"
-    fill="none" stroke="${C.signal}" stroke-width="${(5 * s) / 64}" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="${t(56, 22).split(' ')[0]}" cy="${t(56, 22).split(' ')[1]}" r="${(4 * s) / 64}" fill="${C.trace}"/>
 </svg>`;
 };
 
