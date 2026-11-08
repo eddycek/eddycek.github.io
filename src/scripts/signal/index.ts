@@ -7,3 +7,4 @@ export { mountSpectrum } from './spectrum';
 export { mountTrace, type TracePoint } from './trace';
 export { decodeText } from './decode';
 export { mountCursorField } from './cursor';
+export { mountPortrait } from './portrait';

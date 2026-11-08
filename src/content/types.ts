@@ -45,6 +45,7 @@ export interface SiteContent {
     intro: string;          // 1–2 sentences
     tags: string[];
     scrollHint: string;
+    portraitAlt: string;
     clickHint: string;      // OSD hint that clicking breaks the signal
   };
   work: {

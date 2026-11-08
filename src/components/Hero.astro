@@ -9,6 +9,11 @@ const claimParts = h.claim.split(/(šumu|noise)/);
 ---
 <section class="hero" id="signal" aria-labelledby="hero-name">
   <canvas class="hero__scope" id="scope" aria-hidden="true"></canvas>
+  <figure class="hero__portrait" data-portrait>
+    <img src="/portrait/eddy-960.webp" srcset="/portrait/eddy-560.webp 560w, /portrait/eddy-960.webp 960w" sizes="(max-width: 760px) 70vw, 42vw" width="960" height="1280" alt={h.portraitAlt} fetchpriority="high" decoding="async" />
+    <canvas aria-hidden="true"></canvas>
+    <figcaption class="osd hero__cam" aria-hidden="true"><span class="hero__cam-dot"></span>CAM 01 · <span data-lock>STANDBY</span><span class="hero__cam-id"> · ID EDDYCEK</span></figcaption>
+  </figure>
   <div class="hero__scan" aria-hidden="true"></div>
   <div class="hero__hud" aria-hidden="true" data-on="0">
     <div class="hero__hud-row"><span>SIGNAL INTEGRITY</span><span data-hud-pct>100%</span></div>
@@ -84,6 +89,48 @@ const claimParts = h.claim.split(/(šumu|noise)/);
   .hero__hint { padding-block: 0.5rem; text-decoration: none; color: var(--c-ink); animation: nudge 2.4s ease-in-out infinite; }
   @keyframes nudge { 50% { transform: translateY(4px); } }
 
+  /* Portrait: a cutout received as a video feed (src/scripts/signal/portrait.ts). It sits under the scope,
+     pinned top right and dissolving downwards, so the traces run across it; the signal stays the hero, the face is in it. */
+  .hero__portrait { --fade: linear-gradient(to bottom, #000 38%, transparent 94%); position: absolute; z-index: -3; margin: 0; top: 4.2rem; right: 0; height: min(80%, 56vw); aspect-ratio: 3 / 4; pointer-events: none;
+    -webkit-mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 18%); -webkit-mask-composite: source-in;
+    mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 18%); mask-composite: intersect; }
+  .hero__portrait img, .hero__portrait canvas { position: absolute; inset: 4% 0 0 0; width: 100%; height: 96%; display: block; object-fit: contain; object-position: right top; }
+  .hero__portrait canvas { opacity: 0; }
+  /* The same cyan / orange split as "Vaclav", applied to the silhouette edge. */
+  .hero__portrait { --split: 2px; --split-a: 45%; --halo: drop-shadow(0 0 22px color-mix(in srgb, var(--c-glow) 60%, transparent)); }
+  .hero__portrait img, .hero__portrait canvas { transition: filter 0.4s; filter: drop-shadow(calc(var(--split) * -1) 0 0 color-mix(in srgb, var(--c-trace) var(--split-a), transparent)) drop-shadow(var(--split) 0 0 color-mix(in srgb, var(--c-signal) var(--split-a), transparent)) var(--halo); }
+  .hero__portrait[data-glitch] { --split: 8px; --split-a: 80%; }
+  .hero__portrait[data-state='busy'] { --halo: drop-shadow(0 0 0 transparent); }
+  :global(:root[data-theme='light']) .hero__portrait { --split: 1px; --halo: drop-shadow(0 0 0 transparent); }
+  .hero__portrait[data-glitch] canvas { transition: none; }
+  :global(.hero__portrait.is-live) img { opacity: 0; }
+  :global(.hero__portrait.is-live) canvas { opacity: 1; }
+  .hero__cam { position: absolute; left: var(--cam-x, 18%); top: var(--cam-y, 4%); white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; color: var(--c-trace); font-size: 10px; }
+  .hero__cam-id { opacity: 0; transition: opacity 0.4s; }
+  .hero__portrait[data-state='locked'] .hero__cam-id { opacity: 1; }
+  .hero__cam-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-signal); box-shadow: 0 0 10px var(--c-glow); animation: blink 1.2s steps(1, end) infinite; }
+
+
+  /* The figure keeps the picture's exact 3:4 ratio (height capped by width), so the fade always ends on the picture
+     and never on a hard edge. */
+  @media (max-width: 1100px) { .hero__portrait { height: min(80%, 50vw); } }
+  /* Phones and narrow tablets: the face rides in the top right corner behind the status line and the name, bleeding
+     off the edge (ear side). It takes no layout space; the copy starts where it always did. Above the scope here,
+     so the grid doesn't cut the face. */
+  @media (max-width: 900px) {
+    .hero__portrait { --fade: linear-gradient(to bottom, #000 30%, transparent 78%); z-index: -1; top: 3.2rem; right: -14%; width: min(66%, 22rem); height: auto;
+      -webkit-mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 40%);
+      mask-image: var(--fade), linear-gradient(to right, transparent 0, #000 40%); }
+    .hero__inner { padding-top: 4.5rem; }
+    .hero__handle { text-shadow: 0 0 12px var(--c-bg); }
+    .hero__cam-id { display: none; }
+    .hero__status { text-shadow: 0 0 8px var(--c-bg), 0 0 16px var(--c-bg); }
+    /* Light theme: the dark shirt would swallow the dark name, so the bust fades out before the name starts. */
+    :global(:root[data-theme='light']) .hero__portrait { --fade: linear-gradient(to bottom, #000 30%, transparent 66%); }
+  }
+
+  @media (min-width: 600px) and (max-width: 900px) { .hero__portrait { right: 0; width: min(48%, 24rem); } }
+  @media (max-width: 480px) { .hero__cam { display: none; } }
 
   @media (max-width: 640px) {
     .hero__osd--tr span:not(:last-child) { display: none; }

@@ -23,6 +23,7 @@ export const content: SiteContent = {
       'CTO v Keboole. Pro tuhle práci hořím a doslova jsem se pro ni narodil. A když se do něčeho zaberu, jsem totálně lock in; nepustí mě to. Buildím platformu, na které s daty pracují lidi i AI agenti. Roky v SRE mě naučily jedno; reliability není prázdný claim, ale slib, který držíš i ve tři ráno.',
     tags: ['CTO', 'SRE', 'Cyber security', 'AI agenti', 'FPV', 'Poetry', 'Music', 'Digital nomad', 'Gaming'],
     scrollHint: 'Next',
+    portraitAlt: 'Václav Eder, portrét',
     clickHint: '[ klikni do signálu ]',
   },
   work: {
