@@ -7,6 +7,7 @@ import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 
 const C = { bg: '#0B0E12', surface: '#12161C', grid: '#1A2029', ink: '#E8EBEE', muted: '#8E98A5', signal: '#FF7A2F', trace: '#5CC8D6' };
+const PORTRAIT = pathToFileURL(resolve('public/portrait/eddy-960.webp')).href;
 const font = (p) => pathToFileURL(resolve('node_modules', p)).href;
 const FONTS = `
 @font-face{font-family:B;src:url(${font('@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2')});font-weight:200 800}
@@ -46,7 +47,19 @@ svg.trace{position:absolute;inset:0}
 .aka{position:absolute;left:172px;top:432px;font-family:M;font-size:30px;color:${C.signal}}
 .aka b{color:${C.muted};font-weight:500;font-size:20px;letter-spacing:.2em;margin-right:16px}
 .claim{position:absolute;left:64px;bottom:60px;font-weight:600;font-size:44px;color:${C.signal};text-shadow:0 0 30px rgba(255,122,47,.45)}
-.url{position:absolute;right:64px;bottom:66px;color:${C.ink}}
+.url{position:absolute;right:64px;bottom:66px;color:${C.ink};z-index:3}
+.pic{position:absolute;right:26px;top:34px;width:450px;height:600px;z-index:1;
+  -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 97%),linear-gradient(to right,transparent 0,#000 22%);-webkit-mask-composite:source-in;mask-composite:intersect}
+.pic img{width:100%;height:100%;object-fit:contain;object-position:top;display:block;
+  filter:drop-shadow(-3px 0 0 rgba(92,200,214,.55)) drop-shadow(3px 0 0 rgba(255,122,47,.55)) drop-shadow(0 0 26px rgba(255,122,47,.28)) contrast(1.04)}
+.pic::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 2px,rgba(11,14,18,.28) 2px 3px)}
+.cam{position:absolute;z-index:2;left:800px;top:100px;width:322px;height:330px;
+  background:linear-gradient(${C.signal},${C.signal}) 0 0/22px 2px,linear-gradient(${C.signal},${C.signal}) 0 0/2px 22px,
+  linear-gradient(${C.signal},${C.signal}) 100% 0/22px 2px,linear-gradient(${C.signal},${C.signal}) 100% 0/2px 22px,
+  linear-gradient(${C.signal},${C.signal}) 0 100%/22px 2px,linear-gradient(${C.signal},${C.signal}) 0 100%/2px 22px,
+  linear-gradient(${C.signal},${C.signal}) 100% 100%/22px 2px,linear-gradient(${C.signal},${C.signal}) 100% 100%/2px 22px;background-repeat:no-repeat;opacity:.85}
+.cam span{position:absolute;left:0;top:-30px;font-family:M;font-size:15px;letter-spacing:.18em;color:${C.signal}}
+.name,.aka,.claim,.tl,.tr{z-index:3}
 </style></head><body>
 <div class="grid"></div>
 <svg class="trace" viewBox="0 0 1200 630" preserveAspectRatio="none">
@@ -55,6 +68,8 @@ svg.trace{position:absolute;inset:0}
   <path d="M560 470 C640 440 700 520 780 470 S900 420 980 470 S1100 500 1200 460" fill="none" stroke="${C.trace}" stroke-width="3" opacity=".55"/>
   <circle cx="1060" cy="212" r="10" fill="${C.trace}"/>
 </svg>
+<div class="pic"><img src="${PORTRAIT}" alt=""></div>
+<div class="cam"><span>● LOCK</span></div>
 <div class="scan"></div>
 <div class="osd tl"><i></i>CTO · KEBOOLA · PRAGUE</div>
 <div class="osd tr">CH1 · SIGNAL</div>
