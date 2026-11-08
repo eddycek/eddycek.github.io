@@ -107,8 +107,10 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   // Warm start: the screen is full on the very first frame.
   for (let i = 0; i < COLS; i++) column();
 
+  const rectOf = (): { left: number; top: number; right: number; bottom: number; width: number; height: number } =>
+    stage ? stage.s.view() : canvas.getBoundingClientRect();
   const onMove = (e: PointerEvent): void => {
-    const r = canvas.getBoundingClientRect();
+    const r = rectOf();
     const px = e.clientX - r.left;
     const py = e.clientY - r.top;
     if (px < 0 || py < 0 || px > r.width || py > r.height) return;
@@ -133,7 +135,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
   };
   let lastHit = 0;
   const onDown = (e: MouseEvent): void => {
-    const r = canvas.getBoundingClientRect();
+    const r = rectOf();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
     // Only clicks that land inside the hero section itself; never the sticky bar or the rest of the page.
     const target = e.target as Element | null;
@@ -227,6 +229,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
 
   let gridShift = 0;
   let ticks = 0;
+  const tearBuf = document.createElement('canvas');
 
   const draw = (s: Stage, t: number, dt: number): void => {
     const { ctx, w, h, pal } = s;
@@ -444,33 +447,52 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
         ctx.fillRect(0, 0, w, h);
       }
     }
-    for (const p of shards) {
-      const f = 1 - p.age / p.life;
-      ctx.strokeStyle = p.hue === 0 ? pal.signal.css : pal.trace.css;
+    // Shards: one path per colour and fade step (8 steps) instead of one stroke per shard.
+    if (shards.length) {
       ctx.lineWidth = 1.6;
-      ctx.globalAlpha = f;
-      const dx = Math.cos(p.rot) * p.len * 0.5;
-      const dy = Math.sin(p.rot) * p.len * 0.5;
-      ctx.beginPath();
-      ctx.moveTo(p.x - dx, p.y - dy);
-      ctx.lineTo(p.x + dx, p.y + dy);
-      ctx.stroke();
+      for (let hue = 0; hue < 2; hue++) {
+        ctx.strokeStyle = hue === 0 ? pal.signal.css : pal.trace.css;
+        for (let q = 0; q < 8; q++) {
+          let any = false;
+          ctx.beginPath();
+          for (const p of shards) {
+            if (p.hue !== hue) continue;
+            const f = 1 - p.age / p.life;
+            if (Math.min(7, (f * 8) | 0) !== q) continue;
+            const dx = Math.cos(p.rot) * p.len * 0.5;
+            const dy = Math.sin(p.rot) * p.len * 0.5;
+            ctx.moveTo(p.x - dx, p.y - dy);
+            ctx.lineTo(p.x + dx, p.y + dy);
+            any = true;
+          }
+          if (!any) continue;
+          ctx.globalAlpha = (q + 0.5) / 8;
+          ctx.stroke();
+        }
+      }
     }
     if (tear > 0) {
       // Horizontal tearing: shift random bands of the frame sideways.
+      // One snapshot per frame; drawing the canvas onto itself band by band copied the whole frame 7 times.
       const cw = s.canvas.width;
       const chh = s.canvas.height;
       const bands = 7;
-      ctx.save();
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.globalAlpha = 1;
-      for (let k = 0; k < bands; k++) {
-        const bh = Math.max(2, Math.round((2 + Math.random() * 26) * s.dpr));
-        const by = Math.round(Math.random() * (chh - bh));
-        const off = Math.round((Math.random() * 2 - 1) * 60 * s.dpr * (tear / 0.45));
-        ctx.drawImage(s.canvas, 0, by, cw, bh, off, by, cw, bh);
+      if (tearBuf.width !== cw || tearBuf.height !== chh) { tearBuf.width = cw; tearBuf.height = chh; }
+      const tctx = tearBuf.getContext('2d');
+      if (tctx) {
+        tctx.clearRect(0, 0, cw, chh);
+        tctx.drawImage(s.canvas, 0, 0);
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.globalAlpha = 1;
+        for (let k = 0; k < bands; k++) {
+          const bh = Math.max(2, Math.round((2 + Math.random() * 26) * s.dpr));
+          const by = Math.round(Math.random() * (chh - bh));
+          const off = Math.round((Math.random() * 2 - 1) * 60 * s.dpr * (tear / 0.45));
+          ctx.drawImage(tearBuf, 0, by, cw, bh, off, by, cw, bh);
+        }
+        ctx.restore();
       }
-      ctx.restore();
     }
     ctx.globalAlpha = 1;
     ctx.lineWidth = 1;
@@ -500,8 +522,7 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
       show = true;
     }
     // Hide when the hero is scrolled away.
-    const rect = s.canvas.getBoundingClientRect();
-    if (rect.bottom < 160) show = false;
+    if (s.view().bottom < 160) show = false;
     hud.dataset.on = show ? '1' : '0';
     if (!show) return;
     // Same colour rule both ways: orange below 40 %, cyan above, also while refilling.
@@ -518,6 +539,36 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     }
   };
 
+  let displayFont = '';
+  // Static tiles: STATIC_TILE css px squares, keyed by palette + cell + dpr so theme switches rebuild them.
+  const STATIC_TILE = 192;
+  let staticKey = '';
+  let staticCache: HTMLCanvasElement[] = [];
+  const staticFrames = (s: Stage, cell: number): HTMLCanvasElement[] => {
+    const key = `${s.pal.signal.css}|${s.pal.ink.css}|${s.pal.noise.css}|${cell}|${s.dpr}`;
+    if (key === staticKey) return staticCache;
+    staticKey = key;
+    staticCache = [];
+    const px = Math.round(STATIC_TILE * s.dpr);
+    // Same density as the old per-frame loop: one cell per 9 cell areas.
+    const n = Math.round((STATIC_TILE * STATIC_TILE) / (cell * cell * 9));
+    for (let f = 0; f < 6; f++) {
+      const c = document.createElement('canvas');
+      c.width = c.height = px;
+      const x = c.getContext('2d');
+      if (!x) continue;
+      x.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      for (let i = 0; i < n; i++) {
+        const v = Math.random();
+        x.fillStyle = v > 0.92 ? s.pal.signal.css : v > 0.5 ? s.pal.ink.css : s.pal.noise.css;
+        x.globalAlpha = 0.08 + Math.random() * 0.22;
+        x.fillRect(((Math.random() * STATIC_TILE) / cell | 0) * cell, ((Math.random() * STATIC_TILE) / cell | 0) * cell, cell, cell);
+      }
+      staticCache.push(c);
+    }
+    return staticCache;
+  };
+
   const drawFailsafe = (s: Stage, t: number): void => {
     const { ctx, w, h, pal } = s;
     const k = 1 - failsafe / FAIL_T; // 0 → 1
@@ -525,14 +576,16 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.fillStyle = pal.bg.css;
     ctx.globalAlpha = k > 0.85 ? 0.9 * (1 - (k - 0.85) / 0.15) : 0.9;
     ctx.fillRect(0, 0, w, h);
-    // Static.
+    // Static: a few pre-rendered frames (same cells, colours and density as drawing them live), shown in
+    // random order at random cell-aligned offsets. Thousands of fillRect calls per frame stuttered on phones.
     const cell = w < 640 ? 3 : 4;
-    const n = Math.round((w * h) / (cell * cell * 9));
-    for (let i = 0; i < n; i++) {
-      const v = Math.random();
-      ctx.fillStyle = v > 0.92 ? pal.signal.css : v > 0.5 ? pal.ink.css : pal.noise.css;
-      ctx.globalAlpha = 0.08 + Math.random() * 0.22;
-      ctx.fillRect(((Math.random() * w) / cell | 0) * cell, ((Math.random() * h) / cell | 0) * cell, cell, cell);
+    const frames = staticFrames(s, cell);
+    const fr = frames[(Math.random() * frames.length) | 0];
+    if (fr) {
+      const ox = -((Math.random() * (STATIC_TILE / cell)) | 0) * cell;
+      const oy = -((Math.random() * (STATIC_TILE / cell)) | 0) * cell;
+      ctx.globalAlpha = 1;
+      for (let y = oy; y < h; y += STATIC_TILE) for (let x = ox; x < w; x += STATIC_TILE) ctx.drawImage(fr, x, y, STATIC_TILE, STATIC_TILE);
     }
     // Rolling bar.
     ctx.fillStyle = pal.ink.css;
@@ -543,12 +596,13 @@ export function mountScope(canvas: HTMLCanvasElement): () => void {
     ctx.textBaseline = 'middle';
     const big = Math.min(120, w / 6.5);
     // Centre on the part of the hero that is actually on screen (phones: hero is taller than the viewport).
-    const r = s.canvas.getBoundingClientRect();
+    const r = s.view();
     const visTop = clamp(-r.top, 0, h);
     const visBot = clamp(window.innerHeight - r.top, 0, h);
     const cy = (visBot > visTop ? (visTop + visBot) / 2 : h * 0.44) - big * 0.25;
     if (Math.sin(t * 22) > -0.3) {
-      ctx.font = `800 ${big}px ${getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif'}`;
+      displayFont ||= getComputedStyle(document.documentElement).getPropertyValue('--f-display') || 'sans-serif';
+      ctx.font = `800 ${big}px ${displayFont}`;
       ctx.globalAlpha = 0.9;
       ctx.fillStyle = pal.trace.css;
       ctx.fillText('FAILSAFE', w / 2 + 4, cy);

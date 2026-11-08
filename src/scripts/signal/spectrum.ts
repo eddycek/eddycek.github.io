@@ -324,7 +324,7 @@ export function mountSpectrum(canvas: HTMLCanvasElement): () => void {
   if (!stage) return () => {};
 
   const onMove = (e: PointerEvent): void => {
-    const r = canvas.getBoundingClientRect();
+    const r = stage.s.view();
     hoverX = clamp(e.clientX - r.left, 0, r.width);
     stage.kick();
   };

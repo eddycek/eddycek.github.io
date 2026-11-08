@@ -85,7 +85,7 @@ export function mountTrace(canvas: HTMLCanvasElement, points: TracePoint[]): () 
     const { ctx, w, h, pal } = s;
     if (s.reduced) prog = 1;
     else {
-      const r = canvas.getBoundingClientRect();
+      const r = s.view();
       const vh = window.innerHeight;
       const target = clamp((vh * 0.9 - r.top) / (r.height * 0.9 + vh * 0.1), 0, 1);
       prog += (target - prog) * (dt > 0 ? 1 - Math.exp(-dt * 5) : 1);
