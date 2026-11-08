@@ -7,10 +7,13 @@ if (OLD_ANCHORS[oldHash]) {
   history.replaceState(null, '', `#${OLD_ANCHORS[oldHash]}`);
   document.getElementById(OLD_ANCHORS[oldHash]!)?.scrollIntoView();
 }
-import { mountScope, mountSpectrum, mountTrace, decodeText, mountCursorField } from './signal';
+import { mountScope, mountSpectrum, mountTrace, decodeText, mountCursorField, mountPortrait } from './signal';
 
 const scope = document.getElementById('scope');
 if (scope instanceof HTMLCanvasElement) mountScope(scope);
+
+const portrait = document.querySelector<HTMLElement>('[data-portrait]');
+if (portrait) mountPortrait(portrait);
 
 const spectrum = document.getElementById('spectrum');
 if (spectrum instanceof HTMLCanvasElement) mountSpectrum(spectrum);
